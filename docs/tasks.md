@@ -35,10 +35,10 @@ Khởi tạo 18/11/2026. Trạng thái trong bảng là của task, không tự 
 | T101 | G1 / PM-US-02 | Nhập/TXT BOM/example → analyze thật; tô span/nhãn/nguồn và trạng thái empty/loading/success/error/unavailable | Dev | QA | Test API + browser, `docs/reviews/G1.md` | PASS |
 | T102 | G1 / PM-US-03 | Bấm mục định vị, đổi nhãn/xóa/thêm; sửa input hủy kết quả/duyệt; response cũ không ghi đè | Dev | QA + BA | Ca câu mới, ca race và thao tác UI | PASS |
 | T103 | G1 / PM-US-04 | Redact validate nhãn/biên/chồng lấn; preview/duyệt/TXT/JSON; tên lặp nhất quán; giữ ngày tái khám | Dev | QA + BA | TXT đã tải và mở, JSON không chuỗi gốc | PASS |
-| T201 | G2 / PM-US-05 | Khoảng 100 ghi chú nếu khả thi; split theo họ trước sinh; tự do/âm tính/lowercase/địa chỉ/date/numeric; ghi tác giả và human review thật | Research/ML | QA | `data/`, manifest seed/revision/split | TODO |
-| T202 | G2 / PM-US-05 | NER CPU thực, rules và hybrid; giữ nguồn, trọng số/revision/license, script train/load và phạm vi nhãn | Research/ML | Dev + QA | `ml/`, model metadata, smoke tiếng Việt | TODO |
-| T203 | G2 / PM-US-05 | Xác minh/cài riêng/thử Presidio, Philter UCSF, GEMINI pyDeid đúng nguồn; status và lỗi tái hiện nếu blocked | Research/ML | QA + DevOps | Ba lệnh smoke/output thật; `THIRD_PARTY.md` | TODO |
-| T204 | G2 / PM-US-03 | Emoji, tổ hợp dấu, CRLF, BOM, lặp tên; contract code point/UTF-16 đúng; cài lại engine chính | QA + DevOps | Dev | Tests độc lập, `docs/reviews/G2.md` | TODO |
+| T201 | G2 / PM-US-05 | Khoảng 100 ghi chú nếu khả thi; split theo họ trước sinh; tự do/âm tính/lowercase/địa chỉ/date/numeric; ghi tác giả và human review thật | Research/ML | QA | `data/`, manifest seed/revision/split | PASS |
+| T202 | G2 / PM-US-05 | NER CPU thực, rules và hybrid; giữ nguồn, trọng số/revision/license, script train/load và phạm vi nhãn | Research/ML | Dev + QA | `ml/`, model metadata, smoke tiếng Việt | PASS |
+| T203 | G2 / PM-US-05 | Xác minh/cài riêng/thử Presidio, Philter UCSF, GEMINI pyDeid đúng nguồn; status và lỗi tái hiện nếu blocked | Research/ML | QA + DevOps | Ba lệnh smoke/output thật; `THIRD_PARTY.md` | PASS |
+| T204 | G2 / PM-US-03 | Emoji, tổ hợp dấu, CRLF, BOM, lặp tên; contract code point/UTF-16 đúng; cài lại engine chính | QA + DevOps | Dev | Tests độc lập, `docs/reviews/G2.md` | PASS |
 | T301 | G3 / PM-US-06 | Rules/NER/hybrid chung test khóa; exact span+label, per-label support/TP/FP/FN/P/R/F1, micro và ghi chú còn sót | Research/ML | QA | Artifact và lệnh evaluate tái tạo | TODO |
 | T302 | G3 / PM-US-06 | QA tính tay scorer rồi chạy lại; BA kiểm nhãn; dashboard khớp artifact, lỗi thật và mục tiêu F1 riêng | QA; Dev hiển thị | BA + Tech Lead | `docs/reviews/G3.md`, artifact, báo cáo | TODO |
 | T303 | G3 / PM-US-05–06 | Đối chứng upstream độc lập trên cùng Anh ngữ giả lập; đơn vị/nhiệm vụ tương đương hoặc ghi rõ không so sánh | Research/ML | QA | Artifact tiếng Anh, phạm vi adapter và lý do thiếu | TODO |
