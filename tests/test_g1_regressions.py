@@ -99,3 +99,20 @@ def test_invalid_utf8_json_returns_safe_validation_error(
     assert result["error"]["code"] == "VALIDATION_ERROR"
     assert canary not in response.text
     assert canary not in caplog.text
+
+
+@pytest.mark.parametrize("encoding", ["utf-16-le", "utf-16", "utf-32-le", "utf-32"])
+def test_json_encoding_is_not_auto_detected(encoding: str) -> None:
+    """Both routes reject non-UTF-8 encodings even when the JSON object is valid."""
+    requests = {
+        "/api/analyze": '{"text":"QA fixture.","language":"en","mode":"rules"}',
+        "/api/redact": '{"text":"QA fixture.","entities":[]}',
+    }
+    for endpoint, payload in requests.items():
+        response = client.post(
+            endpoint,
+            content=payload.encode(encoding),
+            headers={"Content-Type": "application/json"},
+        )
+        assert response.status_code == 422
+        assert response.json()["error"]["code"] == "VALIDATION_ERROR"

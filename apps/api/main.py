@@ -2,10 +2,8 @@
 from collections.abc import Awaitable, Callable
 
 from fastapi import FastAPI, Request
-from fastapi.exception_handlers import http_exception_handler
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
-from starlette.exceptions import HTTPException
 from starlette.responses import JSONResponse, Response
 
 from apps.api.controllers import router
@@ -13,6 +11,7 @@ from apps.api.schemas import MAX_ENTITIES
 from apps.api.services.analysis import AnalysisEntityLimitError, EngineUnavailableError
 from apps.api.services.redaction import InvalidSpanError
 
+JSON_INPUT_PATHS = {"/api/analyze", "/api/redact"}
 app = FastAPI(title="MedShield", version="0.1.0")
 app.add_middleware(
     CORSMiddleware,
@@ -27,16 +26,9 @@ def error_response(status: int, code: str, message: str) -> JSONResponse:
     return JSONResponse(status_code=status, content={"error": {"code": code, "message": message}})
 
 
-@app.exception_handler(HTTPException)
 @app.exception_handler(RequestValidationError)
-async def validation_error(
-    request: Request, exception: RequestValidationError | HTTPException
-) -> Response:
-    """validation_error hides invalid body details and preserves unrelated HTTP errors."""
-    if isinstance(exception, HTTPException) and not (
-        exception.status_code == 400 and isinstance(exception.__cause__, UnicodeDecodeError)
-    ):
-        return await http_exception_handler(request, exception)
+async def validation_error(_request: Request, _exception: RequestValidationError) -> JSONResponse:
+    """validation_error hides invalid body details and Pydantic inputs."""
     return error_response(422, "VALIDATION_ERROR", "Dữ liệu yêu cầu không hợp lệ.")
 
 
@@ -74,7 +66,15 @@ async def private_response(
     engine exception whose message could otherwise contain the original input.
     """
     try:
+        if request.method == "POST" and request.url.path in JSON_INPUT_PATHS:
+            body = await request.body()
+            body.decode("utf-8")
+            # A literal NUL is invalid JSON and can trigger UTF-16/32 auto-detection.
+            if b"\0" in body:
+                raise UnicodeError("invalid JSON byte encoding")
         response = await call_next(request)
+    except UnicodeError:
+        response = error_response(422, "VALIDATION_ERROR", "Dữ liệu yêu cầu không hợp lệ.")
     except Exception:
         response = error_response(500, "INTERNAL_ERROR", "Không thể xử lý yêu cầu lúc này.")
     response.headers["Cache-Control"] = "no-store"
