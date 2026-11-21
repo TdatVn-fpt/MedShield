@@ -32,9 +32,9 @@ Khởi tạo 18/11/2026. Trạng thái trong bảng là của task, không tự 
 
 | ID | Gate / story | Việc và tiêu chí chấp nhận | Owner | Reviewer | Bằng chứng đích | Trạng thái |
 |---|---|---|---|---|---|---|
-| T101 | G1 / PM-US-02 | Nhập/TXT BOM/example → analyze thật; tô span/nhãn/nguồn và trạng thái empty/loading/success/error/unavailable | Dev | QA | Test API + browser, `docs/reviews/G1.md` | TODO |
-| T102 | G1 / PM-US-03 | Bấm mục định vị, đổi nhãn/xóa/thêm; sửa input hủy kết quả/duyệt; response cũ không ghi đè | Dev | QA + BA | Ca câu mới, ca race và thao tác UI | TODO |
-| T103 | G1 / PM-US-04 | Redact validate nhãn/biên/chồng lấn; preview/duyệt/TXT/JSON; tên lặp nhất quán; giữ ngày tái khám | Dev | QA + BA | TXT đã tải và mở, JSON không chuỗi gốc | TODO |
+| T101 | G1 / PM-US-02 | Nhập/TXT BOM/example → analyze thật; tô span/nhãn/nguồn và trạng thái empty/loading/success/error/unavailable | Dev | QA | Test API + browser, `docs/reviews/G1.md` | PASS |
+| T102 | G1 / PM-US-03 | Bấm mục định vị, đổi nhãn/xóa/thêm; sửa input hủy kết quả/duyệt; response cũ không ghi đè | Dev | QA + BA | Ca câu mới, ca race và thao tác UI | PASS |
+| T103 | G1 / PM-US-04 | Redact validate nhãn/biên/chồng lấn; preview/duyệt/TXT/JSON; tên lặp nhất quán; giữ ngày tái khám | Dev | QA + BA | TXT đã tải và mở, JSON không chuỗi gốc | PASS |
 | T201 | G2 / PM-US-05 | Khoảng 100 ghi chú nếu khả thi; split theo họ trước sinh; tự do/âm tính/lowercase/địa chỉ/date/numeric; ghi tác giả và human review thật | Research/ML | QA | `data/`, manifest seed/revision/split | TODO |
 | T202 | G2 / PM-US-05 | NER CPU thực, rules và hybrid; giữ nguồn, trọng số/revision/license, script train/load và phạm vi nhãn | Research/ML | Dev + QA | `ml/`, model metadata, smoke tiếng Việt | TODO |
 | T203 | G2 / PM-US-05 | Xác minh/cài riêng/thử Presidio, Philter UCSF, GEMINI pyDeid đúng nguồn; status và lỗi tái hiện nếu blocked | Research/ML | QA + DevOps | Ba lệnh smoke/output thật; `THIRD_PARTY.md` | TODO |

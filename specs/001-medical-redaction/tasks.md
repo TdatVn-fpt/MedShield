@@ -11,15 +11,15 @@ Thiết kế tại plan.md/spec.md; chi tiết owner/reviewer/AC/evidence trong 
 
 ## Pha 2 — Nền tảng (G1, sau G0 PASS)
 
-- [ ] T005 Xây schemas/error handler trong apps/api/: thực hiện các trường data-model.md AnalyzeRequest.text, AnalyzeRequest.language, AnalyzeRequest.mode, Entity.start, Entity.end, Entity.label, Entity.source, Entity.score, RedactRequest.entities, RedactResponse.redacted_text, RedactResponse.metadata, Engine.name, Engine.status, Engine.mode, Engine.language theo contract (root; QA).
+- [x] T005 Xây schemas/error handler trong apps/api/: thực hiện các trường data-model.md AnalyzeRequest.text, AnalyzeRequest.language, AnalyzeRequest.mode, Entity.start, Entity.end, Entity.label, Entity.source, Entity.score, RedactRequest.entities, RedactResponse.redacted_text, RedactResponse.metadata, Engine.name, Engine.status, Engine.mode, Engine.language theo contract (root; QA).
 
 ## Pha 3 — User Story 1: Nhập/phân tích (P1)
 
-- [ ] T006 [US1] Rules và analyze thật trong apps/api/; nhập UTF8/tô span/version request trong apps/web/src/ (Dev/root; QA; T101/T102).
+- [x] T006 [US1] Rules và analyze thật trong apps/api/; nhập UTF8/tô span/version request trong apps/web/src/ (Dev/root; QA; T101/T102).
 
 ## Pha 4 — User Story 2: Sửa/xuất (P1)
 
-- [ ] T007 [US2] Thêm/xóa/đổi nhãn, redact/preview/duyệt/download trong apps/web/src/ và apps/api/; tests/ kiểm Unicode/race/export (Dev/root; QA+BA; T102/T103).
+- [x] T007 [US2] Thêm/xóa/đổi nhãn, redact/preview/duyệt/download trong apps/web/src/ và apps/api/; tests/ kiểm Unicode/race/export (Dev/root; QA+BA; T102/T103).
 
 ## Pha 5 — User Story 3: Hiểu AI (P2)
 
