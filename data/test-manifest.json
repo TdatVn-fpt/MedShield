@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "dataset_revision": "vi-test-v1",
+  "split": "test",
+  "language": "vi",
+  "path": "data/test.jsonl",
+  "synthetic": true,
+  "provenance": "QA soạn và gán nhãn thủ công từ các họ mẫu dành riêng, dùng dữ liệu giả lập. Không trích bệnh án.",
+  "author_role": "QA",
+  "annotation_review_role": "BA",
+  "participant_reviewed_count": 0,
+  "seed": null,
+  "offset_unit": "unicode_code_point",
+  "note_count": 20,
+  "family_count": 6,
+  "families": [
+    {
+      "family_id": "qa_consult_callback",
+      "note_ids": [
+        "vi-test-001",
+        "vi-test-002",
+        "vi-test-003",
+        "vi-test-004"
+      ]
+    },
+    {
+      "family_id": "qa_sample_custody",
+      "note_ids": [
+        "vi-test-005",
+        "vi-test-006",
+        "vi-test-007"
+      ]
+    },
+    {
+      "family_id": "qa_registry_correction",
+      "note_ids": [
+        "vi-test-008",
+        "vi-test-009",
+        "vi-test-010",
+        "vi-test-011"
+      ]
+    },
+    {
+      "family_id": "qa_home_dispatch",
+      "note_ids": [
+        "vi-test-012",
+        "vi-test-013",
+        "vi-test-014"
+      ]
+    },
+    {
+      "family_id": "qa_shift_handoff",
+      "note_ids": [
+        "vi-test-015",
+        "vi-test-016",
+        "vi-test-017"
+      ]
+    },
+    {
+      "family_id": "qa_station_observation",
+      "note_ids": [
+        "vi-test-018",
+        "vi-test-019",
+        "vi-test-020"
+      ]
+    }
+  ],
+  "digest": {
+    "algorithm": "sha256",
+    "canonicalization": "UTF-8 không BOM, LF phân cách bản ghi, có LF cuối. Đổi CRLF vật lý của checkout về LF trước khi băm. Không đổi chuỗi text JSON.",
+    "value": "ad2dce2254e1eac809df51f5a827f64bfdb425babf1ca56cb5db87f7dea9bb96"
+  }
+}

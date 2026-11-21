@@ -7,8 +7,14 @@ flowchart LR
   C -->|POST /api/analyze| D[controllers.py: analyze]
   D --> E[schemas.py: AnalyzeRequest]
   D --> F[services/analysis.py: analyze_text]
-  F --> G[adapters/rules.py: recognize]
-  G --> H[services/redaction.py: redact_text]
+  F -->|rules hoặc hybrid| G[adapters/rules.py: recognize]
+  F -->|ner hoặc hybrid| P[adapters/ner.py: recognize]
+  P --> Q[ml/model.py: CrfModel.predict]
+  G --> R[Danh sách entity chuẩn]
+  Q --> R
+  R -->|hybrid| S[adapters/rules.py: resolve_overlaps]
+  R -->|rules hoặc ner| H[services/redaction.py: redact_text]
+  S --> H
   H --> I[AnalyzeResponse]
   I --> B
   B -->|POST /api/redact| J[controllers.py: redact]
@@ -20,7 +26,7 @@ flowchart LR
   M --> N[api.ts: downloadResult]
 ```
 
-Sơ đồ phản ánh luồng G1. Khi bổ sung NER/hybrid ở G2, service chọn adapter theo mode và vẫn trả cùng Entity; tài liệu sẽ cập nhật theo code tích hợp.
+Service chọn adapter theo `mode` và trả chung kiểu `Entity`. Chế độ `hybrid` lấy danh sách ứng viên từ cả hai adapter trước khi giải quyết chồng lấn.
 
 ## Liên hệ ASP.NET MVC
 

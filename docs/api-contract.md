@@ -63,6 +63,8 @@ Các adapter upstream được bổ sung với tên/trạng thái đúng thực 
 
 Request có ba trường bắt buộc: text, language (`vi` hoặc `en`), mode (`rules`, `ner`, `hybrid`). Không tự đổi mode khi engine yêu cầu không hoạt động; trả 503.
 
+Khi nạp được trọng số tiếng Việt, `vi/ner` và `vi/hybrid` trả thêm `engine.model_revision` để đối chiếu với artifact huấn luyện. Quy tắc ưu tiên vùng chồng lấn và nhãn mỗi chế độ được công bố cùng [tài liệu các chế độ](engines.md).
+
 ```json
 {"text":"Người bệnh Mai An, sinh ngày 03/02/1995, mã BN-00071. Hẹn khám lại 18/12.","language":"vi","mode":"rules"}
 ```

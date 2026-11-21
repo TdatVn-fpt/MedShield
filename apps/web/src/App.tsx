@@ -60,6 +60,9 @@ export default function App() {
   }
 
   const apiReady = engines !== null && engines.length > 0;
+  const selectedEngine = engines?.find(
+    (engine) => engine.language === review.language && engine.mode === review.mode,
+  );
   const count = Array.from(review.text).length;
   return (
     <div className="app-shell">
@@ -164,6 +167,11 @@ export default function App() {
                 </label>
               </div>
               <div className="analysis-action">
+                {selectedEngine?.status === 'unavailable' && (
+                  <span className="api-status" role="status">
+                    Phương pháp đã chọn chưa khả dụng
+                  </span>
+                )}
                 <span className={`api-status ${apiReady ? 'is-ready' : ''}`}>
                   {engines === null
                     ? 'Đang kiểm tra API'

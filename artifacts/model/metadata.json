@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "format": "crfsuite",
+  "weights_file": "model.crfsuite",
+  "weights_sha256": "8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f",
+  "revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f",
+  "labels": [
+    "NAME",
+    "ADDR"
+  ],
+  "tokenizer_version": 1,
+  "features_version": 1,
+  "language": "vi",
+  "device": "cpu",
+  "runtime": {
+    "python": "3.11.7",
+    "sklearn_crfsuite": "0.5.0",
+    "python_crfsuite": "0.9.12",
+    "scikit_learn": "1.9.1"
+  },
+  "dataset": {
+    "revision": "medshield-vi-synthetic-v2",
+    "generator_seed": 20261121,
+    "manifest_sha256": "f563a77d75eda26cb1b67a73753fd47596ce66b2685522103874442cbc4d6bcc",
+    "split_sha256": {
+      "train": "5de2c3087d01b0ef69d048a20682703cb8672c6b6869d05f3c10b9332ff1fad3",
+      "validation": "04cef7910dded51cea0cbe989ae2aeee7ce92b2936c32a335e7100909548cae0"
+    },
+    "train_notes": 60,
+    "validation_notes": 20
+  },
+  "training_config": {
+    "c1": 0.05,
+    "c2": 0.1,
+    "max_iterations": 100,
+    "algorithm": "lbfgs",
+    "all_possible_transitions": true
+  },
+  "selection": {
+    "split": "validation",
+    "metric": "exact_span_label_micro_f1",
+    "tie_break": "first_candidate",
+    "selected_index": 0,
+    "candidates": [
+      {
+        "config": {
+          "c1": 0.05,
+          "c2": 0.1,
+          "max_iterations": 100,
+          "algorithm": "lbfgs",
+          "all_possible_transitions": true
+        },
+        "tp": 15,
+        "fp": 9,
+        "fn": 15,
+        "micro_f1": 0.5555555555555556
+      },
+      {
+        "config": {
+          "c1": 0.1,
+          "c2": 0.1,
+          "max_iterations": 100,
+          "algorithm": "lbfgs",
+          "all_possible_transitions": true
+        },
+        "tp": 15,
+        "fp": 10,
+        "fn": 15,
+        "micro_f1": 0.5454545454545454
+      },
+      {
+        "config": {
+          "c1": 0.1,
+          "c2": 0.5,
+          "max_iterations": 100,
+          "algorithm": "lbfgs",
+          "all_possible_transitions": true
+        },
+        "tp": 5,
+        "fp": 6,
+        "fn": 25,
+        "micro_f1": 0.24390243902439024
+      }
+    ]
+  },
+  "reproduce": [
+    "python -m ml.generate_data --seed 20261121",
+    "python -m ml.train"
+  ]
+}

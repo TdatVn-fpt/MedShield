@@ -1,6 +1,6 @@
 # apps/api/adapters/rules.py — Context-sensitive baseline recognizers for synthetic notes.
 import re
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 
 from apps.api.schemas import Entity, Label
 
@@ -57,14 +57,24 @@ def _addresses(text: str) -> Iterator[Entity]:
             )
 
 
-def resolve_overlaps(entities: list[Entity]) -> list[Entity]:
-    """resolve_overlaps keeps higher-score spans then longer spans, ordered by position.
+def resolve_overlaps(
+    entities: list[Entity], priority: Callable[[Entity], int] | None = None
+) -> list[Entity]:
+    """resolve_overlaps favors higher priority, score and length, then returns offset order.
 
     Exact duplicates retain their strongest score. Each candidate is compared with
     accepted spans, so nested/partial overlaps cannot leak into the API contract.
     """
     accepted: list[Entity] = []
-    for entity in sorted(entities, key=lambda item: (-item.score, -(item.end - item.start))):
+    ranked = sorted(
+        entities,
+        key=lambda item: (
+            -(priority(item) if priority else 0),
+            -item.score,
+            -(item.end - item.start),
+        ),
+    )
+    for entity in ranked:
         if not any(entity.start < old.end and old.start < entity.end for old in accepted):
             accepted.append(entity)
     return sorted(accepted, key=lambda item: (item.start, item.end))

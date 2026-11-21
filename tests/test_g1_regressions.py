@@ -1,4 +1,6 @@
 # tests/test_g1_regressions.py — Cover G1 engine availability and safe analysis boundaries.
+from pathlib import Path
+
 import pytest
 from fastapi.testclient import TestClient
 
@@ -7,8 +9,11 @@ from apps.api.main import app
 client = TestClient(app)
 
 
-def test_health_matches_analysis_for_every_language_and_mode() -> None:
-    """Health lists every pair once and matches the outcome of each real analysis request."""
+def test_health_matches_analysis_when_model_is_missing(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Health and requests both expose real availability with no model installed."""
+    monkeypatch.setenv("MEDSHIELD_MODEL_DIR", str(tmp_path))
     notes = {"vi": "Người bệnh Mai An.", "en": "Patient Mai An."}
     expected = {
         (language, mode): "available" if mode == "rules" else "unavailable"

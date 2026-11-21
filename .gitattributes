@@ -1,3 +1,8 @@
 # Preserve the downloaded bytes used by the G1 review hashes.
 docs/evidence/G1-reviewed.txt -text
 docs/evidence/G1-reviewed.json -text
+
+# Dataset revisions use hashes of canonical UTF-8 files with LF line endings.
+/data/*.jsonl text eol=lf
+/data/*.json text eol=lf
+/artifacts/model/metadata.json text eol=lf

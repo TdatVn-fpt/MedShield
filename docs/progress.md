@@ -52,4 +52,4 @@ Mỗi `docs/reviews/Gx.md` do reviewer lập phải ghi tác giả, reviewer th�
 G0 | PASS | PM/BA/DevOps/root | QA + Dev | docs/reviews/G0.md, G0-dev.md | Mở G1 (web/API thực).
 
 
-G1 | PASS | Dev v? Tech Lead | QA v? BA | docs/reviews/G1.md, docs/reviews/G1-ba.md | M? G2.
+G1 | PASS | Dev và Tech Lead | QA và BA | docs/reviews/G1.md, docs/reviews/G1-ba.md | Mở G2.
