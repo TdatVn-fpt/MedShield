@@ -2,6 +2,8 @@
 
 Research/ML lập bản sơ bộ 18/11/2026 (Asia/Saigon), READY_FOR_REVIEW. Bảng phân biệt mã đã dùng với nguồn chỉ điều tra. Phiên bản cài thực tế cuối cùng lấy từ `uv.lock`, `apps/web/package-lock.json` và smoke artifacts; không suy ra đã chạy từ bảng này.
 
+Cập nhật chuẩn bị môi trường trong G1: đã cài/import Presidio 2.2.366 và GEMINI pyDeid 1.0.1 exact SHA trong `.venv-upstream` Python 3.11.7; chưa có adapter/smoke suy luận MedShield. Đã tải/nạp `en_core_web_sm` 3.7.1 từ release chính thức spaCy (~12.2 MiB wheel; metadata model xác nhận MIT). Chi tiết pin tương thích và lỗi `pkg_resources` đã sửa nằm trong `docs/research.md`.
+
 | Thành phần | Nguồn/revision kiểm tra | Giấy phép | Phạm vi/trạng thái hiện tại |
 |---|---|---|---|
 | Presidio Analyzer | [data-privacy-stack/presidio](https://github.com/data-privacy-stack/presidio/tree/9fc7774ed74faa0afd5ffb36da63e77b9a2f8c30), source version 2.2.366 | [MIT](https://github.com/data-privacy-stack/presidio/blob/9fc7774ed74faa0afd5ffb36da63e77b9a2f8c30/LICENSE) | Đã đọc source/metadata; chưa tích hợp/chưa smoke. Không lấy tên engine này gắn cho baseline tự viết. |

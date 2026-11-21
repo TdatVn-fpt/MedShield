@@ -9,7 +9,7 @@ Chủ dự án: Nguyễn Tiến Đạt — Samsung Innovation Campus, AI-NIC4. C
 | Chặng | Phạm vi bắt buộc | Người làm | Người kiểm tra | Đầu ra/bằng chứng đích | Trạng thái | Phụ thuộc |
 |---|---|---|---|---|---|---|
 | G0 | Kiểm tra checkout/remote; Spec Kit/constitution; spec, API mẫu, annotation guide; board; môi trường và skeleton chạy | PM, BA, DevOps; Tech Lead tích hợp | Dev: khả thi/skeleton; QA: khả năng viết test | Các tài liệu đặc tả, lock/môi trường và `docs/reviews/G0.md` | PASS | Quyền đọc repo và công cụ cục bộ |
-| G1 | Nhập/TXT UTF-8 → API thật → baseline → rà soát thêm/xóa/đổi nhãn → duyệt → xuất TXT/JSON; vô hiệu kết quả cũ | Dev; Research cung cấp ví dụ | QA chạy câu mới và mở TXT; BA đối chiếu quyết định | Source web/API, test/browser và `docs/reviews/G1.md` | IN_PROGRESS | G0 PASS |
+| G1 | Nhập/TXT UTF-8 → API thật → baseline → rà soát thêm/xóa/đổi nhãn → duyệt → xuất TXT/JSON; vô hiệu kết quả cũ | Dev; Research cung cấp ví dụ | QA chạy câu mới và mở TXT; BA đối chiếu quyết định | Source web/API, test/browser và `docs/reviews/G1.md` | READY_FOR_REVIEW | G0 PASS |
 | G2 | Dataset chia theo họ câu; NER tiếng Việt, rules và hybrid chạy thật; thử ba adapter upstream; Unicode; cài lại engine chính | Research/ML; Dev tích hợp | QA: split/Unicode/smoke; Dev: contract; DevOps: tái cài | Dataset/model/script/adapter, smoke và `docs/reviews/G2.md` | TODO | G1 PASS |
 | G3 | Exact span + label, TP/FP/FN/support, micro-F1, số ghi chú còn sót; khóa test và artifact tái tạo; lỗi thực | Research/ML | QA tính tay và chạy lại; BA kiểm ý nghĩa; Dev đối chiếu dashboard | Artifact, báo cáo và `docs/reviews/G3.md` | TODO | G2 PASS với phạm vi adapter được công khai |
 | G4 | UX 390/1440px, bàn phím/focus, luồng rà soát đầy đủ; Three.js tải lười, cleanup/reduced motion/WebGL fallback; build sạch | Dev | QA: UI; BA: nghiệp vụ; DevOps: build/fallback | Test UI/ảnh giả lập và `docs/reviews/G4.md` | TODO | G3 PASS |
@@ -40,6 +40,7 @@ Mỗi `docs/reviews/Gx.md` do reviewer lập phải ghi tác giả, reviewer th�
 |---|---|---|
 | 18/11/2026 | PM đọc đầy đủ lệnh triển khai và tạo board/kế hoạch/task G0 | Bộ tài liệu PM READY_FOR_REVIEW; toàn G0 vẫn IN_PROGRESS, chưa có kết luận reviewer |
 | 18/11/2026 | Tech Lead thông báo remote trống có quyền ghi; baseline `main` `6e227b0` đã push, nhánh làm việc `feat/medshield-demo`; tìm thấy research ZIP ngoài repo | Đây là thông tin bàn giao từ Tech Lead, PM chưa tự xác minh Git; `C:\Users\Admin\Downloads\MedShield_SIC_Research.zip` không được copy nguyên lên repo |
+| 21/11/2026 | Tiếp nhận thay đổi G1 từ Claude tại `8984577`, xác minh lại origin và quyền GitHub, phân công sáu vai trò kiểm tra. | Biên bản BA và file xuất giả lập có sẵn. Dev tái hiện lỗi đọc TXT đến muộn và lỗi hợp đồng API. G1 mở vòng sửa và tái kiểm. |
 
 ## Các điểm phải công khai khi bàn giao
 

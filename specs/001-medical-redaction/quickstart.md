@@ -1,3 +1,3 @@
-# Quickstart validation
+﻿# Kiểm tra nhanh theo chặng
 
-G0: Dev/QA run API health through TestClient and web build. G1: launch FastAPI and Vite; enter a new synthetic sentence, analyze, edit a span, approve and download TXT. Reopen TXT and compare with preview, then edit input and verify export disabled. G2/G3: run training/evaluation commands supplied by ML and confirm split/metric artifacts. G4: repeat at 390/1440px, keyboard and no WebGL. G5: follow final README in a clean checkout; repeat tests/evaluation/export and unzip source package. Exact verified commands replace plans in README during delivery.
+G0: Dev/QA chạy health bằng TestClient và build web. G1: mở FastAPI/Vite, nhập câu giả lập mới, phân tích, sửa span, xác nhận và tải TXT. Mở TXT đối chiếu preview; sửa input và kiểm xuất bị khóa. G2/G3: chạy train/evaluate, đối chiếu split/hash/điểm. G4: lặp trên390/1440px, bàn phím và WebGL tắt. G5: làm theo README từ checkout sạch, tái tạo điểm, xuất file và giải nén ZIP. README cuối ghi các lệnh đã chạy thật.

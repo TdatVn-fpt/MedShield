@@ -14,6 +14,8 @@ EXCLUDED = {
     ".pytest_cache",
     ".mypy_cache",
     ".ruff_cache",
+    "playwright-report",
+    "test-results",
 }
 
 
@@ -21,6 +23,8 @@ def check_sources() -> int:
     """check_sources prints violations and returns a shell exit code for handwritten sources."""
     violations = 0
     for path in sorted(Path(".").rglob("*")):
+        if path.is_relative_to(Path("artifacts/local")):
+            continue
         if path.suffix not in EXTENSIONS or any(part in EXCLUDED for part in path.parts):
             continue
         if any(part.startswith(".venv-") for part in path.parts):

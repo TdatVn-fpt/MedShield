@@ -1,0 +1,3 @@
+# Preserve the downloaded bytes used by the G1 review hashes.
+docs/evidence/G1-reviewed.txt -text
+docs/evidence/G1-reviewed.json -text

@@ -1,0 +1,277 @@
+/* apps/web/src/review.css — Responsive review documents, entity editing and export workflow. */
+.workspace-intro {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+}
+.workspace-intro > div > p {
+  color: var(--muted);
+  margin-top: 11px;
+  font-size: 11px;
+  line-height: 1.8;
+}
+.privacy-note {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  border-left: 1px solid #d4e1ea;
+  padding-left: 22px;
+}
+.privacy-note > span {
+  font-size: 35px;
+  color: #6598b4;
+}
+.privacy-note p {
+  color: #738696;
+  font-size: 9px;
+  line-height: 1.9;
+}
+.privacy-note strong {
+  font-weight: 500;
+  color: #3d617b;
+}
+.workflow {
+  display: flex;
+  padding: 0;
+  list-style: none;
+  margin: 29px 0 27px;
+  gap: 25px;
+  align-items: center;
+}
+.workflow li {
+  color: #788a99;
+  font-size: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.workflow li:not(:last-child)::after {
+  content: '—';
+  color: #c3d2dd;
+  margin-left: 17px;
+}
+.workflow b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #d3e0e9;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: 600;
+}
+.workflow .step-active {
+  color: #296d9e;
+}
+.step-active b {
+  color: #fff;
+  background: #2474b1;
+  border-color: #2474b1;
+}
+.analysis-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.engine-controls {
+  display: flex;
+  gap: 13px;
+}
+.engine-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 9px;
+  color: #607a8e;
+}
+.engine-controls select {
+  font-size: 10px;
+  min-height: 36px;
+  min-width: 140px;
+}
+.analysis-action {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 19px;
+}
+.api-status {
+  font-size: 9px;
+  color: #7b6b47;
+}
+.api-status::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  margin-right: 6px;
+}
+.api-status.is-ready {
+  color: #357c66;
+}
+.analyze-button {
+  min-width: 144px;
+  min-height: 40px;
+}
+.document-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: stretch;
+}
+.document-panel {
+  background: #fff;
+  border: 1px solid #d9e4ec;
+  border-radius: 10px;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 21px 23px 17px;
+  border-bottom: 1px solid #e5edf3;
+}
+.panel-heading .eyebrow {
+  font-size: 8px;
+  letter-spacing: 1.2px;
+}
+.panel-heading h2 {
+  margin-top: 5px;
+}
+.source-tools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 23px 0;
+}
+.file-button {
+  font-size: 10px;
+  color: #5c768b;
+  border: 1px solid #d9e3ec;
+  padding: 7px 10px;
+  border-radius: 5px;
+  position: relative;
+  cursor: pointer;
+}
+.file-button input {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  cursor: pointer;
+}
+.file-button:focus-within {
+  outline: 3px solid #157ac4;
+  outline-offset: 3px;
+}
+.source-input,
+.marked-source {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  resize: vertical;
+  min-height: 265px;
+  padding: 22px 23px;
+  color: #314e62;
+  font-size: 12px;
+  line-height: 2;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.source-input {
+  flex: 1;
+}
+.source-input::placeholder {
+  color: #91a1af;
+}
+.source-input:focus {
+  outline: 2px solid #9cc9e8;
+  outline-offset: -5px;
+  border-radius: 8px;
+}
+.marked-source {
+  flex: 1;
+}
+mark {
+  color: inherit;
+  border-radius: 3px;
+  padding: 2px 0;
+}
+.mark-NAME {
+  background: #dcecfb;
+  border-bottom: 2px solid #78acd6;
+}
+.mark-DOB {
+  background: #eee5fb;
+  border-bottom: 2px solid #b59cda;
+}
+.mark-PHONE {
+  background: #dcf2eb;
+  border-bottom: 2px solid #85c2ad;
+}
+.mark-ID {
+  background: #fff0d5;
+  border-bottom: 2px solid #dabb7e;
+}
+.mark-ADDR {
+  background: #fbe2e4;
+  border-bottom: 2px solid #d7a1aa;
+}
+.focused-mark {
+  outline: 3px solid #1c6ca8;
+  outline-offset: 3px;
+}
+.edit-original {
+  margin: 0 23px 14px;
+  align-self: flex-start;
+}
+.document-footer {
+  border-top: 1px solid #edf2f6;
+  padding: 13px 23px;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: #8a9aa7;
+  font-size: 9px;
+}
+.manual-add {
+  padding: 13px 20px 17px;
+  background: #f7fafc;
+  border-top: 1px solid #e6edf2;
+}
+.manual-add p {
+  font-size: 9px;
+  line-height: 1.8;
+  color: #607a8f;
+  margin-bottom: 9px;
+  overflow-wrap: anywhere;
+}
+.manual-add strong {
+  color: #2d5878;
+  font-weight: 500;
+}
+.manual-controls {
+  display: flex;
+  gap: 8px;
+}
+.manual-controls select {
+  font-size: 10px;
+  min-width: 0;
+  flex: 1;
+}
+.manual-controls button {
+  font-size: 10px;
+  padding: 9px 10px;
+}

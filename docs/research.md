@@ -45,3 +45,13 @@ uv pip install --python .venv-upstream/Scripts/python.exe 'git+https://github.co
 ```
 
 G2 bổ sung script adapter/smoke có thể chạy lại và output thực tế. Trạng thái hiện tại của cả ba: **chưa tích hợp trong MedShield**. Source đã được nghiên cứu không đồng nghĩa engine đã chạy. Không có score mới để hiển thị trên dashboard tại G0.
+
+## Chuẩn bị môi trường khi G1 đang thực hiện
+
+Tech Lead cho phép tải dependency trước G2, chưa triển khai dataset/model/adapters. Đã tạo `.venv-upstream` bằng Python 3.11.7 và cài Presidio 2.2.366 + exact GEMINI SHA ở bảng trên. Import `spacy`, `presidio_analyzer`, `pyDeid`, `nltk` đã thành công; đây là kiểm phụ thuộc, **không phải smoke suy luận engine**.
+
+Các pin tương thích đã kiểm: spaCy 3.7.5, numpy 1.26.4, pandas 2.2.3, NLTK 3.9.2, chardet 5.2.0, xmltodict 0.14.2, setuptools 80.9.0. Resolver ban đầu lấy numpy 2.4.6; đã hạ xuống 1.26.4 để phù hợp binary spaCy/thinc. pyDeid import thất bại với setuptools 84.2.1 vì thiếu `pkg_resources`; pin 80.9.0 sửa được, còn cảnh báo API deprecated từ upstream. Không sửa source upstream để che lỗi.
+
+Đã tải official `en_core_web_sm` 3.7.1 (~12.2 MiB wheel), nạp model thành công, metadata ghi MIT, và NLTK `averaged_perceptron_tagger_eng` khả dụng; import source Philter thành công. Model spaCy chỉ phục vụ đối chứng tiếng Anh. NER chính tiếng Việt vẫn dự kiến CRF tự huấn luyện, không dùng model tiếng Anh để tuyên bố nhận diện tiếng Việt. Freeze tạm nằm trong `artifacts/local/upstream-prep-freeze.txt`, không coi là lock cuối trước smoke G2.
+
+Source Philter ở SHA đã kiểm có CLI `--prod=True --outputformat asterisk` giữ lựa chọn asterisk; cảnh báo cưỡng XML trong HTML nghiên cứu chưa tái hiện trên source này. Philter gốc đọc/ghi file và in đường dẫn ngay cả verbose false, nên dự kiến giới hạn adapter này ở **benchmark dữ liệu giả lập**, không đưa input người dùng vào pipeline disk của Philter.

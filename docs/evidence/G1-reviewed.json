@@ -1,0 +1,14 @@
+{
+  "redacted_text": "Người bệnh [ADDR_1], sinh ngày [DOB_1], mã BN-90412. [NAME_1] hai ngày. Hẹn khám lại 23/12.",
+  "metadata": {
+    "entity_count": 3,
+    "counts_by_label": {
+      "NAME": 1,
+      "DOB": 1,
+      "PHONE": 0,
+      "ID": 0,
+      "ADDR": 1
+    },
+    "offset_unit": "unicode_code_point"
+  }
+}

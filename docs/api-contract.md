@@ -39,12 +39,20 @@ Text từ 1 tới 50.000 code point và có ký tự ngoài whitespace; tối đ
 
 HTTP 200 khi API đang phục vụ. Không suy diễn API sống đồng nghĩa mọi engine sẵn sàng.
 
+`engines` có đúng một mục cho mỗi cặp `language` × `mode` được `/api/analyze` chấp nhận, kể cả cặp chưa khả dụng. Hiện có sáu cặp từ hai ngôn ngữ `vi`, `en` và ba chế độ `rules`, `ner`, `hybrid`. `status` phản ánh khả năng chạy của từng cặp. Trong G1, `rules` khả dụng cho cả hai ngôn ngữ, còn `ner` và `hybrid` chưa khả dụng.
+
+Ví dụ phản hồi G1, lược bỏ thông tin phiên bản của engine.
+
 ```json
 {
   "status": "ok",
   "engines": [
     {"name": "medshield-rules", "status": "available", "mode": "rules", "language": "vi"},
-    {"name": "medshield-ner", "status": "unavailable", "mode": "ner", "language": "vi"}
+    {"name": "medshield-ner", "status": "unavailable", "mode": "ner", "language": "vi"},
+    {"name": "medshield-hybrid", "status": "unavailable", "mode": "hybrid", "language": "vi"},
+    {"name": "medshield-rules", "status": "available", "mode": "rules", "language": "en"},
+    {"name": "medshield-ner", "status": "unavailable", "mode": "ner", "language": "en"},
+    {"name": "medshield-hybrid", "status": "unavailable", "mode": "hybrid", "language": "en"}
   ]
 }
 ```
@@ -74,6 +82,8 @@ HTTP 200 ví dụ hợp lệ (score/source của engine thực tế có thể kh
 ```
 
 Phản hồi chứa entities tự động trước sửa tay; không dùng kết quả sửa tay để chấm mô hình. Không đưa request text vào engine metadata. Frontend phải kiểm tra phiên bản input/request trước áp dụng response.
+
+Giới hạn 2.000 entity áp dụng cho danh sách phát hiện cuối cùng sau khi giải quyết xung đột. Nếu vượt giới hạn, API trả HTTP 422 `VALIDATION_ERROR` với thông báo an toàn để người dùng chia nhỏ văn bản. Phản hồi lỗi chỉ có envelope `error`, không chứa nguyên văn, danh sách phát hiện một phần hoặc preview. Danh sách có đúng 2.000 entity hợp lệ vẫn được trả đầy đủ và dùng được với `/api/redact`.
 
 ## POST /api/redact
 
@@ -123,7 +133,7 @@ Mọi lỗi JSON API có envelope duy nhất:
 
 | HTTP | code | Khi nào |
 |---|---|---|
-| 422 | VALIDATION_ERROR | JSON hỏng, thiếu/sai kiểu/trường lạ, text trống/quá dài, nhãn hoặc score không hợp lệ, spans quá nhiều |
+| 422 | VALIDATION_ERROR | JSON hỏng hoặc không hợp lệ UTF-8, thiếu/sai kiểu/trường lạ, text trống/quá dài, nhãn hoặc score không hợp lệ, danh sách gửi đến redact hoặc kết quả analyze vượt 2.000 entity |
 | 422 | INVALID_SPAN | Span âm, rỗng, quá text hoặc chồng lấn |
 | 503 | ENGINE_UNAVAILABLE | Engine/ngôn ngữ/chế độ yêu cầu không sẵn sàng |
 | 500 | INTERNAL_ERROR | Lỗi chưa dự kiến; thông báo chung an toàn |

@@ -1,11 +1,11 @@
-# Data model
+﻿# Mô hình dữ liệu
 
-Canonical field constraints are defined once in [API contract](../../docs/api-contract.md). This file provides stable citations, not duplicate constraints.
+Ràng buộc trường chuẩn chỉ định nghĩa tại [hợp đồng API](../../docs/api-contract.md). Tệp này tạo điểm dẫn chiếu ổn định cho tasks, không nhân bản giới hạn.
 
-- `AnalyzeRequest.text`, `.language`, `.mode`: API contract analyze request.
-- `Entity.start`, `.end`, `.label`, `.source`, `.score`: API contract Entity.
-- `RedactRequest.entities`: API contract redact request and overlap validation.
-- `RedactResponse.redacted_text`, `.metadata`: API contract output.
-- `Engine.name`, `.status`, `.mode`, `.language`: API contract engine metadata.
+- `AnalyzeRequest.text`, `.language`, `.mode`: mục request analyze.
+- `Entity.start`, `.end`, `.label`, `.source`, `.score`: mục kiểu Entity.
+- `RedactRequest.entities`: request redact và kiểm tra chồng lấn.
+- `RedactResponse.redacted_text`, `.metadata`: đầu ra redact.
+- `Engine.name`, `.status`, `.mode`, `.language`: metadata engine.
 
-State: input edit → no entities/preview/approval; analyze → current entities/preview; entity edit → unapproved preview pending; redact success → current preview; explicit approval → export. Any input/entity edit or stale-response mismatch prevents export of previous state.
+Trạng thái: sửa input hủy entities/preview/xác nhận; analyze tạo kết quả hiện hành; sửa entity hủy xác nhận và chờ preview; redact thành công cho preview mới; người dùng xác nhận mới bật xuất. Mọi response có revision cũ bị bỏ qua.

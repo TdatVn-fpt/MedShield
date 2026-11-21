@@ -1,3 +1,3 @@
-# API contract
+﻿# Hợp đồng API
 
-The single normative contract is [docs/api-contract.md](../../../docs/api-contract.md). This reference avoids divergent copies. Annotation boundaries: [docs/annotation-guide.md](../../../docs/annotation-guide.md).
+Nguồn chuẩn duy nhất là [docs/api-contract.md](../../../docs/api-contract.md). Dẫn chiếu tránh bản sao khác nghĩa. Ranh giới gán nhãn: [docs/annotation-guide.md](../../../docs/annotation-guide.md).

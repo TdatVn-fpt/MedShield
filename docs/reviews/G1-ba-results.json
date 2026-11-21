@@ -1,0 +1,100 @@
+{
+  "reviewer": "BA",
+  "scope": "G1 business API independent TestClient; browser download pending QA",
+  "base_commit": "898457710bd4901c7339b05f64d861c0419c3a58",
+  "files_sha256": {
+    "apps/api/__init__.py": "f73ac90720e0c28f26794879ace8a48ab22b467d4e3194edd674a2347dd86565",
+    "apps/api/adapters/__init__.py": "b19b903f19770f2cae6b6524824726d52876d87c3d8d6196c33785a2d7ed90f2",
+    "apps/api/adapters/rules.py": "d93d2c55f3750281614ab61b0a29408dbb4dc14d2b61e7e6767d92ce991d7153",
+    "apps/api/controllers.py": "176a09651cc7c346f1b224d7ba2968e71a358e06b7ee67bcf3571f379230de5d",
+    "apps/api/main.py": "8abdf4b8c420c355dc95a2f8972499e4b739a439124936c922dfb5f50b0db8b0",
+    "apps/api/schemas.py": "05ae7c6aa03d93c312cd33d82145b4651c0cdcc84ced5dd1a1582c4614105bbe",
+    "apps/api/services/__init__.py": "866a5009783c5d23e99ef4a8f6210b5725086b491e33baaeda8aae692b855554",
+    "apps/api/services/analysis.py": "1b096f8f5c61a5384fa58db786c862871f3c4431ded9d0f87ab735433e3e3780",
+    "apps/api/services/redaction.py": "2659faca6ce4d2132bca4334d04a42b4bb9e17856a3d3856153ceaa85c0e3473"
+  },
+  "checks": [
+    {
+      "name": "canonical analyze spans and follow-up",
+      "result": "PASS"
+    },
+    {
+      "name": "remove DOB keeps only user removed text",
+      "result": "PASS"
+    },
+    {
+      "name": "change label affects token and metadata",
+      "result": "PASS"
+    },
+    {
+      "name": "manual add uses exact reviewed span",
+      "result": "PASS"
+    },
+    {
+      "name": "empty reviewed list preserves input",
+      "result": "PASS"
+    },
+    {
+      "name": "repeat numbering, sorting, codepoints and case policy",
+      "result": "PASS"
+    },
+    {
+      "name": "next document resets token numbering",
+      "result": "PASS"
+    },
+    {
+      "name": "combining marks, emoji and CRLF untouched outside span",
+      "result": "PASS"
+    },
+    {
+      "name": "export response minimal metadata no original map",
+      "result": "PASS"
+    },
+    {
+      "name": "reject negative without input leak",
+      "result": "PASS"
+    },
+    {
+      "name": "reject empty without input leak",
+      "result": "PASS"
+    },
+    {
+      "name": "reject outside without input leak",
+      "result": "PASS"
+    },
+    {
+      "name": "reject float without input leak",
+      "result": "PASS"
+    },
+    {
+      "name": "reject bool without input leak",
+      "result": "PASS"
+    },
+    {
+      "name": "reject unknown label without input leak",
+      "result": "PASS"
+    },
+    {
+      "name": "duplicate overlap rejected",
+      "result": "PASS"
+    },
+    {
+      "name": "unavailable NER is explicit 503",
+      "result": "PASS"
+    },
+    {
+      "name": "malformed JSON safe envelope",
+      "result": "PASS"
+    },
+    {
+      "name": "no-store response",
+      "result": "PASS"
+    },
+    {
+      "name": "unlisted five-label note lowercase name and multipart TP. address",
+      "result": "PASS"
+    }
+  ],
+  "passed": 20,
+  "failed": 0
+}
