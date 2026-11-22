@@ -3,45 +3,20 @@ import argparse
 import json
 import os
 import sys
-from collections.abc import Iterable
 from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
-from typing import TypedDict
 
 from ml.upstream.adapters import (
     SmokeError,
-    Span,
     philter_positions,
     presidio_positions,
     pydeid_positions,
 )
+from ml.upstream.regions import contiguous_positions, covered_positions
 
 # Hand-authored for this smoke. The phone number uses the reserved fictional 555-01xx range.
 PHONE = "202-555-0147"
 FIXTURE = f"Patient: Alice Example. DOB: 03/14/1982. Phone: {PHONE}. Follow-up in two weeks."
-
-
-class Position(TypedDict):
-    """Position represents one half-open region in Unicode code points."""
-
-    start: int
-    end: int
-
-
-def coverage(note: str, spans: Iterable[Span]) -> list[Position]:
-    """coverage validates spans and returns sorted, disjoint non-whitespace coverage regions."""
-    selected: set[int] = set()
-    for start, end in spans:
-        if type(start) is not int or type(end) is not int or not 0 <= start < end <= len(note):
-            raise SmokeError("Engine returned offsets outside the synthetic fixture.")
-        selected.update(index for index in range(start, end) if not note[index].isspace())
-    positions: list[Position] = []
-    for index in sorted(selected):
-        if positions and positions[-1]["end"] == index:
-            positions[-1]["end"] = index + 1
-        else:
-            positions.append({"start": index, "end": index + 1})
-    return positions
 
 
 def main() -> int:
@@ -66,10 +41,8 @@ def main() -> int:
                 spans = pydeid_positions(FIXTURE)
             else:
                 spans = philter_positions(FIXTURE, args.philter_root, args.nltk_data.resolve())
-        positions = coverage(FIXTURE, spans)
-        covered = {
-            index for region in positions for index in range(region["start"], region["end"])
-        }
+        covered = covered_positions(FIXTURE, spans)
+        positions = contiguous_positions(covered)
         phone_start = FIXTURE.index(PHONE)
         digits = {phone_start + offset for offset, char in enumerate(PHONE) if char.isdigit()}
         if not digits.issubset(covered):

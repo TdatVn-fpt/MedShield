@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { requestJson } from './api';
 import DetectionList from './DetectionList';
+import EvaluationPage from './EvaluationPage';
 import PreviewPanel from './PreviewPanel';
 import SourcePanel from './SourcePanel';
 import { useReview } from './useReview';
@@ -17,7 +18,6 @@ export default function App() {
   const [focused, setFocused] = useState<number | null>(null);
   const [page, setPage] = useState<'review' | 'evaluation' | 'how'>('review');
   const [engines, setEngines] = useState<Engine[] | null>(null);
-  const [evaluationStatus, setEvaluationStatus] = useState('Đang đọc kết quả từ API…');
 
   useEffect(() => {
     let active = true;
@@ -33,20 +33,6 @@ export default function App() {
       active = false;
     };
   }, []);
-
-  /** openEvaluation fetches artifact availability without presenting invented metrics. */
-  function openEvaluation(): void {
-    setPage('evaluation');
-    requestJson<{ status: string; reason?: string }>('/api/evaluation').then(
-      (result) =>
-        setEvaluationStatus(
-          result.status === 'available'
-            ? 'Đã có artifact đánh giá. Bảng kết quả sẽ được tích hợp tại chặng đánh giá G3.'
-            : result.reason || 'Chưa có kết quả đánh giá.',
-        ),
-      () => setEvaluationStatus('Chưa kết nối được API đánh giá.'),
-    );
-  }
 
   /** locateEntity exposes the selected mark in the original document for keyboard review. */
   function locateEntity(index: number): void {
@@ -92,7 +78,10 @@ export default function App() {
           >
             Bàn rà soát
           </button>
-          <button className={page === 'evaluation' ? 'nav-active' : ''} onClick={openEvaluation}>
+          <button
+            className={page === 'evaluation' ? 'nav-active' : ''}
+            onClick={() => setPage('evaluation')}
+          >
             Thực nghiệm
           </button>
           <button className={page === 'how' ? 'nav-active' : ''} onClick={() => setPage('how')}>
@@ -237,20 +226,14 @@ export default function App() {
               </p>
             )}
           </>
+        ) : page === 'evaluation' ? (
+          <EvaluationPage onBack={() => setPage('review')} />
         ) : (
           <section className="information-page">
-            <span className="eyebrow">
-              MEDSHIELD / {page === 'evaluation' ? 'BẰNG CHỨNG THỰC NGHIỆM' : 'TÌM HIỂU QUY TRÌNH'}
-            </span>
-            <h1>
-              {page === 'evaluation'
-                ? 'Kết quả được đo, có thể kiểm tra lại.'
-                : 'Từ ghi chú đến bản đã rà soát.'}
-            </h1>
+            <h1>Từ ghi chú đến bản đã rà soát.</h1>
             <p>
-              {page === 'evaluation'
-                ? evaluationStatus
-                : 'Nhận diện vùng định danh → người dùng rà soát và chỉnh sửa → thay vùng đã chọn bằng ký hiệu → xác nhận và xuất.'}
+              Nhận diện vùng định danh → người dùng rà soát và chỉnh sửa → thay vùng đã chọn bằng
+              ký hiệu → xác nhận và xuất.
             </p>
             <button className="secondary-button" onClick={() => setPage('review')}>
               Quay lại bàn rà soát

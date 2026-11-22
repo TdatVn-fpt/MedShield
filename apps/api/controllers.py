@@ -50,7 +50,18 @@ def evaluation() -> dict[str, Any]:
     """evaluation reads a real script-produced artifact or explicitly reports its absence."""
     try:
         artifact = json.loads(EVALUATION_PATH.read_text(encoding="utf-8"))
-        if not isinstance(artifact, dict) or "results" not in artifact:
+        results = artifact.get("results") if isinstance(artifact, dict) else None
+        if (
+            not isinstance(results, list)
+            or not results
+            or not all(
+                isinstance(result, dict)
+                and result.get("language") in ("vi", "en")
+                and isinstance(result.get("method"), str)
+                and result.get("status") in ("available", "unavailable")
+                for result in results
+            )
+        ):
             raise ValueError("invalid artifact")
     except (OSError, ValueError):
         return {"status": "unavailable", "reason": "Chưa có kết quả đánh giá."}

@@ -1,0 +1,570 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-22T11:02:07.479455+00:00",
+  "datasets": {
+    "vi": {
+      "source": "QA soạn và gán nhãn thủ công từ các họ mẫu dành riêng, dùng dữ liệu giả lập. Không trích bệnh án.",
+      "train_notes": 60,
+      "validation_notes": 20,
+      "test_notes": 20,
+      "participant_reviewed_count": 0
+    }
+  },
+  "metadata": {
+    "vi": {
+      "test_manifest": {
+        "schema_version": 1,
+        "dataset_revision": "vi-test-v1",
+        "split": "test",
+        "language": "vi",
+        "path": "data/test.jsonl",
+        "synthetic": true,
+        "provenance": "QA soạn và gán nhãn thủ công từ các họ mẫu dành riêng, dùng dữ liệu giả lập. Không trích bệnh án.",
+        "author_role": "QA",
+        "annotation_review_role": "BA",
+        "participant_reviewed_count": 0,
+        "seed": null,
+        "offset_unit": "unicode_code_point",
+        "note_count": 20,
+        "family_count": 6,
+        "families": [
+          {
+            "family_id": "qa_consult_callback",
+            "note_ids": [
+              "vi-test-001",
+              "vi-test-002",
+              "vi-test-003",
+              "vi-test-004"
+            ]
+          },
+          {
+            "family_id": "qa_sample_custody",
+            "note_ids": [
+              "vi-test-005",
+              "vi-test-006",
+              "vi-test-007"
+            ]
+          },
+          {
+            "family_id": "qa_registry_correction",
+            "note_ids": [
+              "vi-test-008",
+              "vi-test-009",
+              "vi-test-010",
+              "vi-test-011"
+            ]
+          },
+          {
+            "family_id": "qa_home_dispatch",
+            "note_ids": [
+              "vi-test-012",
+              "vi-test-013",
+              "vi-test-014"
+            ]
+          },
+          {
+            "family_id": "qa_shift_handoff",
+            "note_ids": [
+              "vi-test-015",
+              "vi-test-016",
+              "vi-test-017"
+            ]
+          },
+          {
+            "family_id": "qa_station_observation",
+            "note_ids": [
+              "vi-test-018",
+              "vi-test-019",
+              "vi-test-020"
+            ]
+          }
+        ],
+        "digest": {
+          "algorithm": "sha256",
+          "canonicalization": "UTF-8 không BOM, LF phân cách bản ghi, có LF cuối. Đổi CRLF vật lý của checkout về LF trước khi băm. Không đổi chuỗi text JSON.",
+          "value": "ad2dce2254e1eac809df51f5a827f64bfdb425babf1ca56cb5db87f7dea9bb96"
+        }
+      },
+      "development_manifest": {
+        "schema_version": 1,
+        "revision": "medshield-vi-synthetic-v2",
+        "seed": 20261121,
+        "provenance": {
+          "generated_by": "Research/ML (Codex)",
+          "source": "Ghi chú giả lập từ họ mẫu do dự án tạo.",
+          "human_reviewed_notes": 0
+        },
+        "splits": {
+          "train": {
+            "file": "train.jsonl",
+            "notes": 60,
+            "family_ids": [
+              "tr-appointment-negative",
+              "tr-clinician-signature",
+              "tr-contact-person",
+              "tr-identity-check",
+              "tr-intake-fields",
+              "tr-lowercase-midline",
+              "tr-measurement-negative",
+              "tr-multiline-delivery",
+              "tr-narrative-history",
+              "tr-residence-block"
+            ],
+            "sha256": "5de2c3087d01b0ef69d048a20682703cb8672c6b6869d05f3c10b9332ff1fad3"
+          },
+          "validation": {
+            "file": "validation.jsonl",
+            "notes": 20,
+            "family_ids": [
+              "va-address-change",
+              "va-call-chronology",
+              "va-followup-negative",
+              "va-handover-repeat"
+            ],
+            "sha256": "04cef7910dded51cea0cbe989ae2aeee7ce92b2936c32a335e7100909548cae0"
+          }
+        }
+      },
+      "model": {
+        "schema_version": 1,
+        "format": "crfsuite",
+        "weights_file": "model.crfsuite",
+        "weights_sha256": "8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f",
+        "revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f",
+        "labels": [
+          "NAME",
+          "ADDR"
+        ],
+        "tokenizer_version": 1,
+        "features_version": 1,
+        "language": "vi",
+        "device": "cpu",
+        "runtime": {
+          "python": "3.11.7",
+          "sklearn_crfsuite": "0.5.0",
+          "python_crfsuite": "0.9.12",
+          "scikit_learn": "1.9.1"
+        },
+        "dataset": {
+          "revision": "medshield-vi-synthetic-v2",
+          "generator_seed": 20261121,
+          "manifest_sha256": "f563a77d75eda26cb1b67a73753fd47596ce66b2685522103874442cbc4d6bcc",
+          "split_sha256": {
+            "train": "5de2c3087d01b0ef69d048a20682703cb8672c6b6869d05f3c10b9332ff1fad3",
+            "validation": "04cef7910dded51cea0cbe989ae2aeee7ce92b2936c32a335e7100909548cae0"
+          },
+          "train_notes": 60,
+          "validation_notes": 20
+        },
+        "training_config": {
+          "c1": 0.05,
+          "c2": 0.1,
+          "max_iterations": 100,
+          "algorithm": "lbfgs",
+          "all_possible_transitions": true
+        },
+        "selection": {
+          "split": "validation",
+          "metric": "exact_span_label_micro_f1",
+          "tie_break": "first_candidate",
+          "selected_index": 0,
+          "candidates": [
+            {
+              "config": {
+                "c1": 0.05,
+                "c2": 0.1,
+                "max_iterations": 100,
+                "algorithm": "lbfgs",
+                "all_possible_transitions": true
+              },
+              "tp": 15,
+              "fp": 9,
+              "fn": 15,
+              "micro_f1": 0.5555555555555556
+            },
+            {
+              "config": {
+                "c1": 0.1,
+                "c2": 0.1,
+                "max_iterations": 100,
+                "algorithm": "lbfgs",
+                "all_possible_transitions": true
+              },
+              "tp": 15,
+              "fp": 10,
+              "fn": 15,
+              "micro_f1": 0.5454545454545454
+            },
+            {
+              "config": {
+                "c1": 0.1,
+                "c2": 0.5,
+                "max_iterations": 100,
+                "algorithm": "lbfgs",
+                "all_possible_transitions": true
+              },
+              "tp": 5,
+              "fp": 6,
+              "fn": 25,
+              "micro_f1": 0.24390243902439024
+            }
+          ]
+        },
+        "reproduce": [
+          "python -m ml.generate_data --seed 20261121",
+          "python -m ml.train"
+        ]
+      },
+      "rules_source_sha256": "e530ccbc731cd4bdc0e5972b4385cf5b8835d111c99e3b96773821345713ce77",
+      "analysis_source_sha256": "600c85474de82968484c05643f2c066b65baccc4ab2e0892c3718e018818789d",
+      "reproduce": "python -m ml.evaluate",
+      "f1_target": 0.85
+    }
+  },
+  "results": [
+    {
+      "language": "vi",
+      "method": "rules",
+      "unit": "exact_span_label",
+      "status": "available",
+      "engine": {
+        "name": "medshield-rules",
+        "status": "available",
+        "mode": "rules",
+        "language": "vi",
+        "version": "0.1.0"
+      },
+      "notes": 20,
+      "gold_entities": 33,
+      "micro": {
+        "tp": 1,
+        "fp": 8,
+        "fn": 32,
+        "precision": 0.1111111111111111,
+        "recall": 0.030303030303030304,
+        "f1": 0.047619047619047616,
+        "support": 33
+      },
+      "by_label": {
+        "NAME": {
+          "tp": 0,
+          "fp": 1,
+          "fn": 17,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 17
+        },
+        "DOB": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "PHONE": {
+          "tp": 0,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "ID": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 4,
+          "precision": 1.0,
+          "recall": 0.2,
+          "f1": 0.3333333333333333,
+          "support": 5
+        },
+        "ADDR": {
+          "tp": 0,
+          "fp": 3,
+          "fn": 3,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 3
+        }
+      },
+      "notes_with_fn": 15,
+      "examples": [
+        {
+          "note_id": "vi-test-005",
+          "kind": "FP",
+          "label": "PHONE",
+          "text": "0900000041",
+          "start": 40,
+          "end": 50
+        },
+        {
+          "note_id": "vi-test-007",
+          "kind": "FP",
+          "label": "PHONE",
+          "text": "0900000043",
+          "start": 60,
+          "end": 70
+        },
+        {
+          "note_id": "vi-test-012",
+          "kind": "FP",
+          "label": "ADDR",
+          "text": "cư trú: 7 ngõ Vệt Mây, phường Mầm Sương, TP. Lam Giang",
+          "start": 29,
+          "end": 83
+        },
+        {
+          "note_id": "vi-test-001",
+          "kind": "FN",
+          "label": "NAME",
+          "text": "Thạch Lam Sương",
+          "start": 31,
+          "end": 46
+        },
+        {
+          "note_id": "vi-test-001",
+          "kind": "FN",
+          "label": "PHONE",
+          "text": "+84 000 000 021",
+          "start": 73,
+          "end": 88
+        },
+        {
+          "note_id": "vi-test-002",
+          "kind": "FN",
+          "label": "NAME",
+          "text": "bùi mộc nhiên",
+          "start": 53,
+          "end": 66
+        }
+      ]
+    },
+    {
+      "language": "vi",
+      "method": "ner",
+      "unit": "exact_span_label",
+      "status": "available",
+      "engine": {
+        "name": "medshield-ner",
+        "status": "available",
+        "mode": "ner",
+        "language": "vi",
+        "version": "0.1.0",
+        "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
+      },
+      "notes": 20,
+      "gold_entities": 33,
+      "micro": {
+        "tp": 12,
+        "fp": 0,
+        "fn": 21,
+        "precision": 1.0,
+        "recall": 0.36363636363636365,
+        "f1": 0.5333333333333333,
+        "support": 33
+      },
+      "by_label": {
+        "NAME": {
+          "tp": 9,
+          "fp": 0,
+          "fn": 8,
+          "precision": 1.0,
+          "recall": 0.5294117647058824,
+          "f1": 0.6923076923076923,
+          "support": 17
+        },
+        "DOB": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "PHONE": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "ID": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 5,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 5
+        },
+        "ADDR": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        }
+      },
+      "notes_with_fn": 12,
+      "examples": [
+        {
+          "note_id": "vi-test-001",
+          "kind": "FN",
+          "label": "PHONE",
+          "text": "+84 000 000 021",
+          "start": 73,
+          "end": 88
+        },
+        {
+          "note_id": "vi-test-002",
+          "kind": "FN",
+          "label": "NAME",
+          "text": "bùi mộc nhiên",
+          "start": 53,
+          "end": 66
+        },
+        {
+          "note_id": "vi-test-002",
+          "kind": "FN",
+          "label": "PHONE",
+          "text": "000 000 0022",
+          "start": 75,
+          "end": 87
+        }
+      ]
+    },
+    {
+      "language": "vi",
+      "method": "hybrid",
+      "unit": "exact_span_label",
+      "status": "available",
+      "engine": {
+        "name": "medshield-hybrid",
+        "status": "available",
+        "mode": "hybrid",
+        "language": "vi",
+        "version": "0.1.0",
+        "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
+      },
+      "notes": 20,
+      "gold_entities": 33,
+      "micro": {
+        "tp": 13,
+        "fp": 4,
+        "fn": 20,
+        "precision": 0.7647058823529411,
+        "recall": 0.3939393939393939,
+        "f1": 0.52,
+        "support": 33
+      },
+      "by_label": {
+        "NAME": {
+          "tp": 9,
+          "fp": 0,
+          "fn": 8,
+          "precision": 1.0,
+          "recall": 0.5294117647058824,
+          "f1": 0.6923076923076923,
+          "support": 17
+        },
+        "DOB": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "PHONE": {
+          "tp": 0,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 4
+        },
+        "ID": {
+          "tp": 1,
+          "fp": 0,
+          "fn": 4,
+          "precision": 1.0,
+          "recall": 0.2,
+          "f1": 0.3333333333333333,
+          "support": 5
+        },
+        "ADDR": {
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 3
+        }
+      },
+      "notes_with_fn": 11,
+      "examples": [
+        {
+          "note_id": "vi-test-005",
+          "kind": "FP",
+          "label": "PHONE",
+          "text": "0900000041",
+          "start": 40,
+          "end": 50
+        },
+        {
+          "note_id": "vi-test-007",
+          "kind": "FP",
+          "label": "PHONE",
+          "text": "0900000043",
+          "start": 60,
+          "end": 70
+        },
+        {
+          "note_id": "vi-test-019",
+          "kind": "FP",
+          "label": "PHONE",
+          "text": "0900000602",
+          "start": 62,
+          "end": 72
+        },
+        {
+          "note_id": "vi-test-001",
+          "kind": "FN",
+          "label": "PHONE",
+          "text": "+84 000 000 021",
+          "start": 73,
+          "end": 88
+        },
+        {
+          "note_id": "vi-test-002",
+          "kind": "FN",
+          "label": "NAME",
+          "text": "bùi mộc nhiên",
+          "start": 53,
+          "end": 66
+        },
+        {
+          "note_id": "vi-test-002",
+          "kind": "FN",
+          "label": "PHONE",
+          "text": "000 000 0022",
+          "start": 75,
+          "end": 87
+        }
+      ]
+    }
+  ]
+}

@@ -54,3 +54,14 @@ Các vị trí quan sát được trong lần chạy thành công
 | Presidio | `[9,14) [15,22) [24,27) [29,39) [48,60) [75,78) [79,84)` |
 | Philter | `[9,14) [15,22) [29,31) [32,34) [35,39) [48,51) [52,55) [56,60)` |
 | GEMINI pyDeid | `[29,39) [48,60)` |
+
+## Thử Philter trên hai ghi chú tiếng Anh có Unicode hoặc CRLF
+
+Đã lấy trường `text` theo `note_id` trong `data/english.jsonl`, ghi đúng byte UTF-8 vào thư mục tạm, chạy CLI Philter với cấu hình như trên rồi đọc byte đầu ra để so sánh với nguyên văn. Không tính điểm hay sửa corpus.
+
+| Ghi chú | Kết quả trên Windows |
+| --- | --- |
+| `en-003` | CLI exit 0, giữ 144 code point và cả 4 cặp CRLF trong file đầu ra. Các khác biệt đều là dấu sao sau khi so sánh với văn bản gốc. Philter đọc bằng chế độ newline mặc định của Python, vì vậy kết quả này chỉ xác nhận căn vị trí trên ca CRLF đã thử. |
+| `en-005` | CLI exit 0 nhưng chardet chọn Windows-1254 cho UTF-8. Đầu ra thành 151 code point thay vì 147, nên không thể dùng vị trí từ mask này. Thử lại với cùng byte đầu vào và chỉ buộc bộ đọc Philter dùng UTF-8 trong tiến trình thử nghiệm. Đầu ra khi đó có 147 code point và căn đúng. Philter giữ nguyên emoji tại vị trí 0 và dấu tổ hợp tại vị trí 25 dù dấu này nằm trong span vàng. Hàm tạo mask dấu sao của upstream chỉ thay ký tự chữ/số ASCII. |
+
+Giới hạn ASCII/LF vẫn áp dụng cho fixture smoke G2. Với corpus G3 hiện tại, CLI mặc định không cho vị trí hợp lệ trên `en-005`. Chỉ định UTF-8 xử lý lệch vị trí ở ca này, còn dấu tổ hợp vẫn nằm ngoài khả năng che của mask upstream. Research và BA có thể dùng kết quả này khi quyết định revision corpus tiếng Anh trước lần chấm đầu tiên.

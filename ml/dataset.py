@@ -32,7 +32,7 @@ class Dataset:
     split_sha256: dict[str, str]
 
 
-def _parse_note(raw: object) -> Note:
+def parse_note(raw: object) -> Note:
     """Validate one JSONL record, including strict half-open Unicode span bounds."""
     if not isinstance(raw, dict):
         raise ValueError("Dataset note must be an object.")
@@ -95,7 +95,7 @@ def load_dataset(data_dir: Path) -> Dataset:
             or record.get("sha256") != digest
         ):
             raise ValueError(f"Dataset manifest does not match {filename}.")
-        notes = [_parse_note(json.loads(line)) for line in raw.decode("utf-8").split("\n") if line]
+        notes = [parse_note(json.loads(line)) for line in raw.decode("utf-8").split("\n") if line]
         families = {note.family_id for note in notes}
         declared_families = record.get("family_ids")
         if (
