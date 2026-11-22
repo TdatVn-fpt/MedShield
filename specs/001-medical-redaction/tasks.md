@@ -24,7 +24,7 @@ Thiết kế tại plan.md/spec.md; chi tiết owner/reviewer/AC/evidence trong 
 ## Pha 5 — User Story 3: Hiểu AI (P2)
 
 - [x] T008 [US3] Dữ liệu chia theo họ, train CRF và adapters trong ml/, data/, apps/api/adapters/ (Research; QA/Dev/DevOps; T201–T204).
-- [ ] T009 [US3] Scorer/evaluate/artifact và trang kết quả trong ml/, artifacts/, apps/web/src/ (Research/Dev; QA/BA; T301–T303).
+- [x] T009 [US3] Scorer/evaluate/artifact và trang kết quả trong ml/, artifacts/, apps/web/src/ (Research/Dev; QA/BA; T301–T303).
 - [ ] T010 [US4] UX 390/1440px và Three.js lazy/fallback/cleanup trong apps/web/src/; tests/ (Dev; QA/BA/DevOps; T401–T403).
 
 ## Pha 6 — Hoàn thiện (G5)

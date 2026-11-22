@@ -39,12 +39,16 @@ Khởi tạo 18/11/2026. Trạng thái trong bảng là của task, không tự 
 | T202 | G2 / PM-US-05 | NER CPU thực, rules và hybrid; giữ nguồn, trọng số/revision/license, script train/load và phạm vi nhãn | Research/ML | Dev + QA | `ml/`, model metadata, smoke tiếng Việt | PASS |
 | T203 | G2 / PM-US-05 | Xác minh/cài riêng/thử Presidio, Philter UCSF, GEMINI pyDeid đúng nguồn; status và lỗi tái hiện nếu blocked | Research/ML | QA + DevOps | Ba lệnh smoke/output thật; `THIRD_PARTY.md` | PASS |
 | T204 | G2 / PM-US-03 | Emoji, tổ hợp dấu, CRLF, BOM, lặp tên; contract code point/UTF-16 đúng; cài lại engine chính | QA + DevOps | Dev | Tests độc lập, `docs/reviews/G2.md` | PASS |
-| T301 | G3 / PM-US-06 | Rules/NER/hybrid chung test khóa; exact span+label, per-label support/TP/FP/FN/P/R/F1, micro và ghi chú còn sót | Research/ML | QA | Artifact và lệnh evaluate tái tạo | TODO |
-| T302 | G3 / PM-US-06 | QA tính tay scorer rồi chạy lại; BA kiểm nhãn; dashboard khớp artifact, lỗi thật và mục tiêu F1 riêng | QA; Dev hiển thị | BA + Tech Lead | `docs/reviews/G3.md`, artifact, báo cáo | TODO |
-| T303 | G3 / PM-US-05–06 | Đối chứng upstream độc lập trên cùng Anh ngữ giả lập; đơn vị/nhiệm vụ tương đương hoặc ghi rõ không so sánh | Research/ML | QA | Artifact tiếng Anh, phạm vi adapter và lý do thiếu | TODO |
+| T301 | G3 / PM-US-06 | Rules/NER/hybrid chung test khóa; exact span+label, per-label support/TP/FP/FN/P/R/F1, micro và ghi chú còn sót | Research/ML | QA | Artifact và lệnh evaluate tái tạo | PASS |
+| T302 | G3 / PM-US-06 | QA tính tay scorer rồi chạy lại; BA kiểm nhãn; dashboard khớp artifact, lỗi thật và mục tiêu F1 riêng | QA; Dev hiển thị | BA + Tech Lead | `docs/reviews/G3.md`, artifact, báo cáo | PASS |
+| T303 | G3 / PM-US-05–06 | Đối chứng upstream độc lập trên cùng Anh ngữ giả lập; đơn vị/nhiệm vụ tương đương hoặc ghi rõ không so sánh | Research/ML | QA | Artifact tiếng Anh, phạm vi adapter và lý do thiếu | PASS |
 | T401 | G4 / PM-US-07 | Layout sáng xanh bệnh viện 390/1440px, keyboard/focus/contrast, nhãn chữ+màu, nút review/export dễ dùng | Dev | QA + BA | Browser desktop/mobile và `docs/reviews/G4.md` | TODO |
 | T402 | G4 / PM-US-07 | Three.js tải lười phiếu giả lập hai lớp; bật/tắt che, reduced motion, cleanup, WebGL/static fallback; review vẫn chạy khi 3D lỗi | Dev | QA + DevOps | Browser test 3D/fallback/build | TODO |
 | T403 | G4 / PM-US-03–04 | Nghiệm thu thêm/xóa/đổi nhãn/duyệt/xuất; payload xuất không lẫn dữ liệu bị che và lỗi upstream phụ an toàn | Dev | BA + QA | Ca đầy đủ và log không nội dung đầu vào | TODO |
+| PDF-01 | G4 / PM-US-02 | Tạo PDF ngoại trú giả lập có lớp chữ và đối chiếu với bản chữ kỳ vọng | BA | QA | PDF mẫu và hướng dẫn demo | IN_PROGRESS |
+| PDF-02 | G4 / PM-US-02 | Trích chữ PDF trong trình duyệt, chọn trang, kiểm lỗi và giới hạn | Dev | QA | Lock PDF.js, build và các ca dữ liệu thử | IN_PROGRESS |
+| PDF-03 | G4 / PM-US-02–04 | Áp dụng bản chữ vào luồng hiện tại, vô hiệu kết quả cũ, giữ hồi quy TXT | Dev | QA | Browser PDF → sửa → xác nhận → TXT/JSON | IN_PROGRESS |
+| PDF-04 | G4 / PM-US-07–08 | Kiểm Windows, hai viewport, bàn phím, đo thời gian và viết hướng dẫn | Dev + PM | QA | Biên bản nghiệm thu phạm vi PDF và kịch bản 3 phút | IN_PROGRESS |
 | T501 | G5 / PM-US-01 | Setup PowerShell, env example, Docker Compose, locks, ignore, PR template, source max299 + lint/type/test/build/browser CI | DevOps | QA + Dev | `.github/`, `scripts/`, cấu hình và log CI thật | TODO |
 | T502 | G5 / PM-US-08 | README/ba lỗi khởi động/Mermaid khớp code/báo cáo/đóng góp/6 slide/demo3p/defense Q&A đúng artifact | PM + DevOps + Research/BA theo file | QA + Tech Lead | Tài liệu bàn giao và đối chiếu yêu cầu | TODO |
 | T503 | G5 / PM-US-01–08 | QA + agent ngoài DevOps theo README từ checkout sạch: web, input/export, evaluate; ghi môi trường Windows thật | QA + Dev | Tech Lead | `docs/reviews/G5.md` và lệnh/quan sát | TODO |
