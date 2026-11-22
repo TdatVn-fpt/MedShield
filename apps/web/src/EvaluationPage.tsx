@@ -1,6 +1,8 @@
 // apps/web/src/EvaluationPage.tsx — Display the executed evaluation artifact and its provenance.
 import { useEffect, useState } from 'react';
 import { requestJson } from './api';
+import EvaluationProvenance from './EvaluationProvenance';
+import type { EvaluationMetadata } from './EvaluationProvenance';
 import './evaluation.css';
 
 type Metrics = {
@@ -36,6 +38,7 @@ type Dataset = {
 
 type Evaluation = {
   datasets?: Partial<Record<'vi' | 'en', Dataset>>;
+  metadata?: EvaluationMetadata;
   results: Result[];
 };
 
@@ -91,7 +94,7 @@ function MetricTable({ result }: { result: Result & { micro: Metrics } }) {
 }
 
 /** MethodResult shows measured counts, misses and synthetic examples for one engine. */
-function MethodResult({ result }: { result: Result }) {
+function MethodResult({ result, target }: { result: Result; target?: number }) {
   const name = methodNames[result.method] ?? result.method;
   if (result.status !== 'available' || !result.micro) {
     return (
@@ -108,6 +111,12 @@ function MethodResult({ result }: { result: Result }) {
         {result.notes} ghi chú · {result.gold_entities} vùng gán nhãn · {result.notes_with_fn} ghi
         chú còn ít nhất một phần bị bỏ sót
       </p>
+      {target !== undefined && (
+        <p>
+          Mục tiêu micro-F1 {percentFormat.format(target)} ·{' '}
+          <strong>{result.micro.f1 >= target ? 'Đạt' : 'Chưa đạt'}</strong>
+        </p>
+      )}
       <MetricTable result={{ ...result, micro: result.micro }} />
       {Boolean(result.examples?.length) && (
         <details>
@@ -155,6 +164,17 @@ export default function EvaluationPage({ onBack }: { onBack: () => void }) {
       {error && <p role="alert">{error}</p>}
       {!error && !response && <p role="status">Đang đọc kết quả từ API…</p>}
       {response?.status === 'unavailable' && <p role="status">{response.reason}</p>}
+      {response?.status === 'available' && (
+        <>
+          <p>
+            Quy trình đánh giá đã tạo artifact trên tập test khóa. Mức đạt mục tiêu được ghi theo
+            từng phương pháp.
+          </p>
+          {response.evaluation.metadata && (
+            <EvaluationProvenance metadata={response.evaluation.metadata} />
+          )}
+        </>
+      )}
       {response?.status === 'available' &&
         (['vi', 'en'] as const).map((language) => {
           const vietnamese = language === 'vi';
@@ -165,7 +185,7 @@ export default function EvaluationPage({ onBack }: { onBack: () => void }) {
               <h2>{vietnamese ? 'Tiếng Việt' : 'Đối chứng tiếng Anh'}</h2>
               <p>
                 {vietnamese
-                  ? 'Khớp chính xác vị trí bắt đầu, vị trí kết thúc và nhãn. Mục tiêu F1 từng nhãn là 85%.'
+                  ? 'Khớp chính xác vị trí bắt đầu, vị trí kết thúc và nhãn. Bảng có điểm micro và điểm từng nhãn.'
                   : 'Đo các ký tự cần che ngoài khoảng trắng. Support là số ký tự được gán cần che.'}
               </p>
               <p>{dataset?.source ?? 'Nguồn dữ liệu là bộ ghi chú giả lập MedShield.'}</p>
@@ -177,7 +197,13 @@ export default function EvaluationPage({ onBack }: { onBack: () => void }) {
                 </p>
               )}
               {results.length ? (
-                results.map((result) => <MethodResult key={result.method} result={result} />)
+                results.map((result) => (
+                  <MethodResult
+                    key={result.method}
+                    result={result}
+                    target={vietnamese ? response.evaluation.metadata?.vi?.f1_target : undefined}
+                  />
+                ))
               ) : (
                 <p>Chưa có kết quả đánh giá cho ngôn ngữ này.</p>
               )}

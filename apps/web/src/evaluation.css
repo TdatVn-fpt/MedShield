@@ -86,3 +86,18 @@
   padding-left: 22px;
   overflow-wrap: anywhere;
 }
+
+.metric-provenance {
+  overflow-wrap: anywhere;
+}
+
+.metric-provenance summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.metric-provenance pre {
+  margin-top: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
