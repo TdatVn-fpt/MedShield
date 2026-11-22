@@ -20,6 +20,8 @@ Nguyễn Tiến Đạt, SIC AI-NIC4, dùng ứng dụng để chuẩn bị tríc
 
 AC-01: Người dùng dán text hoặc chọn TXT UTF-8 (kể cả BOM), hoặc nạp ví dụ giả lập một lần bấm. TXT lỗi UTF-8 có thông báo dễ hiểu; không gửi chuỗi giải mã lỗi đến API. Bỏ BOM đầu file trước khi tạo input; sau đó giữ nguyên text đang hiển thị. Text chỉ có khoảng trắng không được phân tích. Giới hạn 50.000 code point; quá giới hạn bị từ chối rõ ràng.
 
+AC-PDF-01: Nhập PDF có lớp chữ bằng trình duyệt, chọn khoảng trang và áp dụng văn bản vào ô **Văn bản gốc**. Tệp tối đa 10 MiB, mỗi lượt tối đa 10 trang. Nếu một trang được chọn thiếu lớp chữ hoặc quá giới hạn, giữ bản nhập cũ và báo cách đổi phạm vi. Lệnh hủy, đổi tệp hay sửa đầu vào vô hiệu lần trích đang chạy. Tệp gốc và tên tệp không gửi lên API. Rà soát và xuất vẫn theo AC-02–08. [Kế hoạch và nghiệm thu PDF](plan-nhap-pdf-benh-an.md)
+
 AC-02: Sửa đầu vào hủy entities, preview, xác nhận và khả năng xuất ngay. Mỗi phân tích gắn phiên bản input; response về muộn của phiên bản cũ không được ghi đè phiên bản mới, kể cả khi người dùng đã phân tích lần nữa.
 
 ### US-02 — Phân tích và đọc phát hiện

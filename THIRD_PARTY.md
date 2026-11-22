@@ -15,6 +15,8 @@ Cả ba adapter đã chạy trên cùng ghi chú tiếng Anh giả lập ở G2.
 | FastAPI / Uvicorn | [FastAPI 0.164.0](https://pypi.org/project/fastapi/0.164.0/), [Uvicorn 0.54.0](https://pypi.org/project/uvicorn/0.54.0/) | MIT / BSD-3-Clause | API cục bộ. |
 | React / Vite / TypeScript | [React và React DOM 19.3.1](https://github.com/facebook/react), [Vite 8.3.8](https://github.com/vitejs/vite), [TypeScript 5.9.3](https://github.com/microsoft/TypeScript) | MIT / MIT / Apache-2.0 | Giao diện, build và kiểm kiểu. |
 | Playwright | [Playwright 1.65.1](https://github.com/microsoft/playwright) | Apache-2.0 | Kiểm thử Chromium. |
+| PDF.js | [`pdfjs-dist` 6.5.438](https://github.com/mozilla/pdf.js), bản phân phối khóa trong `apps/web/package-lock.json` | [Apache-2.0](https://mozilla.github.io/pdf.js/) | Đọc lớp chữ của PDF cục bộ bằng worker. Vite tạo chunk tải lười và phục vụ worker từ cùng origin. |
+| ReportLab / Noto Sans | [ReportLab 5.1.0](https://pypi.org/project/reportlab/5.1.0/), [Noto Sans](https://github.com/notofonts/NotoSans) từ bộ font Windows | BSD / SIL Open Font License 1.1 | Tạo PDF demo. File PDF chứa các ký tự font đã dùng. Web dùng tệp mẫu trực tiếp, generator chạy riêng. |
 
 ## Dữ liệu và trọng số
 

@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  // Pre-bundle on dev startup so the first lazy PDF import does not trigger a reload.
+  optimizeDeps: { include: ['pdfjs-dist'] },
   server: {
     port: 5173,
     strictPort: true,

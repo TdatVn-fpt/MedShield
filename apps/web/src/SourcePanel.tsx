@@ -1,8 +1,10 @@
 // apps/web/src/SourcePanel.tsx — Edit original text and select codepoint spans for review.
 import { useEffect, useRef, useState } from 'react';
+import PdfImportControls from './PdfImportControls';
 import { EXAMPLE, LABEL_NAMES, LABELS } from './types';
 import type { Entity, Label } from './types';
 import { selectedSpan, slicePoints } from './unicode';
+import { usePdfImport } from './usePdfImport';
 
 type Props = {
   text: string;
@@ -19,9 +21,16 @@ type Props = {
 /** SourcePanel presents original text and adds user-selected spans without changing Unicode. */
 export default function SourcePanel(props: Props) {
   const source = useRef<HTMLDivElement>(null);
+  const editor = useRef<HTMLTextAreaElement>(null);
   const inputVersion = useRef(0);
   const [selection, setSelection] = useState<{ start: number; end: number } | null>(null);
   const [label, setLabel] = useState<Label>('NAME');
+  const pdfImport = usePdfImport((text) => {
+    props.onText(text);
+    props.onEditing(true);
+    setSelection(null);
+    requestAnimationFrame(() => editor.current?.focus());
+  });
   useEffect(() => {
     const version = inputVersion;
     return () => {
@@ -72,6 +81,7 @@ export default function SourcePanel(props: Props) {
   /** uploadText reads strict UTF-8 and applies only the latest input action. */
   async function uploadText(file: File | undefined): Promise<void> {
     if (!file) return;
+    pdfImport.cancel();
     const version = ++inputVersion.current;
     if (file.size > 200004) {
       props.onError('Tệp quá lớn. Vui lòng dùng TXT tối đa 50.000 ký tự.');
@@ -110,6 +120,7 @@ export default function SourcePanel(props: Props) {
           className="text-button"
           onClick={() => {
             inputVersion.current += 1;
+            pdfImport.cancel();
             props.onText(EXAMPLE);
             props.onEditing(true);
             setSelection(null);
@@ -129,9 +140,27 @@ export default function SourcePanel(props: Props) {
             }}
           />
         </label>
+        <label className="file-button">
+          Nhập PDF
+          <input
+            type="file"
+            accept=".pdf,application/pdf"
+            aria-label="Nhập PDF"
+            onChange={(event) => {
+              const file = event.target.files?.[0];
+              if (file) {
+                inputVersion.current += 1;
+                void pdfImport.start(file);
+              }
+              event.target.value = '';
+            }}
+          />
+        </label>
       </div>
+      <PdfImportControls {...pdfImport} />
       {props.editing || !props.analyzed ? (
         <textarea
+          ref={editor}
           className="source-input"
           aria-label="Văn bản gốc"
           placeholder={'Dán ghi chú y tế vào đây…\n\nHoặc chọn “Dùng ví dụ giả lập” để bắt đầu.'}
@@ -139,6 +168,7 @@ export default function SourcePanel(props: Props) {
           spellCheck={false}
           onChange={(event) => {
             inputVersion.current += 1;
+            pdfImport.cancel();
             props.onText(event.target.value);
             setSelection(null);
           }}
@@ -169,7 +199,7 @@ export default function SourcePanel(props: Props) {
       )}
       <div className="document-footer">
         <span>{points.length.toLocaleString('vi-VN')} / 50.000 ký tự</span>
-        <span>TXT · UTF-8</span>
+        <span>TXT UTF-8 · PDF có chữ</span>
       </div>
       {props.analyzed && !props.editing && (
         <div className="manual-add">

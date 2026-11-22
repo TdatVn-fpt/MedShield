@@ -2,7 +2,7 @@
 
 - **Chủ dự án:** Nguyễn Tiến Đạt · Samsung Innovation Campus · AI-NIC4
 - **Cập nhật:** 22/11/2026 · Asia/Saigon
-- **Trạng thái:** Bản kế hoạch. Tính năng nhập PDF chưa được triển khai.
+- **Trạng thái:** Đã triển khai bản đầu, chờ nghiệm thu độc lập PDF-01–PDF-04.
 
 ## 1. Kết quả đã có
 
@@ -14,7 +14,7 @@
 | Mẫu demo mô phỏng | File TXT ngoại trú đã chạy qua luồng thật. Hybrid tìm 5 vùng, gồm đủ 5 nhãn. Người rà soát thêm tên bỏ sót `tạ hư cấu`, xuất TXT và kiểm tra `[NAME_2]` cùng ngày tái khám `18/12`. Đây là ca demo chức năng. [TXT mô phỏng](evidence/demo-benh-an-ngoai-tru.txt) |
 | Kiểm tra PDF tham chiếu | File Phụ lục XXVIII tải được, có 162 trang. Đã render và đối chiếu trang 61–62 theo thứ tự của trình đọc. Trang 61 là mẫu bệnh án ngoại trú `15/BV-01` với các mục hành chính, lý do vào viện, hỏi bệnh và khám bệnh. Trang 62 là phần tổng kết. Một phép thử cục bộ bằng `pypdf` mất khoảng 0,22 giây để trích chữ hai trang sau khi mở tài liệu. Đây là số đo thử ngoài web và chưa gồm AI, OCR hay thời gian rà soát. [Phụ lục XXVIII](https://storage-vnportal.vnpt.vn/sla-ubnd/4772/vanban/28.-phu-luc-xviii.-mau-benh-an.pdf) |
 
-G0–G2 đã PASS. G3 đang đánh giá trên tập test khóa. G4–G5 đang chờ theo [bảng tiến độ](progress.md). Luồng PDF cần có bằng chứng và review riêng trước khi đưa vào demo.
+G0–G3 đã PASS. Tính năng PDF thuộc phạm vi G4 và có biên bản nghiệm thu riêng. Theo dõi các phần khác trong [bảng tiến độ](progress.md).
 
 ## 2. Mục tiêu và phạm vi bản đầu
 
