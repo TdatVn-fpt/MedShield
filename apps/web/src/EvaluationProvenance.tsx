@@ -3,7 +3,11 @@ type DevelopmentSplit = { family_ids?: string[] };
 
 export type EvaluationMetadata = {
   vi?: {
-    test_manifest?: { dataset_revision?: string; families?: { family_id: string }[] };
+    test_manifest?: {
+      dataset_revision?: string;
+      digest?: { value?: string };
+      families?: { family_id: string }[];
+    };
     development_manifest?: {
       revision?: string;
       seed?: number;
@@ -32,6 +36,7 @@ export default function EvaluationProvenance({ metadata }: { metadata: Evaluatio
           <p>Seed train/validation {vi.development_manifest?.seed ?? '—'}</p>
           <p>Revision train/validation {vi.development_manifest?.revision ?? '—'}</p>
           <p>Revision test tiếng Việt {vi.test_manifest?.dataset_revision ?? '—'}</p>
+          <p>SHA-256 test tiếng Việt {vi.test_manifest?.digest?.value ?? '—'}</p>
           <p>Revision mô hình CRF {vi.model?.revision ?? '—'}</p>
           <p>Nhãn CRF {vi.model?.labels?.join(', ') ?? '—'}</p>
           {Object.entries(vi.development_manifest?.splits ?? {}).map(([split, data]) => (

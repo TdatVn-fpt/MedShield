@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { requestJson } from './api';
 import EvaluationProvenance from './EvaluationProvenance';
 import type { EvaluationMetadata } from './EvaluationProvenance';
+import { LABELS } from './types';
 import './evaluation.css';
 
 type Metrics = {
@@ -112,10 +113,17 @@ function MethodResult({ result, target }: { result: Result; target?: number }) {
         chú còn ít nhất một phần bị bỏ sót
       </p>
       {target !== undefined && (
-        <p>
-          Mục tiêu micro-F1 {percentFormat.format(target)} ·{' '}
-          <strong>{result.micro.f1 >= target ? 'Đạt' : 'Chưa đạt'}</strong>
-        </p>
+        <>
+          <p>
+            Mục tiêu micro-F1 {percentFormat.format(target)} ·{' '}
+            <strong>{result.micro.f1 >= target ? 'Đạt' : 'Chưa đạt'}</strong>
+          </p>
+          <p>
+            Nhãn đạt F1 từ {percentFormat.format(target)} ·{' '}
+            {LABELS.filter((label) => (result.by_label?.[label]?.f1 ?? 0) >= target).length}/
+            {LABELS.length}
+          </p>
+        </>
       )}
       <MetricTable result={{ ...result, micro: result.micro }} />
       {Boolean(result.examples?.length) && (
@@ -124,7 +132,7 @@ function MethodResult({ result, target }: { result: Result; target?: number }) {
           <ul>
             {result.examples?.map((example, index) => (
               <li key={`${example.note_id}-${index}`}>
-                <strong>{example.kind.toUpperCase() === 'FN' ? 'Bỏ sót' : 'Che nhầm'}</strong>{' '}
+                <strong>{example.kind === 'FN' ? 'Bỏ sót' : 'Che nhầm'}</strong>{' '}
                 {example.label && `(${example.label})`} · {example.note_id} ·{' '}
                 <span>{example.text}</span>
               </li>

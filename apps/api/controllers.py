@@ -54,15 +54,54 @@ def evaluation() -> dict[str, Any]:
         if (
             not isinstance(results, list)
             or not results
-            or not all(
-                isinstance(result, dict)
-                and result.get("language") in ("vi", "en")
-                and isinstance(result.get("method"), str)
-                and result.get("status") in ("available", "unavailable")
-                for result in results
-            )
+            or not all(_valid_evaluation_result(result) for result in results)
         ):
             raise ValueError("invalid artifact")
     except (OSError, ValueError):
         return {"status": "unavailable", "reason": "Chưa có kết quả đánh giá."}
     return {"status": "available", "evaluation": artifact}
+
+
+def _valid_metrics(value: object) -> bool:
+    """_valid_metrics checks displayable counts and fractional metrics from an artifact."""
+    if not isinstance(value, dict):
+        return False
+    for key in ("tp", "fp", "fn", "support"):
+        count = value.get(key)
+        if type(count) is not int or count < 0:
+            return False
+    for key in ("precision", "recall", "f1"):
+        fraction = value.get(key)
+        if not isinstance(fraction, int | float) or isinstance(fraction, bool):
+            return False
+        if not 0 <= fraction <= 1:
+            return False
+    return True
+
+
+def _valid_evaluation_result(value: object) -> bool:
+    """_valid_evaluation_result rejects rows the dashboard cannot display reliably."""
+    if (
+        not isinstance(value, dict)
+        or value.get("language") not in ("vi", "en")
+        or not isinstance(value.get("method"), str)
+    ):
+        return False
+    if value.get("status") == "unavailable":
+        return isinstance(value.get("reason"), str)
+    if value.get("status") != "available" or not _valid_metrics(value.get("micro")):
+        return False
+    labels = value.get("by_label")
+    examples = value.get("examples")
+    return (
+        isinstance(labels, dict)
+        and all(_valid_metrics(item) for item in labels.values())
+        and isinstance(examples, list)
+        and all(
+            isinstance(item, dict)
+            and item.get("kind") in ("FP", "FN")
+            and isinstance(item.get("note_id"), str)
+            and isinstance(item.get("text"), str)
+            for item in examples
+        )
+    )

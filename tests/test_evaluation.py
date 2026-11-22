@@ -130,8 +130,14 @@ def test_heldout_reader_accepts_record_newlines_but_rejects_byte_drift(tmp_path:
 
 @pytest.mark.parametrize(
     "contents",
-    [None, "{", '{"results":"not-a-list"}'],
-    ids=["missing", "malformed-json", "invalid-results"],
+    [
+        None,
+        "{",
+        '{"results":"not-a-list"}',
+        '{"results":[{"language":"vi","method":"rules","status":"available",'
+        '"micro":{},"examples":[{"kind":null}]}]}',
+    ],
+    ids=["missing", "malformed-json", "invalid-results", "invalid-metrics-and-example"],
 )
 def test_evaluation_unavailable_for_missing_or_invalid_artifact(
     contents: str | None, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
