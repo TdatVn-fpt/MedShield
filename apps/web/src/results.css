@@ -1,0 +1,242 @@
+/* apps/web/src/results.css ? Preview approval, export controls and editable detection list. */
+.preview-panel {
+  background: linear-gradient(180deg, #fff 0%, #fff 70%, #f8fbfd 100%);
+}
+.preview-content {
+  padding: 23px;
+  flex: 1;
+  min-height: 266px;
+}
+.preview-empty {
+  min-height: 225px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: #8b9fac;
+}
+.document-symbol {
+  border: 1px solid #dbe8f2;
+  background: #f1f7fb;
+  color: #8badc6;
+  border-radius: 12px;
+  font-size: 35px;
+  padding: 6px 16px;
+  margin-bottom: 17px;
+}
+.preview-empty h3 {
+  font-size: 12px;
+  font-weight: 500;
+  color: #68869b;
+}
+.preview-empty p {
+  font-size: 10px;
+  line-height: 1.9;
+  margin-top: 9px;
+}
+.redacted-text {
+  font-size: 12px;
+  line-height: 2;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #315a76;
+}
+.review-export {
+  border-top: 1px solid #e6edf3;
+  padding: 20px 23px;
+}
+.approval-label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  color: #385b74;
+  cursor: pointer;
+}
+.approval-label input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #1268ad;
+}
+.review-export > p {
+  font-size: 9px;
+  margin: 8px 0 16px 24px;
+  color: #8194a3;
+  line-height: 1.7;
+}
+.export-buttons {
+  display: flex;
+  gap: 10px;
+}
+.export-buttons .primary-button {
+  flex: 1;
+}
+.export-buttons .secondary-button {
+  min-width: 112px;
+}
+.detections {
+  margin-top: 28px;
+}
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+.section-heading h2 {
+  font-size: 15px;
+  margin-top: 6px;
+}
+.section-heading > p {
+  font-size: 9px;
+  color: #7c91a1;
+}
+.count-badge {
+  font-size: 10px;
+  padding: 3px 7px;
+  color: #4380a7;
+  background: #e7eff6;
+  border-radius: 4px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+.detection-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px 20px;
+}
+.entity-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid #dce6ee;
+  border-radius: 7px;
+  background: #fff;
+}
+.entity-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.dot-NAME {
+  background: #5298cd;
+}
+.dot-DOB {
+  background: #a07ec9;
+}
+.dot-PHONE {
+  background: #56a78f;
+}
+.dot-ID {
+  background: #b9954d;
+}
+.dot-ADDR {
+  background: #c77e90;
+}
+.entity-value {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  background: transparent;
+  text-align: left;
+}
+.entity-value strong {
+  display: block;
+  color: #375c77;
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.entity-value span {
+  display: block;
+  margin-top: 5px;
+  color: #8195a5;
+  font-size: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.entity-row select {
+  font-size: 9px;
+  padding: 7px;
+  max-width: 140px;
+  background: #f9fbfd;
+}
+.remove-button {
+  color: #8ba0af;
+  font-size: 22px;
+  padding: 0 3px;
+  background: transparent;
+  line-height: 1;
+}
+.remove-button:hover {
+  color: #ac4556;
+}
+.empty-detections {
+  border: 1px dashed #d4e0e9;
+  padding: 23px;
+  border-radius: 8px;
+  color: #8194a4;
+  font-size: 10px;
+  text-align: center;
+}
+.label-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px 23px;
+  margin-top: 15px;
+  font-size: 8px;
+  color: #8194a4;
+}
+.label-legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.label-legend b {
+  font-size: 8px;
+  font-weight: 500;
+  color: #54738a;
+}
+.engine-footnote {
+  color: #7c91a1;
+  margin-top: 18px;
+  font-size: 8px;
+  line-height: 1.8;
+}
+.engine-footnote strong {
+  font-weight: 500;
+}
+.error-banner {
+  border: 1px solid #ecc4ca;
+  color: #9e3f50;
+  background: #fff2f4;
+  padding: 13px 17px;
+  border-radius: 7px;
+  margin-bottom: 15px;
+  font-size: 11px;
+  line-height: 1.7;
+}
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #d9e8f3;
+  border-top-color: #1268ad;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

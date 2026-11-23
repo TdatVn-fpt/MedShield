@@ -1,0 +1,103 @@
+/* apps/web/src/evaluation.css — Render measured results in accessible responsive tables. */
+.evaluation-page {
+  width: min(1100px, 100%);
+  margin: 30px auto 56px;
+  color: #173b53;
+}
+
+.evaluation-page header h1 {
+  font-size: clamp(27px, 4vw, 46px);
+  letter-spacing: -0.035em;
+}
+
+.evaluation-page p {
+  color: #405e70;
+  line-height: 1.6;
+  margin: 7px 0;
+}
+
+.metric-section {
+  display: grid;
+  gap: 8px;
+  margin: 32px 0;
+  min-width: 0;
+}
+
+.metric-section > p {
+  margin: 0;
+}
+
+.metric-card {
+  min-width: 0;
+  padding: clamp(14px, 2.5vw, 26px);
+  margin-top: 12px;
+  background: #fff;
+  border: 1px solid #d7e5ec;
+  border-radius: 12px;
+}
+
+.metric-card h3 {
+  font-size: 1.1rem;
+}
+
+.metric-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-top: 12px;
+}
+
+.metric-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.metric-table th,
+.metric-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #dbe7ed;
+  text-align: right;
+}
+
+.metric-table th:first-child {
+  text-align: left;
+}
+
+.metric-table thead {
+  background: #edf5fa;
+}
+
+.metric-card details {
+  margin-top: 15px;
+  color: #365b70;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.metric-card summary {
+  cursor: pointer;
+  width: fit-content;
+}
+
+.metric-card ul {
+  margin: 6px 0 0;
+  padding-left: 22px;
+  overflow-wrap: anywhere;
+}
+
+.metric-provenance {
+  overflow-wrap: anywhere;
+}
+
+.metric-provenance summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.metric-provenance pre {
+  margin-top: 12px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

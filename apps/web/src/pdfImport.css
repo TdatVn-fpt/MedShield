@@ -1,0 +1,44 @@
+/* apps/web/src/pdfImport.css — Keep PDF controls readable and responsive inside the source panel. */
+.source-tools {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pdf-import {
+  margin: 12px clamp(16px, 3vw, 23px) 0;
+  padding: 12px;
+  border: 1px solid #c7dbe9;
+  border-radius: 8px;
+  background: #f4f9fc;
+  color: #27485e;
+  line-height: 1.5;
+  font-size: 0.8125rem;
+}
+
+.pdf-import [role='alert'] {
+  color: #8c2525;
+}
+
+.pdf-import-fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px;
+  margin-block: 8px;
+}
+
+.pdf-import-fields label {
+  display: grid;
+  gap: 4px;
+}
+
+.pdf-import-fields input {
+  width: 6em;
+  min-height: 35px;
+  padding: 5px 8px;
+  border: 1px solid #8faabd;
+  border-radius: 5px;
+  background: #fff;
+  color: #17374e;
+  font: inherit;
+}

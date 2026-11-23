@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "revision": "medshield-vi-synthetic-v2",
+  "seed": 20261121,
+  "provenance": {
+    "generated_by": "Research/ML (Codex)",
+    "source": "Ghi chú giả lập từ họ mẫu do dự án tạo.",
+    "human_reviewed_notes": 0
+  },
+  "splits": {
+    "train": {
+      "file": "train.jsonl",
+      "notes": 60,
+      "family_ids": [
+        "tr-appointment-negative",
+        "tr-clinician-signature",
+        "tr-contact-person",
+        "tr-identity-check",
+        "tr-intake-fields",
+        "tr-lowercase-midline",
+        "tr-measurement-negative",
+        "tr-multiline-delivery",
+        "tr-narrative-history",
+        "tr-residence-block"
+      ],
+      "sha256": "5de2c3087d01b0ef69d048a20682703cb8672c6b6869d05f3c10b9332ff1fad3"
+    },
+    "validation": {
+      "file": "validation.jsonl",
+      "notes": 20,
+      "family_ids": [
+        "va-address-change",
+        "va-call-chronology",
+        "va-followup-negative",
+        "va-handover-repeat"
+      ],
+      "sha256": "04cef7910dded51cea0cbe989ae2aeee7ce92b2936c32a335e7100909548cae0"
+    }
+  }
+}

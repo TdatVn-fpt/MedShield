@@ -1,0 +1,28 @@
+DỮ LIỆU GIẢ LẬP
+BỆNH ÁN NGOẠI TRÚ
+Mã mẫu tham chiếu: 15/BV-01
+I. HÀNH CHÍNH
+Họ và tên: [NAME_1].
+Ngày sinh: [DOB_1].
+Mã bệnh nhân: [ID_1].
+Điện thoại: [PHONE_1].
+Địa chỉ nhận giấy hẹn:
+[ADDR_1].
+II. LÝ DO ĐẾN KHÁM
+Lý do đến khám: Ho khan ba ngày.
+III. HỎI BỆNH
+Đi cùng: [NAME_2].
+IV. KHÁM BỆNH
+Chưa ghi trong trích đoạn.
+Trang 1 / 2
+
+DỮ LIỆU GIẢ LẬP
+TỔNG KẾT BỆNH ÁN
+Tóm tắt ghi chú ngoại trú
+1. DIỄN BIẾN
+Ho khan ba ngày.
+2. KẾT QUẢ KHÁM
+Chưa ghi trong trích đoạn.
+3. THEO DÕI
+Hẹn tái khám: 18/12.
+Trang 2 / 2

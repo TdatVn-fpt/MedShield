@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-11-22T11:01:46.193825+00:00",
+  "dataset": {
+    "revision": "en-g2-v1",
+    "sha256": "100083a44fb393c1661c77c69a13f41d52907a3e2d7cfd94f1c331d1089d879a",
+    "file": "data/english.jsonl",
+    "seed": null,
+    "provenance": "BA hand-authored and annotated synthetic English notes; data/english.md",
+    "human_reviewed_notes": 0,
+    "split": "english_benchmark",
+    "notes": 16,
+    "gold_entities": 32,
+    "note_ids": [
+      "en-001",
+      "en-002",
+      "en-003",
+      "en-004",
+      "en-005",
+      "en-006",
+      "en-007",
+      "en-008",
+      "en-009",
+      "en-010",
+      "en-011",
+      "en-012",
+      "en-013",
+      "en-014",
+      "en-015",
+      "en-016"
+    ],
+    "family_ids": [
+      "en-intake-demographics",
+      "en-telephone-triage",
+      "en-discharge-contact-block",
+      "en-referral-free-text",
+      "en-patient-portal-message",
+      "en-birth-history",
+      "en-identity-reconciliation",
+      "en-repeat-in-handoff",
+      "en-address-correction",
+      "en-structured-registration",
+      "en-diagnosis-and-observations",
+      "en-laboratory-numeric-controls",
+      "en-unlinked-treatment-timeline",
+      "en-quoted-caregiver-message",
+      "en-observation-transfer",
+      "en-birth-date-iso-contrast"
+    ],
+    "excluded": []
+  },
+  "score_definition": "Micro counts of non-whitespace Unicode code points in region unions",
+  "reproduce": [
+    "powershell.exe -NoProfile -File .\\scripts\\setup-upstream.ps1",
+    "powershell.exe -NoProfile -File .\\scripts\\evaluate-upstream.ps1"
+  ],
+  "results": [
+    {
+      "language": "en",
+      "method": "presidio",
+      "unit": "redaction_region",
+      "notes": 16,
+      "gold_entities": 32,
+      "by_label": {},
+      "environment": {
+        "source": "https://github.com/data-privacy-stack/presidio",
+        "reference_revision": "9fc7774ed74faa0afd5ffb36da63e77b9a2f8c30",
+        "config": {
+          "language": "en",
+          "nlp_engine": "spacy",
+          "model": "en_core_web_sm"
+        },
+        "python_pin": "3.11.7",
+        "lock_file": "ml/upstream/presidio.lock.txt",
+        "lock_sha256": "d45f7eed339b81ec208e02e50658ead4e74d196e4c4619a073ca8df757116676",
+        "actual": {
+          "python": "3.11.7",
+          "system": "Windows",
+          "machine": "AMD64",
+          "packages": {
+            "presidio-analyzer": "2.2.366",
+            "spacy": "3.7.5",
+            "en-core-web-sm": "3.7.1",
+            "numpy": "1.26.4"
+          }
+        }
+      },
+      "reproduce": [
+        "powershell.exe -NoProfile -File .\\scripts\\setup-upstream.ps1",
+        "powershell.exe -NoProfile -File .\\scripts\\evaluate-upstream.ps1"
+      ],
+      "status": "available",
+      "micro": {
+        "tp": 267,
+        "fp": 237,
+        "fn": 132,
+        "precision": 0.5297619047619048,
+        "recall": 0.6691729323308271,
+        "f1": 0.5913621262458472,
+        "support": 399
+      },
+      "notes_with_fn": 9,
+      "examples": [
+        {
+          "note_id": "en-001",
+          "kind": "FP",
+          "label": "REGION",
+          "text": "DOB",
+          "start": 21,
+          "end": 24
+        },
+        {
+          "note_id": "en-002",
+          "kind": "FP",
+          "label": "REGION",
+          "text": "two",
+          "start": 125,
+          "end": 128
+        },
+        {
+          "note_id": "en-003",
+          "kind": "FP",
+          "label": "REGION",
+          "text": "12/08",
+          "start": 138,
+          "end": 143
+        },
+        {
+          "note_id": "en-001",
+          "kind": "FN",
+          "label": "REGION",
+          "text": "MRN-",
+          "start": 43,
+          "end": 47
+        },
+        {
+          "note_id": "en-003",
+          "kind": "FN",
+          "label": "REGION",
+          "text": "48",
+          "start": 34,
+          "end": 36
+        },
+        {
+          "note_id": "en-005",
+          "kind": "FN",
+          "label": "REGION",
+          "text": "72",
+          "start": 69,
+          "end": 71
+        }
+      ]
+    },
+    {
+      "language": "en",
+      "method": "philter",
+      "unit": "redaction_region",
+      "notes": 16,
+      "gold_entities": 32,
+      "by_label": {},
+      "environment": {
+        "source": "https://github.com/BCHSI/philter-ucsf",
+        "source_revision": "4da3cf31c9bfbfd66c66b141c45ba7a47628dd0a",
+        "config": {
+          "filters": "configs/philter_delta.json",
+          "pos_tagger_sha256": "6025f530624335c67d6547d44757b357b4e79bae030a0383e9887a92c1718f0b",
+          "format": "asterisk",
+          "input_encoding": "utf-8",
+          "offset_projection": "universal newlines to original code points"
+        },
+        "python_pin": "3.10.20",
+        "lock_file": "ml/upstream/philter.lock.txt",
+        "lock_sha256": "4636906ef081a076fabddaca610ba31f8810a7205ed589026b38f63c9a80e512",
+        "actual": {
+          "python": "3.10.20",
+          "system": "Windows",
+          "machine": "AMD64",
+          "packages": {
+            "nltk": "3.9.2",
+            "chardet": "5.2.0",
+            "numpy": "1.26.4",
+            "pandas": "2.2.3",
+            "xmltodict": "0.14.2"
+          },
+          "source_revision": "4da3cf31c9bfbfd66c66b141c45ba7a47628dd0a",
+          "config_sha256": "d1aa42e3b377eda880c6269d3c28ee4c2d733c69a737554bf4814b6926360be1"
+        }
+      },
+      "reproduce": [
+        "powershell.exe -NoProfile -File .\\scripts\\setup-upstream.ps1",
+        "powershell.exe -NoProfile -File .\\scripts\\evaluate-upstream.ps1"
+      ],
+      "status": "available",
+      "micro": {
+        "tp": 341,
+        "fp": 132,
+        "fn": 58,
+        "precision": 0.7209302325581395,
+        "recall": 0.8546365914786967,
+        "f1": 0.7821100917431193,
+        "support": 399
+      },
+      "notes_with_fn": 12,
+      "examples": [
+        {
+          "note_id": "en-001",
+          "kind": "FP",
+          "label": "REGION",
+          "text": "11",
+          "start": 83,
+          "end": 85
+        },
+        {
+          "note_id": "en-003",
+          "kind": "FP",
+          "label": "REGION",
+          "text": "12",
+          "start": 138,
+          "end": 140
+        },
+        {
+          "note_id": "en-004",
+          "kind": "FP",
+          "label": "REGION",
+          "text": "Harbor",
+          "start": 175,
+          "end": 181
+        },
+        {
+          "note_id": "en-001",
+          "kind": "FN",
+          "label": "REGION",
+          "text": "/",
+          "start": 28,
+          "end": 29
+        },
+        {
+          "note_id": "en-002",
+          "kind": "FN",
+          "label": "REGION",
+          "text": "+",
+          "start": 73,
+          "end": 74
+        },
+        {
+          "note_id": "en-003",
+          "kind": "FN",
+          "label": "REGION",
+          "text": ".,",
+          "start": 54,
+          "end": 56
+        }
+      ]
+    },
+    {
+      "language": "en",
+      "method": "pydeid",
+      "unit": "redaction_region",
+      "notes": 16,
+      "gold_entities": 32,
+      "by_label": {},
+      "environment": {
+        "source": "https://github.com/GEMINI-Medicine/pyDeid",
+        "source_revision": "f93d2ddb1fd857236b2d3b4b761af2b8028c7281",
+        "config": {
+          "named_entity_recognition": false
+        },
+        "python_pin": "3.11.7",
+        "lock_file": "ml/upstream/pydeid.lock.txt",
+        "lock_sha256": "9cdf1bb54fa2a9ca7f6d38cf5b00e411980d8afba69851f46c7f23b83e6b024c",
+        "actual": {
+          "python": "3.11.7",
+          "system": "Windows",
+          "machine": "AMD64",
+          "packages": {
+            "pydeid": "1.0.1",
+            "spacy": "3.7.5",
+            "numpy": "1.26.4",
+            "click": "8.5.1",
+            "setuptools": "80.9.0"
+          }
+        }
+      },
+      "reproduce": [
+        "powershell.exe -NoProfile -File .\\scripts\\setup-upstream.ps1",
+        "powershell.exe -NoProfile -File .\\scripts\\evaluate-upstream.ps1"
+      ],
+      "status": "available",
+      "micro": {
+        "tp": 195,
+        "fp": 100,
+        "fn": 204,
+        "precision": 0.6610169491525424,
+        "recall": 0.48872180451127817,
+        "f1": 0.5619596541786743,
+        "support": 399
+      },
+      "notes_with_fn": 11,
+      "examples": [
+        {
+          "note_id": "en-001",
+          "kind": "FP",
+          "label": "REGION",
+          "text": "11/21/2026",
+          "start": 83,
+          "end": 93
+        },
+        {
+          "note_id": "en-003",
+          "kind": "FP",
+          "label": "REGION",
+          "text": "12/08",
+          "start": 138,
+          "end": 143
+        },
+        {
+          "note_id": "en-006",
+          "kind": "FP",
+          "label": "REGION",
+          "text": "2022",
+          "start": 76,
+          "end": 80
+        },
+        {
+          "note_id": "en-001",
+          "kind": "FN",
+          "label": "REGION",
+          "text": "MRN-",
+          "start": 43,
+          "end": 47
+        },
+        {
+          "note_id": "en-002",
+          "kind": "FN",
+          "label": "REGION",
+          "text": "Vale",
+          "start": 41,
+          "end": 45
+        },
+        {
+          "note_id": "en-003",
+          "kind": "FN",
+          "label": "REGION",
+          "text": ".,",
+          "start": 54,
+          "end": 56
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+Người bệnh [ADDR_1], sinh ngày [DOB_1], mã BN-90412. [NAME_1] hai ngày. Hẹn khám lại 23/12.
