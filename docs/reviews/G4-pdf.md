@@ -215,3 +215,23 @@ Kiểm Windows, 390px/1440px, bàn phím, đo thời gian, kịch bản 3 phút.
 
 **CHỮ KÝ ĐIỆN TỬ (checksum của biên bản review này):**  
 SHA-256: `bccca8bf3d783aeb2a8b4aed66f98088d683659424d9bfb941abba4a0c8e34d5` (tính trước khi ghi dòng checksum vào file)
+
+## Đối chiếu sau bàn giao ngày 23/11/2026
+
+Tech Lead kiểm lại commit triển khai `231ab23` trên Windows, Node 24.13.0, npm 11.6.2, Playwright 1.65.1 và Chromium 159.0.8154.6. Đây là phiên bản của lượt kiểm lại.
+
+| Phép kiểm | Quan sát |
+|---|---|
+| `uv run --locked pytest -q` | 55/55 test backend qua. Còn một cảnh báo Starlette TestClient về httpx. |
+| `npm run test:e2e -- --output=../../artifacts/local/audit-pdf-231ab23` từ `apps/web` | 22/22 test Chromium qua, gồm 9 test PDF. Suite tự khởi động Vite và Uvicorn. Hai ca luồng chính mở TXT và JSON tải thực tế. |
+| Lint, format, typecheck, build frontend. Ruff, mypy và checker 299 dòng | Các lệnh kiểm đều qua. Build tạo riêng chunk PDF.js và worker. |
+| Checkout Windows | Trước khi thêm `*.pdf -text` vào `.gitattributes`, bộ lọc `git -c core.autocrlf=true cat-file --filters HEAD:<đường dẫn>` đổi LF sang CRLF ở ba fixture. Sau chỉnh sửa, byte và SHA-256 của cả bốn PDF khớp tệp đang chạy. |
+
+Đo riêng trên Chromium với PDF giả lập hai trang. Mỗi kích thước chạy một lượt trong ngữ cảnh trình duyệt mới. Thời gian mở tính từ chọn file đến khi ô **Trang đầu** xuất hiện. Trích chữ tính từ phím Enter trên **Trích văn bản** đến khi `18/12` xuất hiện trong ô nhập. Phân tích tính từ bấm **Phân tích** đến khi nhận phản hồi và đọc xong JSON của `/api/analyze`. API trả HTTP 200, `hybrid` và năm vùng ở cả hai lượt.
+
+| Kích thước | Mở PDF | Trích chữ | Phân tích hybrid |
+|---|---:|---:|---:|
+| 390px | 857 ms | 57 ms | 56 ms |
+| 1440px | 871 ms | 51 ms | 52 ms |
+
+Phạm vi kiểm lại gồm PDF-01–PDF-04. Các hạng mục Three.js và bàn giao toàn dự án có tiêu chí riêng.
