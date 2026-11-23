@@ -241,4 +241,6 @@ Tech Lead kiểm lại commit triển khai `231ab23` trên Windows, Node 24.13.0
 | [TXT đã rà soát](../evidence/demo-benh-an-ngoai-tru.reviewed.txt) | 623 | `9c3b56ef6b7ace66fe33b067bde7debfe9a76e7dc18d1bab491ad5f105560a3a` |
 | [JSON đã rà soát](../evidence/demo-benh-an-ngoai-tru.reviewed.json) | 873 | `f809471eb0990eb6dd3533b3df18ade8cbcc3ed90dbc00ddbe85362ce4519a19` |
 
+**QA đối chiếu độc lập.** Parfit chạy lại Chromium ở 390px và 1440px trên `90a21bd`. Cả hai lượt tải khớp từng byte với hai tệp đã commit. QA xác nhận đủ sáu vùng được che, cấu trúc JSON tối thiểu và ngày tái khám `18/12` còn nguyên. PDF-04 PASS.
+
 Phạm vi kiểm lại gồm PDF-01–PDF-04. Các hạng mục Three.js và bàn giao toàn dự án có tiêu chí riêng.
