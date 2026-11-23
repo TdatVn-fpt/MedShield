@@ -41,7 +41,8 @@ Mỗi `docs/reviews/Gx.md` do reviewer lập phải ghi tác giả, reviewer th�
 | 18/11/2026 | PM đọc đầy đủ lệnh triển khai và tạo board/kế hoạch/task G0 | Bộ tài liệu PM READY_FOR_REVIEW; toàn G0 vẫn IN_PROGRESS, chưa có kết luận reviewer |
 | 18/11/2026 | Tech Lead thông báo remote trống có quyền ghi; baseline `main` `6e227b0` đã push, nhánh làm việc `feat/medshield-demo`; tìm thấy research ZIP ngoài repo | Đây là thông tin bàn giao từ Tech Lead, PM chưa tự xác minh Git; `C:\Users\Admin\Downloads\MedShield_SIC_Research.zip` không được copy nguyên lên repo |
 | 21/11/2026 | Tiếp nhận thay đổi G1 từ Claude tại `8984577`, xác minh lại origin và quyền GitHub, phân công sáu vai trò kiểm tra. | Biên bản BA và file xuất giả lập có sẵn. Dev tái hiện lỗi đọc TXT đến muộn và lỗi hợp đồng API. G1 mở vòng sửa và tái kiểm. |
-| 22/11/2026 | Hoàn thiện PDF-01–PDF-04: tạo fixture, PDF.js integration, workflow và acceptance tests. QA nghiệm thu độc lập phạm vi PDF. | 9/9 e2e tests PASS. PDF-01–PDF-04 chuyển READY_FOR_REVIEW. Biên bản `docs/reviews/G4-pdf.md`, hướng dẫn `docs/huong-dan-nhap-pdf.md`. |
+| 22/11/2026 | Hoàn thiện PDF-01–PDF-04 và nghiệm thu độc lập phạm vi PDF. | 9/9 test PDF qua. Biên bản `docs/reviews/G4-pdf.md` và hướng dẫn `docs/huong-dan-nhap-pdf.md`. |
+| 23/11/2026 | Kiểm lại bản triển khai trên Windows và giữ nguyên byte PDF khi checkout bằng Git. | PDF-01–PDF-04 PASS. Có 22/22 test Chromium và 55/55 test backend qua khi kiểm lại. G4 tổng thể vẫn IN_PROGRESS. |
 
 ## Các điểm phải công khai khi bàn giao
 

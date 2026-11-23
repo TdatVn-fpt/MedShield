@@ -2,7 +2,7 @@
 
 - **Chủ dự án:** Nguyễn Tiến Đạt · Samsung Innovation Campus · AI-NIC4
 - **Cập nhật:** 22/11/2026 · Asia/Saigon
-- **Trạng thái:** Đã triển khai bản đầu, chờ nghiệm thu độc lập PDF-01–PDF-04.
+- **Trạng thái:** PDF-01–PDF-04 đã nghiệm thu. [Biên bản và lần kiểm lại trên Windows](reviews/G4-pdf.md).
 
 ## 1. Kết quả đã có
 

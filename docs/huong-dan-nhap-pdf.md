@@ -43,3 +43,5 @@ Chọn [PDF bệnh án ngoại trú mô phỏng](evidence/demo-benh-an-ngoai-tru
 - **Kiểm thử:** Từ `apps/web`, chạy `npm run test:e2e -- pdf-import.spec.ts`. Lần đầu, nếu chưa có Chromium của Playwright, chạy `npx playwright install chromium`.
 
 [Kế hoạch nhập PDF](plan-nhap-pdf-benh-an.md) · [Môi trường Windows](environment.md)
+
+Bản xuất từ ca demo để đối chiếu: [TXT đã rà soát](evidence/demo-benh-an-ngoai-tru.reviewed.txt) · [JSON đã rà soát](evidence/demo-benh-an-ngoai-tru.reviewed.json).

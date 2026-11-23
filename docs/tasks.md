@@ -45,10 +45,10 @@ Khởi tạo 18/11/2026. Trạng thái trong bảng là của task, không tự 
 | T401 | G4 / PM-US-07 | Layout sáng xanh bệnh viện 390/1440px, keyboard/focus/contrast, nhãn chữ+màu, nút review/export dễ dùng | Dev | QA + BA | Browser desktop/mobile và `docs/reviews/G4.md` | TODO |
 | T402 | G4 / PM-US-07 | Three.js tải lười phiếu giả lập hai lớp; bật/tắt che, reduced motion, cleanup, WebGL/static fallback; review vẫn chạy khi 3D lỗi | Dev | QA + DevOps | Browser test 3D/fallback/build | TODO |
 | T403 | G4 / PM-US-03–04 | Nghiệm thu thêm/xóa/đổi nhãn/duyệt/xuất; payload xuất không lẫn dữ liệu bị che và lỗi upstream phụ an toàn | Dev | BA + QA | Ca đầy đủ và log không nội dung đầu vào | TODO |
-| PDF-01 | G4 / PM-US-02 | Tạo PDF ngoại trú giả lập có lớp chữ và đối chiếu với bản chữ kỳ vọng | BA | QA | PDF mẫu và hướng dẫn demo | READY_FOR_REVIEW |
-| PDF-02 | G4 / PM-US-02 | Trích chữ PDF trong trình duyệt, chọn trang, kiểm lỗi và giới hạn | Dev | QA | Lock PDF.js, build và các ca dữ liệu thử | READY_FOR_REVIEW |
-| PDF-03 | G4 / PM-US-02–04 | Áp dụng bản chữ vào luồng hiện tại, vô hiệu kết quả cũ, giữ hồi quy TXT | Dev | QA | Browser PDF → sửa → xác nhận → TXT/JSON | READY_FOR_REVIEW |
-| PDF-04 | G4 / PM-US-07–08 | Kiểm Windows, hai viewport, bàn phím, đo thời gian và viết hướng dẫn | Dev + PM | QA | Biên bản nghiệm thu phạm vi PDF và kịch bản 3 phút | READY_FOR_REVIEW |
+| PDF-01 | G4 / PM-US-02 | Tạo PDF ngoại trú giả lập có lớp chữ và đối chiếu với bản chữ kỳ vọng | BA | QA | PDF mẫu và hướng dẫn demo | PASS |
+| PDF-02 | G4 / PM-US-02 | Trích chữ PDF trong trình duyệt, chọn trang, kiểm lỗi và giới hạn | Dev | QA | Lock PDF.js, build và các ca dữ liệu thử | PASS |
+| PDF-03 | G4 / PM-US-02–04 | Áp dụng bản chữ vào luồng hiện tại, vô hiệu kết quả cũ, giữ hồi quy TXT | Dev | QA | Browser PDF → sửa → xác nhận → TXT/JSON | PASS |
+| PDF-04 | G4 / PM-US-07–08 | Kiểm Windows, hai viewport, bàn phím, đo thời gian và viết hướng dẫn | Dev + PM | QA | [Biên bản PDF](reviews/G4-pdf.md) và [kịch bản 3 phút](huong-dan-nhap-pdf.md) | PASS |
 | T501 | G5 / PM-US-01 | Setup PowerShell, env example, Docker Compose, locks, ignore, PR template, source max299 + lint/type/test/build/browser CI | DevOps | QA + Dev | `.github/`, `scripts/`, cấu hình và log CI thật | TODO |
 | T502 | G5 / PM-US-08 | README/ba lỗi khởi động/Mermaid khớp code/báo cáo/đóng góp/6 slide/demo3p/defense Q&A đúng artifact | PM + DevOps + Research/BA theo file | QA + Tech Lead | Tài liệu bàn giao và đối chiếu yêu cầu | TODO |
 | T503 | G5 / PM-US-01–08 | QA + agent ngoài DevOps theo README từ checkout sạch: web, input/export, evaluate; ghi môi trường Windows thật | QA + Dev | Tech Lead | `docs/reviews/G5.md` và lệnh/quan sát | TODO |

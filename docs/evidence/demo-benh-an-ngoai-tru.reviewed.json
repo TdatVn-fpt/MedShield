@@ -1,0 +1,14 @@
+{
+  "redacted_text": "DỮ LIỆU GIẢ LẬP\nBỆNH ÁN NGOẠI TRÚ\nMã mẫu tham chiếu: 15/BV-01\nI. HÀNH CHÍNH\nHọ và tên: [NAME_1].\nNgày sinh: [DOB_1].\nMã bệnh nhân: [ID_1].\nĐiện thoại: [PHONE_1].\nĐịa chỉ nhận giấy hẹn:\n[ADDR_1].\nII. LÝ DO ĐẾN KHÁM\nLý do đến khám: Ho khan ba ngày.\nIII. HỎI BỆNH\nĐi cùng: [NAME_2].\nIV. KHÁM BỆNH\nChưa ghi trong trích đoạn.\nTrang 1 / 2\n\nDỮ LIỆU GIẢ LẬP\nTỔNG KẾT BỆNH ÁN\nTóm tắt ghi chú ngoại trú\n1. DIỄN BIẾN\nHo khan ba ngày.\n2. KẾT QUẢ KHÁM\nChưa ghi trong trích đoạn.\n3. THEO DÕI\nHẹn tái khám: 18/12.\nTrang 2 / 2",
+  "metadata": {
+    "entity_count": 6,
+    "counts_by_label": {
+      "NAME": 2,
+      "DOB": 1,
+      "PHONE": 1,
+      "ID": 1,
+      "ADDR": 1
+    },
+    "offset_unit": "unicode_code_point"
+  }
+}

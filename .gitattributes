@@ -1,6 +1,8 @@
 # Preserve the downloaded bytes used by the G1 review hashes.
 docs/evidence/G1-reviewed.txt -text
 docs/evidence/G1-reviewed.json -text
+docs/evidence/demo-benh-an-ngoai-tru.reviewed.txt -text
+docs/evidence/demo-benh-an-ngoai-tru.reviewed.json -text
 
 # Dataset revisions use hashes of canonical UTF-8 files with LF line endings.
 /data/*.jsonl text eol=lf
