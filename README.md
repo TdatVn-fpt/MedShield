@@ -1,67 +1,55 @@
-# MedShield · Nhận diện và che thông tin định danh trong văn bản y tế
+# MedShield
 
-**Nguyễn Tiến Đạt · Samsung Innovation Campus · AI-NIC4 · Đề tài số 2**
+**Nhận diện và che thông tin định danh trong văn bản y tế**
 
-MedShield đề xuất vùng cần che trong ghi chú y tế. Người dùng nhập TXT, dán văn bản hoặc trích chữ từ PDF, rồi thêm, xóa hoặc sửa nhãn trước khi xác nhận xuất TXT/JSON. Năm nhãn là **NAME** (tên), **DOB** (ngày sinh), **PHONE** (điện thoại), **ID** (mã định danh) và **ADDR** (địa chỉ).
+## Nguyễn Tiến Đạt
 
-[Chạy trên Windows](#chạy-nhanh-trên-windows) · [Bộ tài liệu nộp bài](docs/ban-giao-nop-bai.md) · [Kịch bản demo](docs/huong-dan-nhap-pdf.md) · [Báo cáo thực nghiệm](docs/experiment.md)
+**Chủ dự án · Samsung Innovation Campus (SIC) · Lớp AI-NIC4 · Đề tài số 2**
 
-![Bàn rà soát MedShield hiển thị bản gốc, nhãn và bản đã che trên dữ liệu giả lập](docs/evidence/G1-reviewed-desktop.png)
+MedShield giúp chuẩn bị bản chia sẻ từ ghi chú y tế. Ứng dụng đề xuất các đoạn chứa định danh và hiển thị bản gốc cạnh bản đã che để người dùng kiểm từng vùng. Sau khi sửa và xác nhận danh sách vùng che, người dùng có thể tải bản kết quả dưới dạng TXT hoặc JSON.
 
-### Kết quả chính
+[Chạy trên Windows](#chạy-nhanh-trên-windows) · [Demo 3 phút](#demo-3-phút) · [Kết quả thực nghiệm](#kết-quả-thực-nghiệm) · [Kiến trúc](#kiến-trúc) · [Bộ tài liệu nộp bài](docs/ban-giao-nop-bai.md)
 
-Ba cấu hình được chấm trên cùng **20 ghi chú test tiếng Việt, 33 vùng vàng**. Một dự đoán đúng khi khớp cả hai biên và nhãn trước khi người dùng chỉnh sửa.
+![Bàn rà soát MedShield hiển thị văn bản gốc, các vùng định danh và bản đã che trên dữ liệu giả lập](docs/evidence/G1-reviewed-desktop.png)
 
-| Cấu hình | TP / FP / FN | Micro-F1 | Ghi chú có ít nhất một FN |
-|---|---:|---:|---:|
-| Rules | 20 / 1 / 13 | 74,07% | 8/20 |
-| NER · CRF | 12 / 0 / 21 | 53,33% | 12/20 |
-| Hybrid | 25 / 1 / 8 | 84,75% | 5/20 |
+## Từ ghi chú đến bản đã che
 
-CRF được huấn luyện trên 60 ghi chú giả lập và chọn cấu hình bằng 20 ghi chú validation. Bảng trên là bản Q2 trên tập dùng để đối chiếu lịch sử. Hybrid có CI 95% strict 70,18%–94,92% và vẫn còn vùng PHI ở 5/20 ghi chú. Tập 150 ghi chú do agent sinh dùng để kiểm tra hồi quy. Phép đánh giá chất lượng chờ tập khóa Phase E. [Báo cáo Q2](docs/phase-q2.md) · [Đăng ký trước Phase E](docs/phase-e.md)
+| Bước | Thao tác trên web |
+| --- | --- |
+| **Nhập** | Dán văn bản, tải TXT UTF-8, trích chữ từ PDF hoặc bấm **Dùng ví dụ giả lập**. |
+| **Phân tích** | Chọn ngôn ngữ và phương pháp. MedShield đánh dấu các vùng có thể chứa tên, ngày sinh, số điện thoại, mã định danh hoặc địa chỉ. |
+| **Rà soát** | Định vị từng vùng trong văn bản gốc, đổi nhãn, bỏ vùng che nhầm hoặc bôi chọn đoạn còn sót để thêm vùng che. |
+| **Xuất** | Kiểm bản xem trước, tích xác nhận rà soát rồi tải TXT hoặc JSON. Khi sửa văn bản gốc, kết quả phân tích và xác nhận cũ hết hiệu lực. |
 
-## Mở folder nào để đọc?
+Ví dụ sau khi duyệt ba vùng che trên một ghi chú giả lập:
 
-| Thư mục | Nhiệm vụ | Mở trước |
-|---|---|---|
-| [`apps/`](apps/) | Hai thành phần chạy khi mở MedShield. `web/` phục vụ giao diện, `api/` phục vụ xử lý. | Chọn `web/` nếu bạn tìm nút hoặc màn hình. Chọn `api/` nếu bạn tìm cách phân tích và che. |
-| [`apps/web/`](apps/web/) | Giao diện React chạy trên trình duyệt. Nhận văn bản, đọc chữ trong PDF, hiển thị vùng cần che và tải kết quả. | [`App.tsx`](apps/web/src/App.tsx) để xem màn hình chính. [`SourcePanel.tsx`](apps/web/src/SourcePanel.tsx) và [`pdfDocument.ts`](apps/web/src/pdfDocument.ts) để xem phần nhập. [`useReview.ts`](apps/web/src/useReview.ts) để xem trạng thái rà soát. |
-| [`apps/api/`](apps/api/) | Backend FastAPI. Nhận yêu cầu phân tích, kiểm dữ liệu, gọi bộ nhận diện và tạo văn bản đã che. | [`controllers.py`](apps/api/controllers.py) chứa các endpoint. [`schemas.py`](apps/api/schemas.py) định nghĩa dữ liệu. [`analysis.py`](apps/api/services/analysis.py) chọn phương pháp, [`redaction.py`](apps/api/services/redaction.py) thay đoạn đã duyệt. |
-| [`ml/`](ml/) | Mã học máy và đánh giá. Huấn luyện CRF tiếng Việt, nạp trọng số và đo độ chính xác. `ml/upstream/` chứa mã chạy đối chứng ba công cụ tiếng Anh. | [`train.py`](ml/train.py), [`model.py`](ml/model.py), [`scoring.py`](ml/scoring.py) và [`evaluate.py`](ml/evaluate.py). |
-| [`data/`](data/) | Nguồn dữ liệu giả lập. Tiếng Việt chia `train` để huấn luyện, `validation` để chọn cấu hình và `test` để chấm. `english.jsonl` dùng cho đối chứng tiếng Anh. | [`train-validation-manifest.json`](data/train-validation-manifest.json), [`test-manifest.json`](data/test-manifest.json) và [mô tả tập tiếng Anh](data/english.md). |
-| [`artifacts/`](artifacts/) | Đầu ra do chương trình tạo. `model/` chứa trọng số và thông tin mô hình. `evaluation.json` tổng hợp điểm mà trang Thực nghiệm đọc qua API. | [Thông tin mô hình](artifacts/model/metadata.json) và [kết quả tổng hợp](artifacts/evaluation.json). |
-| [`tests/`](tests/) | Test Python cho backend, xử lý định danh, mô hình, cách tính điểm và bảo vệ dữ liệu. Test chạy trên trình duyệt nằm riêng ở `apps/web/e2e/`. | [`test_api_contract.py`](tests/test_api_contract.py), [`test_privacy.py`](tests/test_privacy.py), [`test_evaluation.py`](tests/test_evaluation.py) và [test nhập PDF](apps/web/e2e/pdf-import.spec.ts). |
-| [`scripts/`](scripts/) | Lệnh hỗ trợ kiểm tra và tái tạo. Dùng để kiểm giới hạn mã nguồn, tạo PDF demo, cài và chạy ba công cụ đối chứng. | [`check_source.py`](scripts/check_source.py), [`generate-demo-pdf.py`](scripts/generate-demo-pdf.py), [`setup-upstream.ps1`](scripts/setup-upstream.ps1). |
-| [`docs/`](docs/) | Hướng dẫn sử dụng, kiến trúc, báo cáo, tiến độ và biên bản QA. `docs/evidence/` có file mẫu và file đã tải từ web. `docs/reviews/` chứa kết quả nghiệm thu theo phạm vi. | [Hướng dẫn nhập PDF](docs/huong-dan-nhap-pdf.md), [sơ đồ kiến trúc](docs/architecture.md), [báo cáo thực nghiệm](docs/experiment.md) và [tiến độ](docs/progress.md). |
-| [`specs/`](specs/) | Đặc tả tính năng và danh sách công việc theo Spec Kit. Dùng để tra yêu cầu và tiêu chí trước khi sửa code. | [Đặc tả MedShield](specs/001-medical-redaction/spec.md) và [danh sách task](specs/001-medical-redaction/tasks.md). |
-| [`.specify/`](.specify/) | Bộ mẫu tài liệu, nguyên tắc dự án và script của Spec Kit. Dùng khi phát triển tính năng. | [Constitution](.specify/memory/constitution.md). |
-| [`.agents/`](.agents/) | Các hướng dẫn thao tác Spec Kit dành cho agent, từ đặc tả đến triển khai. | [Hướng dẫn triển khai Spec Kit](.agents/skills/speckit-implement/SKILL.md). |
+```text
+Người bệnh [NAME_1], sinh ngày [DOB_1], mã [ID_1]. Hẹn khám lại 18/12.
+```
 
-Các file ở gốc thường gặp:
-
-- [`AGENTS.md`](AGENTS.md) ghi quy ước sửa code, phân công và kiểm thử.
-- [`THIRD_PARTY.md`](THIRD_PARTY.md) ghi nguồn, phiên bản và giấy phép của phần tái sử dụng.
-- [`pyproject.toml`](pyproject.toml) và [`uv.lock`](uv.lock) khai báo và khóa môi trường Python. Frontend có cặp tương ứng [`package.json`](apps/web/package.json) và [`package-lock.json`](apps/web/package-lock.json).
-- [`.env.example`](.env.example) là mẫu cấu hình. [`.gitignore`](.gitignore) loại các tệp cục bộ khỏi Git. [`.gitattributes`](.gitattributes) giữ đúng định dạng, gồm byte PDF khi checkout trên Windows.
-
-## Code chạy theo đường nào?
-
-1. **Nhập PDF:** `SourcePanel.tsx` mở trình chọn tệp. `usePdfImport.ts` quản lý việc chọn trang và hủy thao tác. `pdfDocument.ts` trích chữ tại trình duyệt bằng PDF.js.
-2. **Phân tích:** `useReview.ts` gửi phần chữ tới `/api/analyze`. `controllers.py` gọi `analysis.py`. Các adapter trong `apps/api/adapters/` nhận diện bằng quy tắc hoặc mô hình CRF trong `ml/model.py`.
-3. **Rà soát và xuất:** Sau khi bạn chỉnh vùng che, frontend gọi `/api/redact`. `redaction.py` thay đoạn đã chọn bằng ký hiệu như `[NAME_1]`. Khi bạn xác nhận, giao diện cho tải TXT hoặc JSON.
+Các ký hiệu thay thế cho biết loại định danh đã che. Trong cùng một tài liệu, cùng giá trị nguyên văn và cùng nhãn sẽ dùng lại cùng ký hiệu. Ngày tái khám `18/12` vẫn đọc được vì nằm ngoài ba vùng đã duyệt. [Hướng dẫn gán nhãn](docs/annotation-guide.md)
 
 ## Chạy nhanh trên Windows
 
-Mở hai cửa sổ PowerShell từ thư mục repo. Cần `uv`, Node.js 24 và npm.
+Cài Git, `uv`, Node.js 24 và npm. Nếu đã có thư mục MedShield, mở PowerShell tại thư mục đó. Nếu lấy mã nguồn lần đầu, chạy hai lệnh sau.
 
-**Cửa sổ API**
+```powershell
+git clone https://github.com/TdatVn-fpt/MedShield.git
+Set-Location MedShield
+```
+
+**Cửa sổ 1 · API**
+
+Từ thư mục gốc MedShield, đồng bộ môi trường Python 3.11.7 theo lockfile rồi chạy FastAPI.
 
 ```powershell
 uv sync --locked --python 3.11.7
 uv run --locked uvicorn apps.api.main:app --host 127.0.0.1 --port 8000 --no-access-log
 ```
 
-**Cửa sổ web**
+**Cửa sổ 2 · Web**
+
+Mở PowerShell thứ hai tại thư mục gốc MedShield, rồi chạy Vite.
 
 ```powershell
 Set-Location apps/web
@@ -69,13 +57,79 @@ npm ci
 npm run dev
 ```
 
-Mở [http://127.0.0.1:5173/](http://127.0.0.1:5173/). Dùng [PDF bệnh án giả lập](docs/evidence/demo-benh-an-ngoai-tru.pdf) để thử nhập trang 1–2. Xem [kịch bản demo ba phút](docs/huong-dan-nhap-pdf.md) để thực hành sửa một vùng bỏ sót và đối chiếu file đã tải.
+Giữ hai cửa sổ mở. Vào web và chờ dòng **API đã kết nối**. [Mở MedShield](http://127.0.0.1:5173/) · [Kiểm tra API](http://127.0.0.1:8000/health)
 
-Nếu npm báo `ENOENT`, kiểm tra terminal đang ở `apps/web`. Nếu cổng 8000 hoặc 5173 đã được dùng, kiểm tra web và [API health](http://127.0.0.1:8000/health) trước khi chạy thêm tiến trình. Nếu web hiện engine chưa khả dụng, kiểm tra `/health` và các tệp trong `artifacts/model/`.
+## Demo 3 phút
+
+Để chạy thử nhanh, chọn **Dùng ví dụ giả lập** → **Tiếng Việt** → **Kết hợp · hybrid** → **Phân tích**. Để trình diễn đầy đủ, dùng PDF mẫu có hai trang. [Tải PDF bệnh án ngoại trú giả lập](docs/evidence/demo-benh-an-ngoai-tru.pdf)
+
+1. Bấm **Nhập PDF**, chọn tệp mẫu, đặt **Trang đầu** là `1`, **Trang cuối** là `2` rồi bấm **Trích văn bản**.
+2. Đối chiếu phần chữ trong **Văn bản gốc**, chọn **Kết hợp · hybrid** và bấm **Phân tích**.
+3. Tìm đoạn `tạ hư cấu`. Nếu tên chưa được che, bôi chọn tên, đặt nhãn `NAME` rồi bấm **Thêm vùng che**.
+4. Kiểm **Bản đã che** và giữ nguyên ngày tái khám `18/12`. Tích **Tôi đã rà soát toàn bộ nội dung**, chọn **Tải TXT**, rồi mở tệp tải về để đối chiếu.
+
+Có thể dùng bản TXT của cùng ca để thực hành luồng rà soát khi trình diễn. [Mẫu TXT](docs/evidence/demo-benh-an-ngoai-tru.txt) · [Kịch bản demo chi tiết](docs/huong-dan-nhap-pdf.md)
+
+## Phương pháp nhận diện
+
+MedShield dùng năm nhãn `NAME` (tên người), `DOB` (ngày sinh), `PHONE` (điện thoại), `ID` (mã định danh) và `ADDR` (địa chỉ).
+
+| Phương pháp | Ngôn ngữ | Cách tạo đề xuất |
+| --- | --- | --- |
+| **Quy tắc · baseline** | Việt, Anh | Dùng mẫu có ngữ cảnh như từ dẫn, kiểu ngày và cấu trúc số để đề xuất các vùng thuộc năm nhãn. |
+| **NER · mô hình học** | Việt | Mô hình CRF học chuỗi nhãn từ ghi chú giả lập và đề xuất tên người, địa chỉ. |
+| **Kết hợp · hybrid** | Việt | Gộp đề xuất từ quy tắc và CRF, xử lý vùng giao nhau và sắp theo thứ tự xuất hiện trong ghi chú. |
+
+Mỗi phát hiện giữ thông tin về nguồn đề xuất. Danh sách rà soát ưu tiên các số điện thoại cần người dùng kiểm tra thêm. [Chi tiết từng chế độ và cách xử lý chồng lấn](docs/engines.md)
+
+## Kết quả thực nghiệm
+
+Bảng dưới đây ghi kết quả **Phase Q2** trên cùng **20 ghi chú tiếng Việt giả lập với 33 vùng đã gán nhãn**. Dự đoán được tính đúng khi khớp cả nhãn, vị trí bắt đầu và vị trí kết thúc. Phép chấm dùng đầu ra tự động trước khi người dùng sửa.
+
+| Cấu hình | TP / FP / FN | Micro-F1 | Ghi chú có ít nhất một vùng bị sót |
+| --- | ---: | ---: | ---: |
+| Quy tắc | 20 / 1 / 13 | 74,07% | 8/20 |
+| NER · CRF | 12 / 0 / 21 | 53,33% | 12/20 |
+| Kết hợp · hybrid | 25 / 1 / 8 | **84,75%** | **5/20** |
+
+CRF được huấn luyện trên 60 ghi chú giả lập và chọn cấu hình bằng 20 ghi chú validation. Khoảng tin cậy 95% của micro-F1 cho Hybrid trên tập lịch sử là **70,18%–94,92%**. Tập 150 ghi chú giả lập dùng để kiểm tra hồi quy. Việc đánh giá trên tập độc lập thuộc Phase E đang chờ hoàn tất gán nhãn, phân xử và khóa tập. [Báo cáo Phase Q2](docs/phase-q2.md) · [Quy trình Phase E](docs/phase-e.md) · [Kết quả tổng hợp mà web đọc](artifacts/evaluation.json)
+
+Presidio, Philter UCSF và GEMINI pyDeid được chạy riêng trên 16 ghi chú tiếng Anh giả lập. Bài đối chứng đó đo vùng che theo vị trí ký tự. [Báo cáo thực nghiệm](docs/experiment.md) · [Lệnh tái tạo đối chứng](docs/upstream.md)
+
+## Kiến trúc
+
+```mermaid
+flowchart LR
+    A["PDF có lớp chữ, TXT hoặc văn bản dán vào"] --> B["React · Bàn rà soát"]
+    B -->|Phân tích| C["FastAPI · Quy tắc, CRF hoặc Hybrid"]
+    C -->|Đề xuất vùng che| B
+    B -->|Danh sách vùng đã chỉnh| D["FastAPI · Tạo bản đã che"]
+    D --> E["Xem trước · Xác nhận · Tải TXT hoặc JSON"]
+```
+
+PDF.js đọc lớp chữ của PDF trên trình duyệt. Khi bấm **Phân tích**, web gửi văn bản đã trích tới FastAPI cục bộ. API biểu diễn mỗi vùng bằng khoảng Unicode code point `[start, end)`. Web chuyển vị trí chọn UTF-16 của trình duyệt sang đơn vị đó để giữ đúng biên khi gặp emoji hoặc dấu tổ hợp. [Sơ đồ chi tiết](docs/architecture.md) · [Hợp đồng API](docs/api-contract.md)
+
+| Endpoint | Nhiệm vụ |
+| --- | --- |
+| `GET /health` | Kiểm tra API và trạng thái từng cặp ngôn ngữ, phương pháp. |
+| `POST /api/analyze` | Phân tích văn bản và trả các vùng đề xuất. |
+| `POST /api/redact` | Tạo bản che từ danh sách vùng đang được người dùng rà soát. |
+| `GET /api/evaluation` | Đọc kết quả đã lưu để hiển thị trên trang **Thực nghiệm**. |
+
+### Đọc mã nguồn theo mục đích
+
+| Muốn tìm | Mở trước |
+| --- | --- |
+| Giao diện, nhập PDF và trạng thái rà soát | [`apps/web/`](apps/web/) · [`App.tsx`](apps/web/src/App.tsx) · [`useReview.ts`](apps/web/src/useReview.ts) |
+| Điều phối API, chọn phương pháp và tạo bản che | [`apps/api/`](apps/api/) · [`controllers.py`](apps/api/controllers.py) · [`analysis.py`](apps/api/services/analysis.py) · [`redaction.py`](apps/api/services/redaction.py) |
+| Huấn luyện CRF và chấm kết quả | [`ml/`](ml/) · [`train.py`](ml/train.py) · [`scoring.py`](ml/scoring.py) · [`evaluate.py`](ml/evaluate.py) |
+| Dữ liệu giả lập và trọng số CRF | [`data/`](data/) · [Manifest test](data/test-manifest.json) · [Metadata mô hình](artifacts/model/metadata.json) |
+| Kiểm thử Python và Chromium | [`tests/`](tests/) · [`apps/web/e2e/`](apps/web/e2e/) |
+| Công cụ tái tạo và đặc tả | [`scripts/`](scripts/) · [`specs/`](specs/) · [`AGENTS.md`](AGENTS.md) · [Constitution](.specify/memory/constitution.md) |
 
 ## Kiểm thử và tái tạo
 
-Từ gốc repo:
+Chạy các lệnh Python từ thư mục gốc. Lệnh đánh giá ghi kết quả tiếng Việt vào thư mục cục bộ được Git bỏ qua.
 
 ```powershell
 uv run --locked pytest -q
@@ -83,18 +137,36 @@ uv run --locked python scripts/check_source.py
 uv run --locked python -m ml.evaluate --output-dir artifacts/local/nop-bai
 ```
 
-Từ `apps/web/`:
+Chạy các lệnh frontend từ `apps/web`. Cần cài Chromium của Playwright ở lần chạy kiểm thử đầu tiên.
 
 ```powershell
+npm run lint
+npm run typecheck
+npm run format:check
 npx playwright install chromium
 npm run test:e2e
 npm run build
 ```
 
-Lượt kiểm trên Windows ghi nhận **55 test Python và 22 test Chromium qua**, gồm 9 test PDF. [Biên bản PDF](docs/reviews/G4-pdf.md) lưu lần kiểm, thời gian đo và các file xuất thật để đối chiếu.
+Bộ kiểm thử trình duyệt bao phủ luồng gọi API, nhập PDF, sửa vùng che, tải tệp sau xác nhận, đổi văn bản để vô hiệu kết quả cũ và hiển thị ở 390 px, 1440 px. [Biên bản kiểm thử PDF](docs/reviews/G4-pdf.md) · [Môi trường Windows](docs/environment.md)
 
-## Phạm vi sử dụng
+### Lỗi thường gặp
 
-Demo dùng dữ liệu giả lập. PDF.js trích chữ ngay trên trình duyệt, sau đó API nhận phần chữ khi bấm **Phân tích**. Bản hiện tại xuất TXT/JSON, hỗ trợ PDF có lớp chữ. OCR PDF scan và xuất lại PDF giữ bố cục nằm ngoài phạm vi demo. Người dùng cần rà soát cả vùng còn sót và vùng che nhầm trước khi chia sẻ.
+| Dấu hiệu | Cách kiểm tra |
+| --- | --- |
+| npm báo `ENOENT` | Mở PowerShell tại `apps/web` rồi chạy lại. |
+| Cổng 8000 hoặc 5173 đã được dùng | Mở đường dẫn API và web ở phần chạy nhanh để kiểm tra tiến trình MedShield đang chạy. |
+| NER hoặc Hybrid hiện chưa khả dụng | Chọn **Tiếng Việt** và kiểm tra `metadata.json` cùng trọng số trong `artifacts/model/`. |
+| PDF thiếu lớp chữ ở một số trang | Chọn dải trang có văn bản hoặc tải TXT UTF-8. |
 
-G0–G3 và phạm vi nhập PDF đã qua nghiệm thu. Three.js, nghiệm thu toàn chặng G4 và bàn giao G5 còn mở. Khi chạy online, frontend và FastAPI cần cấu hình hosting tương ứng. Theo dõi tại [bảng tiến độ](docs/progress.md). Xem [đóng góp và nguồn tái sử dụng](docs/contributions.md) và [giấy phép](THIRD_PARTY.md).
+## Dữ liệu và quyền riêng tư
+
+- Dùng ghi chú giả lập khi demo. API xử lý văn bản nhập và ánh xạ ký hiệu trong bộ nhớ. Trước khi tải, người dùng rà soát cả vùng còn sót và vùng che nhầm.
+- PDF cần có lớp chữ, tối đa 10 MiB mỗi tệp và 10 trang mỗi lần trích. Văn bản phân tích tối đa 50.000 Unicode code point. Định dạng xuất hiện có là TXT và JSON.
+- Khi cần cấu hình riêng, dùng tệp `.env.local` cho các giá trị lưu trên máy và nạp chúng vào môi trường trước khi chạy. Git bỏ qua tệp này và `artifacts/local/`. [Mẫu biến môi trường](.env.example) · [Quy tắc bỏ qua của Git](.gitignore)
+
+## Tài liệu và nguồn tái sử dụng
+
+- **Nộp bài và bảo vệ** · [Bộ tài liệu nộp bài](docs/ban-giao-nop-bai.md) · [Câu hỏi bảo vệ](docs/defense-qa.md)
+- **Thiết kế và tiến độ** · [Đặc tả sản phẩm](docs/spec.md) · [Bảng tiến độ](docs/progress.md)
+- **Đóng góp, phiên bản và giấy phép** · [Đóng góp và hỗ trợ AI](docs/contributions.md) · [Nguồn và giấy phép bên thứ ba](THIRD_PARTY.md)
