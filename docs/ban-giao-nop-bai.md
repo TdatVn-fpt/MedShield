@@ -23,7 +23,7 @@ Thí nghiệm tiếng Việt dùng 100 ghi chú chia 60/20/20 theo họ câu. Tr
 - **Giảng viên muốn chạy và kiểm:** [README](../README.md), [hướng dẫn Windows và demo](huong-dan-nhap-pdf.md), [biên bản nghiệm thu PDF](reviews/G4-pdf.md).
 - **Giảng viên muốn kiểm phần AI:** [Báo cáo thực nghiệm](experiment.md), [số liệu máy đọc](../artifacts/evaluation.json), [metadata CRF](../artifacts/model/metadata.json), [đối chứng tiếng Anh](upstream.md).
 - **Muốn xem code từ giao diện đến mô hình:** [Kiến trúc và Mermaid](architecture.md), [hợp đồng API](api-contract.md), [hướng dẫn gán nhãn](annotation-guide.md), [các chế độ](engines.md).
-- **Đạt ôn bảo vệ:** [Hỏi đáp bảo vệ](defense-qa.md), [tài liệu tự học cho NotebookLM](medshield-hoc-va-bao-ve-notebooklm.md), [nội dung slide và lời nói](slides-nop-bai.md).
+- **Đạt ôn bảo vệ:** [Lời thuyết trình đầy đủ](loi-thuyet-trinh-medshield.md), [hỏi đáp bảo vệ](defense-qa.md), [tài liệu tự học cho NotebookLM](medshield-hoc-va-bao-ve-notebooklm.md), [nội dung slide](slides-nop-bai.md).
 - **Mẫu và đầu ra:** [PDF ngoại trú giả lập](evidence/demo-benh-an-ngoai-tru.pdf), [TXT nguồn](evidence/demo-benh-an-ngoai-tru.txt), [TXT đã che](evidence/demo-benh-an-ngoai-tru.reviewed.txt), [JSON đã che](evidence/demo-benh-an-ngoai-tru.reviewed.json).
 - **Nguồn và phạm vi:** [Đóng góp](contributions.md), [Thư viện và giấy phép](../THIRD_PARTY.md), [Tiến độ](progress.md).
 

@@ -73,3 +73,22 @@ PM-US là nhóm công việc điều phối, không phải ID story BA. ID chu�
 | PM-US-06 thực nghiệm | US-05 |
 | PM-US-07 UX/3D | US-06 |
 | PM-US-08 bàn giao | OPS và US-05 |
+
+## Đợt nâng chất lượng tiếng Việt
+
+| ID | Phạm vi | Người làm | Người kiểm tra | Trạng thái |
+|---|---|---|---|---|
+| Q1 | Rules tiếng Việt, validator và ca âm/dương từng nhãn | Dev, QA | Reviewer Phase Q | CHANGES_REQUESTED: DOB/PHONE trên tập gốc |
+| Q2 | Đề xuất tên lặp chính xác trong ghi chú | Dev, QA | Reviewer Phase Q | READY_FOR_REVIEW |
+| Q3 | Khóa hash, bộ test riêng và runner so sánh cùng scorer | Research/ML, BA | Reviewer Phase Q | READY_FOR_REVIEW |
+| Q4 | Hợp nhất theo nhãn, quét ngưỡng validation và công bố ablation | Dev, Research/ML | Reviewer Phase Q | CHANGES_REQUESTED: giảm ADDR |
+| M1–M4 | Gán đôi, dữ liệu và mô hình mới | BA, Research/ML, Dev | QA | TODO, chờ nghiệm thu Q |
+| L1–L4 | OCR, che PDF, surrogate/batch và vận hành | Dev, DevOps | QA, BA | TODO, chờ nghiệm thu M |
+
+[Báo cáo Phase Q](phase-q.md) ghi bước đã thực hiện, kết quả và lý do dừng. Phạm vi G4/G5 tiếp tục theo bảng chặng hiện hành.
+
+| ID | Phạm vi | Người làm | Người kiểm tra | Trạng thái |
+|---|---|---|---|---|
+| Q2.1–Q2.5 | PHONE hai tầng, DOB/ID theo ngữ cảnh, hợp nhất và biên, harness hồi quy | Dev, Research/ML, QA | Reviewer Q2 | PASS cổng hồi quy theo [biên bản độc lập](reviews/phase-q2.md) |
+| E1–E3 | Nguồn độc lập, gán đôi, phân xử, IAA, SHA-256 và đăng ký cổng M | Chủ dự án, Research/ML, DevOps | QA | IN_PROGRESS. QA đã xác nhận ánh xạ train v3, hai lượt A khớp mốc bàn giao. Đang chạy tiếp B. IAA, phân xử và khóa chờ kết quả B. |
+| M1–M4, L1–L6 | Học mô hình và hoàn thiện sản phẩm theo mục tiêu đang hoạt động | Các vai trò theo Phase M và L | QA và chủ dự án | Đã chuẩn bị môi trường và dữ liệu M.1 phía train. Fine-tune thử chờ gói phân xử. Chọn mô hình chờ khóa Phase E. |

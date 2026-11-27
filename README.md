@@ -14,11 +14,11 @@ Ba cấu hình được chấm trên cùng **20 ghi chú test tiếng Việt, 33
 
 | Cấu hình | TP / FP / FN | Micro-F1 | Ghi chú có ít nhất một FN |
 |---|---:|---:|---:|
-| Rules | 1 / 8 / 32 | 4,76% | 15/20 |
+| Rules | 20 / 1 / 13 | 74,07% | 8/20 |
 | NER · CRF | 12 / 0 / 21 | 53,33% | 12/20 |
-| Hybrid | 13 / 4 / 20 | 52,00% | 11/20 |
+| Hybrid | 25 / 1 / 8 | 84,75% | 5/20 |
 
-CRF được huấn luyện trên 60 ghi chú giả lập và chọn cấu hình bằng 20 ghi chú validation. Hybrid giữ nguồn từng vùng để người dùng rà soát. Mục tiêu F1 ≥85% trên đủ năm nhãn chưa đạt. NER và hybrid đạt 100% ở ADDR với 3 vùng vàng. Bài đối chứng tiếng Anh trên 16 ghi chú dùng điểm vùng che theo ký tự, trình bày riêng trong [báo cáo](docs/experiment.md) và [artifact](artifacts/evaluation.json).
+CRF được huấn luyện trên 60 ghi chú giả lập và chọn cấu hình bằng 20 ghi chú validation. Bảng trên là bản Q2 trên tập dùng để đối chiếu lịch sử. Hybrid có CI 95% strict 70,18%–94,92% và vẫn còn vùng PHI ở 5/20 ghi chú. Tập 150 ghi chú do agent sinh dùng để kiểm tra hồi quy. Phép đánh giá chất lượng chờ tập khóa Phase E. [Báo cáo Q2](docs/phase-q2.md) · [Đăng ký trước Phase E](docs/phase-e.md)
 
 ## Mở folder nào để đọc?
 

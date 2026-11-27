@@ -2,6 +2,8 @@
 
 Sáu slide, định dạng 16:9. Dùng PDF giả lập cho demo. Nếu thời gian trình bày ngắn, từ slide 1 đến 5 nói khoảng 3 phút, rồi dùng 3 phút cho slide 6 và demo thật.
 
+[Lời thuyết trình đầy đủ để đọc tập](loi-thuyet-trinh-medshield.md) giải thích lý do chọn công nghệ, kiến trúc từng tầng, cách kết hợp rules và CRF, cách đọc số liệu và phần hỏi sâu.
+
 ## 1. Nhận diện và che thông tin định danh trong văn bản y tế
 
 **Trên slide:** MedShield · Nguyễn Tiến Đạt · Samsung Innovation Campus AI-NIC4 · Đề tài số 2.
@@ -11,6 +13,8 @@ Sáu slide, định dạng 16:9. Dùng PDF giả lập cho demo. Nếu thời gi
 ## 2. Từ ghi chú đến bản đã rà soát
 
 **Trên slide:** TXT hoặc PDF có chữ → phân tích `NAME`, `DOB`, `PHONE`, `ID`, `ADDR` → sửa vùng → xác nhận → TXT/JSON.
+
+**Dòng kiến trúc để bổ sung khi chỉnh slide:** `React + PDF.js` → `FastAPI / Pydantic` → `Service` → `Rules + CRF` → `React rà soát` → `TXT / JSON`.
 
 **Lời nói:** “Web đọc phần chữ của PDF ngay trong trình duyệt. Khi bấm phân tích, FastAPI nhận phần chữ. Mỗi vùng có vị trí, nhãn và nguồn. Sau khi sửa vùng, người dùng xem bản che mới rồi mới được tải xuống.”
 
