@@ -11,9 +11,10 @@ from subprocess import list2cmdline
 from tempfile import TemporaryDirectory
 from typing import Any
 
-from apps.api.adapters import rules
+from apps.api.adapters import rules, vi_boundaries, vi_names_places, vi_structured
 from apps.api.schemas import AnalyzeRequest, Engine, Mode
-from apps.api.services import analysis
+from apps.api.services import analysis, hybrid
+from ml import scoring
 from ml.bio import GOLD_LABELS, Span
 from ml.dataset import MANIFEST_FILENAME, Note
 from ml.evaluation_data import load_heldout, read_object
@@ -136,6 +137,14 @@ def evaluate_vietnamese() -> dict[str, Any]:
                 "model": _model_metadata(results),
                 "rules_source_sha256": _source_hash(rules.__file__),
                 "analysis_source_sha256": _source_hash(analysis.__file__),
+                "vietnamese_rules_sources_sha256": {
+                    "names_places": _source_hash(vi_names_places.__file__),
+                    "structured": _source_hash(vi_structured.__file__),
+                    "boundaries": _source_hash(vi_boundaries.__file__),
+                },
+                "hybrid_source_sha256": _source_hash(hybrid.__file__),
+                "hybrid_thresholds": None,
+                "scorer_sha256": _source_hash(scoring.__file__),
                 "reproduce": REPRODUCE_COMMAND,
                 "f1_target": 0.85,
             }

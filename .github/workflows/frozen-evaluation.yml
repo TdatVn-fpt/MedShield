@@ -1,0 +1,23 @@
+name: Kiểm tra tập đánh giá đã khóa
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  frozen-evaluation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Kiểm tra SHA-256 của scorer và tập hồi quy công khai
+        run: |
+          sha256sum --check <<'FROZEN'
+          6f3f4e8b4c242c6f418003cb192a1dba967ad3161b0957a89adc9c3e5ab512c0  ml/scoring.py
+          ad2dce2254e1eac809df51f5a827f64bfdb425babf1ca56cb5db87f7dea9bb96  data/test.jsonl
+          0b666c65fe50e80c6bbe478f9fbad82aba44ab91205962836b63e3a4db6aa91a  data/test-manifest.json
+          c5b34eea0816fbe3c57ecf070e23430bec1c008e971d8c816853bb497b589bc0  data/phase-q-test.jsonl
+          0c8bd00ef45b01a6dcb6c8aebc5b307735ff1f5205d8a43527a5f82b613d6bbd  data/phase-q-test-manifest.json
+          FROZEN

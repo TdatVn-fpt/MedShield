@@ -48,7 +48,9 @@ test('BOM upload, Unicode edits and late redact preserve the approved TXT and JS
   const analysis = await analyzed;
   expect(analysis.status()).toBe(200);
   expect(analysis.request().postDataJSON()).toEqual({ text: note, language: 'vi', mode: 'rules' });
-  expect((await analysis.json()).engine.name).toBe('medshield-rules');
+  const { engine, entities } = await analysis.json();
+  const [initialName, repeatedName, recordId] = entities;
+  expect(engine.name).toBe('medshield-rules');
 
   const source = page.getByLabel(original, { exact: true });
   const preview = page.getByLabel('Bản đã che', { exact: true }).locator('p.redacted-text');
@@ -63,6 +65,25 @@ test('BOM upload, Unicode edits and late redact preserve the approved TXT and JS
   await locate.press('Enter');
   await expect(source.locator('mark').first()).toBeFocused();
   await expect(source.locator('mark').first()).toHaveText(name);
+
+  const start = Array.from(note.slice(0, note.lastIndexOf(name))).length;
+  expect(repeatedName).toMatchObject({
+    start,
+    end: start + Array.from(name).length,
+    label: 'NAME',
+    source: 'medshield-rules+exact-name-repeat',
+  });
+  await expect(
+    page.getByRole('button', { name: 'Định vị phát hiện 2', exact: true }),
+  ).toContainText('medshield-rules+exact-name-repeat');
+  const removed = page.waitForResponse((response) => response.url().endsWith('/api/redact'));
+  await page.getByRole('button', { name: 'Bỏ phát hiện 2', exact: true }).click();
+  const removeResponse = await removed;
+  expect(removeResponse.status()).toBe(200);
+  expect(removeResponse.request().postDataJSON().entities).toEqual([initialName, recordId]);
+  await expect
+    .poll(() => preview.textContent())
+    .toBe(`🧪 Người bệnh [NAME_1]; gọi lại cho ${name}.\r\nMã [ID_1]. Tái khám 07/11.`);
 
   await source.evaluate((element, value) => {
     const node = [...element.childNodes].find(
@@ -82,7 +103,6 @@ test('BOM upload, Unicode edits and late redact preserve the approved TXT and JS
   await page.getByRole('button', { name: 'Thêm vùng che', exact: true }).click();
   const addResponse = await added;
   expect(addResponse.status()).toBe(200);
-  const start = Array.from(note.slice(0, note.lastIndexOf(name))).length;
   expect(addResponse.request().postDataJSON().entities).toContainEqual({
     start,
     end: start + Array.from(name).length,

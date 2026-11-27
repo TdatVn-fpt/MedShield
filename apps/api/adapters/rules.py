@@ -1,8 +1,12 @@
 # apps/api/adapters/rules.py — Context-sensitive baseline recognizers for synthetic notes.
 import re
 from collections.abc import Callable, Iterator
+from datetime import date
 
-from apps.api.schemas import Entity, Label
+from apps.api.adapters.vi_boundaries import refine
+from apps.api.adapters.vi_names_places import address_candidates, folded_text, name_candidates
+from apps.api.adapters.vi_structured import structured_candidates
+from apps.api.schemas import Entity, Label, Language
 
 SOURCE = "medshield-rules"
 NAME_PREFIX = (
@@ -80,8 +84,34 @@ def resolve_overlaps(
     return sorted(accepted, key=lambda item: (item.start, item.end))
 
 
-def recognize(text: str) -> list[Entity]:
-    """recognize returns nonblank, disjoint baseline spans on the unchanged original text."""
+def recognize(text: str, language: Language = "en") -> list[Entity]:
+    """Return nonoverlapping rule predictions for the selected language on the original text."""
+    if language == "vi":
+        return resolve_overlaps(vietnamese_candidates(text), rule_priority)
+    return _legacy_recognize(text)
+
+
+def rule_priority(entity: Entity) -> int:
+    """Prefer context-led structured rules to names and unanchored number shapes."""
+    if entity.source != SOURCE:
+        return 0
+    return 2 if entity.label in {"DOB", "PHONE", "ID"} else 1
+
+
+def vietnamese_candidates(text: str) -> list[Entity]:
+    """Return unresolved Vietnamese candidates with original Unicode offsets."""
+    folded, starts, ends = folded_text(text)
+    found = [
+        item.model_copy(update={"start": starts[item.start], "end": ends[item.end - 1]})
+        for item in structured_candidates(folded, date.today())
+    ]
+    found.extend(name_candidates(text, folded, starts, ends))
+    found.extend(address_candidates(folded, starts, ends))
+    return refine(text, found)
+
+
+def _legacy_recognize(text: str) -> list[Entity]:
+    """Keep the existing rule path for the English API."""
     found: list[Entity] = []
     for label, pattern, score in PATTERNS:
         for match in re.finditer(pattern, text, re.IGNORECASE):

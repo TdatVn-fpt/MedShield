@@ -8,6 +8,12 @@ docs/evidence/demo-benh-an-ngoai-tru.reviewed.json -text
 /data/*.jsonl text eol=lf
 /data/*.json text eol=lf
 /artifacts/model/metadata.json text eol=lf
+/artifacts/meddies-step2-mapping.json text eol=lf
+/artifacts/meddies-step3-dedup.json text eol=lf
+/ml/scoring.py text eol=lf
+/ml/evaluation_slices.py text eol=lf
+/ml/meddies_slices.py text eol=lf
+/uv.lock text eol=lf
 
 # PDF cross-reference tables store byte offsets, so preserve the original bytes.
 *.pdf -text
