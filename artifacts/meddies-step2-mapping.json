@@ -1,0 +1,47 @@
+{
+  "revision": "5dbe7cde649446028f628820c204bf53bb296894",
+  "shard_sha256": "331640296be10a56a468e1cf9d5014dc9d1de13ab304b9294df0643b2ddbc04a",
+  "license": "CC-BY-NC-4.0",
+  "status": "provisional_train_for_mapping_review_only",
+  "training_pool_sha256": "9d2910055028625230f508d176f341abe0e9e7145bf24bdebd4f4bf13a2b7616",
+  "notes": 22310,
+  "notes_without_mapped_spans": 0,
+  "publisher_spans": {
+    "human_name": 45978,
+    "id_number": 56386,
+    "date": 44683,
+    "phone_number": 39222,
+    "email_address": 32963,
+    "address": 29174,
+    "private_url": 35982,
+    "secret": 54655,
+    "company_name": 30332
+  },
+  "mapped_spans": {
+    "NAME": 45978,
+    "ID": 56386,
+    "DOB": 7474,
+    "PHONE": 39222,
+    "ADDR": 29173
+  },
+  "exclusions": {
+    "outside_scope": 153932,
+    "date_without_birth_cue": 37209,
+    "invalid_offset_or_value": 1
+  },
+  "total_drop_rate": 0.5174741116751269,
+  "date_kept": 7474,
+  "date_dropped": 37209,
+  "date_keep_rate": 0.1672671933397489,
+  "birth_context_window_code_points": 48,
+  "private_review_samples_by_label": {
+    "NAME": 20,
+    "ID": 20,
+    "DOB": 20,
+    "PHONE": 20,
+    "ADDR": 20
+  },
+  "review_samples_sha256": "f5d47d6a0dc09e43b47749a7310bf54c85253d3478c5b9051bf8fc53e0e69edf",
+  "evaluation_labels_used": false,
+  "training_started": false
+}

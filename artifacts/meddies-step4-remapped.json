@@ -1,0 +1,108 @@
+{
+  "revision": "5dbe7cde649446028f628820c204bf53bb296894",
+  "shard_sha256": "331640296be10a56a468e1cf9d5014dc9d1de13ab304b9294df0643b2ddbc04a",
+  "license": "CC-BY-NC-4.0",
+  "status": "provisional_train_remapped_after_owner_review",
+  "training_pool_sha256": "b943bf1f039cd01a19486aa89dd543c50d9e75f7a60565f7bfe2e75022af631b",
+  "notes": 22310,
+  "notes_without_mapped_spans": 0,
+  "publisher_spans": {
+    "human_name": 45978,
+    "id_number": 56386,
+    "date": 44683,
+    "phone_number": 39222,
+    "email_address": 32963,
+    "address": 29174,
+    "private_url": 35982,
+    "secret": 54655,
+    "company_name": 30332
+  },
+  "mapped_spans": {
+    "NAME": 45971,
+    "ID": 51327,
+    "DOB": 7474,
+    "PHONE": 39222,
+    "ADDR": 23867
+  },
+  "exclusions": {
+    "outside_scope": 153932,
+    "date_without_birth_cue": 37209,
+    "invalid_offset_or_value": 1
+  },
+  "total_drop_rate": 0.5455539763113367,
+  "date_kept": 7474,
+  "date_dropped": 37209,
+  "date_keep_rate": 0.1672671933397489,
+  "birth_context_window_code_points": 48,
+  "private_review_samples_by_label": {
+    "NAME": 20,
+    "ID": 20,
+    "DOB": 20,
+    "PHONE": 20,
+    "ADDR": 20
+  },
+  "review_samples_sha256": "b272c81b6ef3003285c66ab64f44bd42610a66bf3d047035af4b9d8686d8a199",
+  "evaluation_labels_used": false,
+  "training_started": false,
+  "baseline_mapped_spans": {
+    "NAME": 45978,
+    "ID": 56386,
+    "DOB": 7474,
+    "PHONE": 39222,
+    "ADDR": 29173
+  },
+  "baseline_total_mapped_spans": 178233,
+  "total_mapped_spans": 167861,
+  "mapping_corrections": {
+    "name_title_trimmed": {
+      "label": "NAME",
+      "action": "trimmed",
+      "regions": 6960
+    },
+    "name_title_only_removed": {
+      "label": "NAME",
+      "action": "removed",
+      "regions": 7
+    },
+    "addr_facility_removed": {
+      "label": "ADDR",
+      "action": "removed",
+      "regions": 5094
+    },
+    "addr_ip_removed": {
+      "label": "ADDR",
+      "action": "removed",
+      "regions": 212
+    },
+    "id_document_code_removed": {
+      "label": "ID",
+      "action": "removed",
+      "regions": 4144
+    },
+    "id_lab_reference_removed": {
+      "label": "ID",
+      "action": "removed",
+      "regions": 373
+    },
+    "id_non_person_code_removed": {
+      "label": "ID",
+      "action": "removed",
+      "regions": 542
+    },
+    "id_field_trimmed": {
+      "label": "ID",
+      "action": "trimmed",
+      "regions": 556
+    },
+    "id_bhyt_anchor_trimmed": {
+      "label": "ID",
+      "action": "trimmed",
+      "regions": 2043
+    },
+    "id_field_only_removed": {
+      "label": "ID",
+      "action": "removed",
+      "regions": 0
+    }
+  }
+}

@@ -1,0 +1,2240 @@
+{
+  "schema_version": 1,
+  "baseline_revision": "773cead6eea623a345e1e1fa6b5732a8b2b6ae77",
+  "frozen_sha256": {
+    "ml/scoring.py": "6f3f4e8b4c242c6f418003cb192a1dba967ad3161b0957a89adc9c3e5ab512c0",
+    "data/test.jsonl": "ad2dce2254e1eac809df51f5a827f64bfdb425babf1ca56cb5db87f7dea9bb96",
+    "data/test-manifest.json": "0b666c65fe50e80c6bbe478f9fbad82aba44ab91205962836b63e3a4db6aa91a",
+    "data/phase-q-test.jsonl": "c5b34eea0816fbe3c57ecf070e23430bec1c008e971d8c816853bb497b589bc0",
+    "data/phase-q-test-manifest.json": "0c8bd00ef45b01a6dcb6c8aebc5b307735ff1f5205d8a43527a5f82b613d6bbd"
+  },
+  "sets": {
+    "original": {
+      "manifest": {
+        "schema_version": 1,
+        "dataset_revision": "vi-test-v1",
+        "split": "test",
+        "language": "vi",
+        "path": "data/test.jsonl",
+        "synthetic": true,
+        "provenance": "QA soạn và gán nhãn thủ công từ các họ mẫu dành riêng, dùng dữ liệu giả lập. Không trích bệnh án.",
+        "author_role": "QA",
+        "annotation_review_role": "BA",
+        "participant_reviewed_count": 0,
+        "seed": null,
+        "offset_unit": "unicode_code_point",
+        "note_count": 20,
+        "family_count": 6,
+        "families": [
+          {
+            "family_id": "qa_consult_callback",
+            "note_ids": [
+              "vi-test-001",
+              "vi-test-002",
+              "vi-test-003",
+              "vi-test-004"
+            ]
+          },
+          {
+            "family_id": "qa_sample_custody",
+            "note_ids": [
+              "vi-test-005",
+              "vi-test-006",
+              "vi-test-007"
+            ]
+          },
+          {
+            "family_id": "qa_registry_correction",
+            "note_ids": [
+              "vi-test-008",
+              "vi-test-009",
+              "vi-test-010",
+              "vi-test-011"
+            ]
+          },
+          {
+            "family_id": "qa_home_dispatch",
+            "note_ids": [
+              "vi-test-012",
+              "vi-test-013",
+              "vi-test-014"
+            ]
+          },
+          {
+            "family_id": "qa_shift_handoff",
+            "note_ids": [
+              "vi-test-015",
+              "vi-test-016",
+              "vi-test-017"
+            ]
+          },
+          {
+            "family_id": "qa_station_observation",
+            "note_ids": [
+              "vi-test-018",
+              "vi-test-019",
+              "vi-test-020"
+            ]
+          }
+        ],
+        "digest": {
+          "algorithm": "sha256",
+          "canonicalization": "UTF-8 không BOM, LF phân cách bản ghi, có LF cuối. Đổi CRLF vật lý của checkout về LF trước khi băm. Không đổi chuỗi text JSON.",
+          "value": "ad2dce2254e1eac809df51f5a827f64bfdb425babf1ca56cb5db87f7dea9bb96"
+        }
+      },
+      "versions": {
+        "before": [
+          {
+            "method": "rules",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-rules",
+              "status": "available",
+              "mode": "rules",
+              "language": "vi",
+              "version": "0.1.0"
+            },
+            "notes": 20,
+            "gold_entities": 33,
+            "micro": {
+              "tp": 1,
+              "fp": 8,
+              "fn": 32,
+              "precision": 0.1111111111111111,
+              "recall": 0.030303030303030304,
+              "f1": 0.047619047619047616,
+              "support": 33
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 0,
+                "fp": 1,
+                "fn": 17,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 17
+              },
+              "DOB": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "PHONE": {
+                "tp": 0,
+                "fp": 4,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "ID": {
+                "tp": 1,
+                "fp": 0,
+                "fn": 4,
+                "precision": 1.0,
+                "recall": 0.2,
+                "f1": 0.3333333333333333,
+                "support": 5
+              },
+              "ADDR": {
+                "tp": 0,
+                "fp": 3,
+                "fn": 3,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 3
+              }
+            },
+            "notes_with_fn": 15,
+            "examples": [
+              {
+                "note_id": "vi-test-005",
+                "kind": "FP",
+                "label": "PHONE",
+                "text": "0900000041",
+                "start": 40,
+                "end": 50,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-007",
+                "kind": "FP",
+                "label": "PHONE",
+                "text": "0900000043",
+                "start": 60,
+                "end": 70,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-012",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "cư trú: 7 ngõ Vệt Mây, phường Mầm Sương, TP. Lam Giang",
+                "start": 29,
+                "end": 83,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-test-013",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "ghi trên phiếu: 12 hẻm Hạt Nắng,\r\nphường Mây Lụa, TP. Tầm Ngân",
+                "start": 51,
+                "end": 113,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-test-014",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "nhà của chị Lý Hạ Khuê: 44 lối Cánh Tre, xã Hạ Nắng",
+                "start": 77,
+                "end": 128,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-test-001",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "Thạch Lam Sương",
+                "start": 31,
+                "end": 46,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-001",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "+84 000 000 021",
+                "start": 73,
+                "end": 88,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "bùi mộc nhiên",
+                "start": 53,
+                "end": 66,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000 000 0022",
+                "start": 75,
+                "end": 87,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-003",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "Cao Tuệ San",
+                "start": 32,
+                "end": 43,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {
+                "no_overlap": 4,
+                "wrong_boundary": 4
+              },
+              "FN": {
+                "boundary_and_label": 1,
+                "no_overlap": 26,
+                "wrong_boundary": 5
+              }
+            }
+          },
+          {
+            "method": "ner",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-ner",
+              "status": "available",
+              "mode": "ner",
+              "language": "vi",
+              "version": "0.1.0",
+              "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
+            },
+            "notes": 20,
+            "gold_entities": 33,
+            "micro": {
+              "tp": 12,
+              "fp": 0,
+              "fn": 21,
+              "precision": 1.0,
+              "recall": 0.36363636363636365,
+              "f1": 0.5333333333333333,
+              "support": 33
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 9,
+                "fp": 0,
+                "fn": 8,
+                "precision": 1.0,
+                "recall": 0.5294117647058824,
+                "f1": 0.6923076923076923,
+                "support": 17
+              },
+              "DOB": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "PHONE": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "ID": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 5,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 5
+              },
+              "ADDR": {
+                "tp": 3,
+                "fp": 0,
+                "fn": 0,
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 3
+              }
+            },
+            "notes_with_fn": 12,
+            "examples": [
+              {
+                "note_id": "vi-test-001",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "+84 000 000 021",
+                "start": 73,
+                "end": 88,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "bùi mộc nhiên",
+                "start": 53,
+                "end": 66,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000 000 0022",
+                "start": 75,
+                "end": 87,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-003",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "Cao Tuệ San",
+                "start": 32,
+                "end": 43,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-003",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000.000.0023",
+                "start": 47,
+                "end": 59,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {},
+              "FN": {
+                "no_overlap": 21
+              }
+            }
+          },
+          {
+            "method": "hybrid",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-hybrid",
+              "status": "available",
+              "mode": "hybrid",
+              "language": "vi",
+              "version": "0.1.0",
+              "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
+            },
+            "notes": 20,
+            "gold_entities": 33,
+            "micro": {
+              "tp": 13,
+              "fp": 4,
+              "fn": 20,
+              "precision": 0.7647058823529411,
+              "recall": 0.3939393939393939,
+              "f1": 0.52,
+              "support": 33
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 9,
+                "fp": 0,
+                "fn": 8,
+                "precision": 1.0,
+                "recall": 0.5294117647058824,
+                "f1": 0.6923076923076923,
+                "support": 17
+              },
+              "DOB": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "PHONE": {
+                "tp": 0,
+                "fp": 4,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "ID": {
+                "tp": 1,
+                "fp": 0,
+                "fn": 4,
+                "precision": 1.0,
+                "recall": 0.2,
+                "f1": 0.3333333333333333,
+                "support": 5
+              },
+              "ADDR": {
+                "tp": 3,
+                "fp": 0,
+                "fn": 0,
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 3
+              }
+            },
+            "notes_with_fn": 11,
+            "examples": [
+              {
+                "note_id": "vi-test-005",
+                "kind": "FP",
+                "label": "PHONE",
+                "text": "0900000041",
+                "start": 40,
+                "end": 50,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-007",
+                "kind": "FP",
+                "label": "PHONE",
+                "text": "0900000043",
+                "start": 60,
+                "end": 70,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-019",
+                "kind": "FP",
+                "label": "PHONE",
+                "text": "0900000602",
+                "start": 62,
+                "end": 72,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-020",
+                "kind": "FP",
+                "label": "PHONE",
+                "text": "0900000603",
+                "start": 54,
+                "end": 64,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-001",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "+84 000 000 021",
+                "start": 73,
+                "end": 88,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "bùi mộc nhiên",
+                "start": 53,
+                "end": 66,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000 000 0022",
+                "start": 75,
+                "end": 87,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-003",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "Cao Tuệ San",
+                "start": 32,
+                "end": 43,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-003",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000.000.0023",
+                "start": 47,
+                "end": 59,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {
+                "no_overlap": 4
+              },
+              "FN": {
+                "no_overlap": 20
+              }
+            }
+          }
+        ],
+        "after": [
+          {
+            "method": "rules",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-rules",
+              "status": "available",
+              "mode": "rules",
+              "language": "vi",
+              "version": "0.2.0"
+            },
+            "notes": 20,
+            "gold_entities": 33,
+            "micro": {
+              "tp": 9,
+              "fp": 3,
+              "fn": 24,
+              "precision": 0.75,
+              "recall": 0.2727272727272727,
+              "f1": 0.4,
+              "support": 33
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 7,
+                "fp": 1,
+                "fn": 10,
+                "precision": 0.875,
+                "recall": 0.4117647058823529,
+                "f1": 0.56,
+                "support": 17
+              },
+              "DOB": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "PHONE": {
+                "tp": 0,
+                "fp": 1,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "ID": {
+                "tp": 1,
+                "fp": 0,
+                "fn": 4,
+                "precision": 1.0,
+                "recall": 0.2,
+                "f1": 0.3333333333333333,
+                "support": 5
+              },
+              "ADDR": {
+                "tp": 1,
+                "fp": 1,
+                "fn": 2,
+                "precision": 0.5,
+                "recall": 0.3333333333333333,
+                "f1": 0.4,
+                "support": 3
+              }
+            },
+            "notes_with_fn": 13,
+            "examples": [
+              {
+                "note_id": "vi-test-002",
+                "kind": "FP",
+                "label": "NAME",
+                "text": "bùi mộc nhiên theo số",
+                "start": 53,
+                "end": 74,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-test-013",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "ghi trên phiếu: 12 hẻm Hạt Nắng,\r\nphường Mây Lụa, TP. Tầm Ngân",
+                "start": 51,
+                "end": 113,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-test-020",
+                "kind": "FP",
+                "label": "PHONE",
+                "text": "0900000603",
+                "start": 54,
+                "end": 64,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-001",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "+84 000 000 021",
+                "start": 73,
+                "end": 88,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "bùi mộc nhiên",
+                "start": 53,
+                "end": 66,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000 000 0022",
+                "start": 75,
+                "end": 87,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-003",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000.000.0023",
+                "start": 47,
+                "end": 59,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-005",
+                "kind": "FN",
+                "label": "ID",
+                "text": "MẪU-QA-141",
+                "start": 98,
+                "end": 108,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {
+                "no_overlap": 1,
+                "wrong_boundary": 2
+              },
+              "FN": {
+                "no_overlap": 22,
+                "wrong_boundary": 2
+              }
+            }
+          },
+          {
+            "method": "ner",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-ner",
+              "status": "available",
+              "mode": "ner",
+              "language": "vi",
+              "version": "0.1.0",
+              "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
+            },
+            "notes": 20,
+            "gold_entities": 33,
+            "micro": {
+              "tp": 12,
+              "fp": 0,
+              "fn": 21,
+              "precision": 1.0,
+              "recall": 0.36363636363636365,
+              "f1": 0.5333333333333333,
+              "support": 33
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 9,
+                "fp": 0,
+                "fn": 8,
+                "precision": 1.0,
+                "recall": 0.5294117647058824,
+                "f1": 0.6923076923076923,
+                "support": 17
+              },
+              "DOB": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "PHONE": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "ID": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 5,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 5
+              },
+              "ADDR": {
+                "tp": 3,
+                "fp": 0,
+                "fn": 0,
+                "precision": 1.0,
+                "recall": 1.0,
+                "f1": 1.0,
+                "support": 3
+              }
+            },
+            "notes_with_fn": 12,
+            "examples": [
+              {
+                "note_id": "vi-test-001",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "+84 000 000 021",
+                "start": 73,
+                "end": 88,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "bùi mộc nhiên",
+                "start": 53,
+                "end": 66,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000 000 0022",
+                "start": 75,
+                "end": 87,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-003",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "Cao Tuệ San",
+                "start": 32,
+                "end": 43,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-003",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000.000.0023",
+                "start": 47,
+                "end": 59,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {},
+              "FN": {
+                "no_overlap": 21
+              }
+            }
+          },
+          {
+            "method": "hybrid",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-hybrid",
+              "status": "available",
+              "mode": "hybrid",
+              "language": "vi",
+              "version": "0.2.0",
+              "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
+            },
+            "notes": 20,
+            "gold_entities": 33,
+            "micro": {
+              "tp": 13,
+              "fp": 3,
+              "fn": 20,
+              "precision": 0.8125,
+              "recall": 0.3939393939393939,
+              "f1": 0.5306122448979592,
+              "support": 33
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 11,
+                "fp": 1,
+                "fn": 6,
+                "precision": 0.9166666666666666,
+                "recall": 0.6470588235294118,
+                "f1": 0.7586206896551724,
+                "support": 17
+              },
+              "DOB": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "PHONE": {
+                "tp": 0,
+                "fp": 1,
+                "fn": 4,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 4
+              },
+              "ID": {
+                "tp": 1,
+                "fp": 0,
+                "fn": 4,
+                "precision": 1.0,
+                "recall": 0.2,
+                "f1": 0.3333333333333333,
+                "support": 5
+              },
+              "ADDR": {
+                "tp": 1,
+                "fp": 1,
+                "fn": 2,
+                "precision": 0.5,
+                "recall": 0.3333333333333333,
+                "f1": 0.4,
+                "support": 3
+              }
+            },
+            "notes_with_fn": 12,
+            "examples": [
+              {
+                "note_id": "vi-test-002",
+                "kind": "FP",
+                "label": "NAME",
+                "text": "bùi mộc nhiên theo số",
+                "start": 53,
+                "end": 74,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-test-013",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "ghi trên phiếu: 12 hẻm Hạt Nắng,\r\nphường Mây Lụa, TP. Tầm Ngân",
+                "start": 51,
+                "end": 113,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-test-020",
+                "kind": "FP",
+                "label": "PHONE",
+                "text": "0900000603",
+                "start": 54,
+                "end": 64,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-001",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "+84 000 000 021",
+                "start": 73,
+                "end": 88,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "bùi mộc nhiên",
+                "start": 53,
+                "end": 66,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-test-002",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000 000 0022",
+                "start": 75,
+                "end": 87,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-003",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "000.000.0023",
+                "start": 47,
+                "end": 59,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-test-005",
+                "kind": "FN",
+                "label": "ID",
+                "text": "MẪU-QA-141",
+                "start": 98,
+                "end": 108,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {
+                "no_overlap": 1,
+                "wrong_boundary": 2
+              },
+              "FN": {
+                "no_overlap": 18,
+                "wrong_boundary": 2
+              }
+            }
+          }
+        ]
+      }
+    },
+    "expanded": {
+      "manifest": {
+        "schema_version": 1,
+        "dataset_revision": "vi-phase-q-heldout-v1",
+        "path": "data/phase-q-test.jsonl",
+        "split": "heldout_phase_q",
+        "language": "vi",
+        "synthetic": true,
+        "provenance": "Agent Research/BA (Codex) soạn họ mẫu và gán nhãn trường giả lập. Không dùng bệnh án, dữ liệu công khai hay thông tin định danh được thu thập.",
+        "participant_reviewed_count": 0,
+        "annotation_review": "Chưa được con người gán đôi hoặc rà soát.",
+        "contact_values": "Số giả lập để kiểm mẫu hình, không gọi điện hay tra cứu danh tính.",
+        "seed": 20261125,
+        "offset_unit": "unicode_code_point",
+        "note_count": 150,
+        "gold_entities": {
+          "ADDR": 90,
+          "DOB": 80,
+          "ID": 100,
+          "NAME": 170,
+          "PHONE": 120
+        },
+        "families": {
+          "q-insurance-reconciliation": [
+            "vi-phase-q-001",
+            "vi-phase-q-002",
+            "vi-phase-q-003",
+            "vi-phase-q-004",
+            "vi-phase-q-005",
+            "vi-phase-q-006",
+            "vi-phase-q-007",
+            "vi-phase-q-008",
+            "vi-phase-q-009",
+            "vi-phase-q-010"
+          ],
+          "q-dietary-delivery": [
+            "vi-phase-q-011",
+            "vi-phase-q-012",
+            "vi-phase-q-013",
+            "vi-phase-q-014",
+            "vi-phase-q-015",
+            "vi-phase-q-016",
+            "vi-phase-q-017",
+            "vi-phase-q-018",
+            "vi-phase-q-019",
+            "vi-phase-q-020"
+          ],
+          "q-occupational-intake": [
+            "vi-phase-q-021",
+            "vi-phase-q-022",
+            "vi-phase-q-023",
+            "vi-phase-q-024",
+            "vi-phase-q-025",
+            "vi-phase-q-026",
+            "vi-phase-q-027",
+            "vi-phase-q-028",
+            "vi-phase-q-029",
+            "vi-phase-q-030"
+          ],
+          "q-witness-statement": [
+            "vi-phase-q-031",
+            "vi-phase-q-032",
+            "vi-phase-q-033",
+            "vi-phase-q-034",
+            "vi-phase-q-035",
+            "vi-phase-q-036",
+            "vi-phase-q-037",
+            "vi-phase-q-038",
+            "vi-phase-q-039",
+            "vi-phase-q-040"
+          ],
+          "q-audiology-sticker": [
+            "vi-phase-q-041",
+            "vi-phase-q-042",
+            "vi-phase-q-043",
+            "vi-phase-q-044",
+            "vi-phase-q-045",
+            "vi-phase-q-046",
+            "vi-phase-q-047",
+            "vi-phase-q-048",
+            "vi-phase-q-049",
+            "vi-phase-q-050"
+          ],
+          "q-outreach-routing": [
+            "vi-phase-q-051",
+            "vi-phase-q-052",
+            "vi-phase-q-053",
+            "vi-phase-q-054",
+            "vi-phase-q-055",
+            "vi-phase-q-056",
+            "vi-phase-q-057",
+            "vi-phase-q-058",
+            "vi-phase-q-059",
+            "vi-phase-q-060"
+          ],
+          "q-specimen-form-signoff": [
+            "vi-phase-q-061",
+            "vi-phase-q-062",
+            "vi-phase-q-063",
+            "vi-phase-q-064",
+            "vi-phase-q-065",
+            "vi-phase-q-066",
+            "vi-phase-q-067",
+            "vi-phase-q-068",
+            "vi-phase-q-069",
+            "vi-phase-q-070"
+          ],
+          "q-prescription-return": [
+            "vi-phase-q-071",
+            "vi-phase-q-072",
+            "vi-phase-q-073",
+            "vi-phase-q-074",
+            "vi-phase-q-075",
+            "vi-phase-q-076",
+            "vi-phase-q-077",
+            "vi-phase-q-078",
+            "vi-phase-q-079",
+            "vi-phase-q-080"
+          ],
+          "q-radiology-correction": [
+            "vi-phase-q-081",
+            "vi-phase-q-082",
+            "vi-phase-q-083",
+            "vi-phase-q-084",
+            "vi-phase-q-085",
+            "vi-phase-q-086",
+            "vi-phase-q-087",
+            "vi-phase-q-088",
+            "vi-phase-q-089",
+            "vi-phase-q-090"
+          ],
+          "q-discharge-voice-transcript": [
+            "vi-phase-q-091",
+            "vi-phase-q-092",
+            "vi-phase-q-093",
+            "vi-phase-q-094",
+            "vi-phase-q-095",
+            "vi-phase-q-096",
+            "vi-phase-q-097",
+            "vi-phase-q-098",
+            "vi-phase-q-099",
+            "vi-phase-q-100"
+          ],
+          "q-transfer-bilingual-card": [
+            "vi-phase-q-101",
+            "vi-phase-q-102",
+            "vi-phase-q-103",
+            "vi-phase-q-104",
+            "vi-phase-q-105",
+            "vi-phase-q-106",
+            "vi-phase-q-107",
+            "vi-phase-q-108",
+            "vi-phase-q-109",
+            "vi-phase-q-110"
+          ],
+          "q-mobile-form-ascii": [
+            "vi-phase-q-111",
+            "vi-phase-q-112",
+            "vi-phase-q-113",
+            "vi-phase-q-114",
+            "vi-phase-q-115",
+            "vi-phase-q-116",
+            "vi-phase-q-117",
+            "vi-phase-q-118",
+            "vi-phase-q-119",
+            "vi-phase-q-120"
+          ],
+          "q-counselor-followup": [
+            "vi-phase-q-121",
+            "vi-phase-q-122",
+            "vi-phase-q-123",
+            "vi-phase-q-124",
+            "vi-phase-q-125",
+            "vi-phase-q-126",
+            "vi-phase-q-127",
+            "vi-phase-q-128",
+            "vi-phase-q-129",
+            "vi-phase-q-130"
+          ],
+          "q-medication-equipment-control": [
+            "vi-phase-q-131",
+            "vi-phase-q-132",
+            "vi-phase-q-133",
+            "vi-phase-q-134",
+            "vi-phase-q-135",
+            "vi-phase-q-136",
+            "vi-phase-q-137",
+            "vi-phase-q-138",
+            "vi-phase-q-139",
+            "vi-phase-q-140"
+          ],
+          "q-bed-queue-control": [
+            "vi-phase-q-141",
+            "vi-phase-q-142",
+            "vi-phase-q-143",
+            "vi-phase-q-144",
+            "vi-phase-q-145",
+            "vi-phase-q-146",
+            "vi-phase-q-147",
+            "vi-phase-q-148",
+            "vi-phase-q-149",
+            "vi-phase-q-150"
+          ]
+        },
+        "digest": {
+          "algorithm": "sha256",
+          "canonicalization": "UTF-8/LF",
+          "value": "c5b34eea0816fbe3c57ecf070e23430bec1c008e971d8c816853bb497b589bc0"
+        }
+      },
+      "versions": {
+        "before": [
+          {
+            "method": "rules",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-rules",
+              "status": "available",
+              "mode": "rules",
+              "language": "vi",
+              "version": "0.1.0"
+            },
+            "notes": 150,
+            "gold_entities": 560,
+            "micro": {
+              "tp": 120,
+              "fp": 70,
+              "fn": 440,
+              "precision": 0.631578947368421,
+              "recall": 0.21428571428571427,
+              "f1": 0.32,
+              "support": 560
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 10,
+                "fp": 20,
+                "fn": 160,
+                "precision": 0.3333333333333333,
+                "recall": 0.058823529411764705,
+                "f1": 0.1,
+                "support": 170
+              },
+              "DOB": {
+                "tp": 20,
+                "fp": 0,
+                "fn": 60,
+                "precision": 1.0,
+                "recall": 0.25,
+                "f1": 0.4,
+                "support": 80
+              },
+              "PHONE": {
+                "tp": 70,
+                "fp": 10,
+                "fn": 50,
+                "precision": 0.875,
+                "recall": 0.5833333333333334,
+                "f1": 0.7,
+                "support": 120
+              },
+              "ID": {
+                "tp": 20,
+                "fp": 20,
+                "fn": 80,
+                "precision": 0.5,
+                "recall": 0.2,
+                "f1": 0.2857142857142857,
+                "support": 100
+              },
+              "ADDR": {
+                "tp": 0,
+                "fp": 20,
+                "fn": 90,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 90
+              }
+            },
+            "notes_with_fn": 130,
+            "examples": [
+              {
+                "note_id": "vi-phase-q-031",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "liên lạc 32 đường Hoa Vân Giấy, phường Mầm Trăng, TP. Cánh Diều và số di động +84 77 000 0031",
+                "start": 84,
+                "end": 177,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-032",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "liên lạc 33 đường Vệt Lá Cọ, phường Mầm Trăng, TP. Cánh Diều và số di động +84 88 000 0032",
+                "start": 81,
+                "end": 171,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-033",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "liên lạc 34 đường Hoa Vân Giấy, phường Mầm Trăng, TP. Cánh Diều và số di động +84 56 000 0033",
+                "start": 84,
+                "end": 177,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-034",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "liên lạc 35 đường Thềm Ngọc Mây, phường Mầm Trăng, TP. Cánh Diều và số di động +84 32 000 0034",
+                "start": 81,
+                "end": 175,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-035",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "liên lạc 36 đường Thềm Ngọc Mây, phường Mầm Trăng, TP. Cánh Diều và số di động +84 58 000 0035",
+                "start": 82,
+                "end": 176,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "Đặng Uyển Nhi",
+                "start": 47,
+                "end": 60,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "ID",
+                "text": "DN4010000000001",
+                "start": 75,
+                "end": 90,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1952",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "ADDR",
+                "text": "2 đường Thềm Ngọc Mây, phường Mầm Trăng, TP. Cánh Diều",
+                "start": 168,
+                "end": 222,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-002",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "Dương Nhật Vỹ",
+                "start": 47,
+                "end": 60,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {
+                "no_overlap": 30,
+                "wrong_boundary": 40
+              },
+              "FN": {
+                "boundary_and_label": 10,
+                "no_overlap": 390,
+                "wrong_boundary": 40
+              }
+            }
+          },
+          {
+            "method": "ner",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-ner",
+              "status": "available",
+              "mode": "ner",
+              "language": "vi",
+              "version": "0.1.0",
+              "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
+            },
+            "notes": 150,
+            "gold_entities": 560,
+            "micro": {
+              "tp": 178,
+              "fp": 30,
+              "fn": 382,
+              "precision": 0.8557692307692307,
+              "recall": 0.31785714285714284,
+              "f1": 0.4635416666666667,
+              "support": 560
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 108,
+                "fp": 10,
+                "fn": 62,
+                "precision": 0.9152542372881356,
+                "recall": 0.6352941176470588,
+                "f1": 0.75,
+                "support": 170
+              },
+              "DOB": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 80,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 80
+              },
+              "PHONE": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 120,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 120
+              },
+              "ID": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 100,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 100
+              },
+              "ADDR": {
+                "tp": 70,
+                "fp": 20,
+                "fn": 20,
+                "precision": 0.7777777777777778,
+                "recall": 0.7777777777777778,
+                "f1": 0.7777777777777778,
+                "support": 90
+              }
+            },
+            "notes_with_fn": 130,
+            "examples": [
+              {
+                "note_id": "vi-phase-q-051",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Vệt Lá Cọ, P. Mầm Trăng, Q",
+                "start": 64,
+                "end": 90,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-052",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Mầm Ngô Non, P. Mầm Trăng, Q",
+                "start": 64,
+                "end": 92,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-053",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Mầm Ngô Non, P. Mầm Trăng, Q",
+                "start": 62,
+                "end": 90,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-054",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Gió Bờ Lau, P. Mầm Trăng, Q",
+                "start": 62,
+                "end": 89,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-055",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Nhánh Giọt Sương, P. Mầm Trăng, Q",
+                "start": 62,
+                "end": 95,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "ID",
+                "text": "DN4010000000001",
+                "start": 75,
+                "end": 90,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1952",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "0880000001",
+                "start": 142,
+                "end": 152,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-002",
+                "kind": "FN",
+                "label": "ID",
+                "text": "DN4010000000002",
+                "start": 75,
+                "end": 90,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-002",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1978",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {
+                "no_overlap": 10,
+                "wrong_boundary": 20
+              },
+              "FN": {
+                "no_overlap": 362,
+                "wrong_boundary": 20
+              }
+            }
+          },
+          {
+            "method": "hybrid",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-hybrid",
+              "status": "available",
+              "mode": "hybrid",
+              "language": "vi",
+              "version": "0.1.0",
+              "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
+            },
+            "notes": 150,
+            "gold_entities": 560,
+            "micro": {
+              "tp": 288,
+              "fp": 70,
+              "fn": 272,
+              "precision": 0.8044692737430168,
+              "recall": 0.5142857142857142,
+              "f1": 0.6274509803921569,
+              "support": 560
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 108,
+                "fp": 20,
+                "fn": 62,
+                "precision": 0.84375,
+                "recall": 0.6352941176470588,
+                "f1": 0.7248322147651006,
+                "support": 170
+              },
+              "DOB": {
+                "tp": 20,
+                "fp": 0,
+                "fn": 60,
+                "precision": 1.0,
+                "recall": 0.25,
+                "f1": 0.4,
+                "support": 80
+              },
+              "PHONE": {
+                "tp": 70,
+                "fp": 10,
+                "fn": 50,
+                "precision": 0.875,
+                "recall": 0.5833333333333334,
+                "f1": 0.7,
+                "support": 120
+              },
+              "ID": {
+                "tp": 20,
+                "fp": 20,
+                "fn": 80,
+                "precision": 0.5,
+                "recall": 0.2,
+                "f1": 0.2857142857142857,
+                "support": 100
+              },
+              "ADDR": {
+                "tp": 70,
+                "fp": 20,
+                "fn": 20,
+                "precision": 0.7777777777777778,
+                "recall": 0.7777777777777778,
+                "f1": 0.7777777777777778,
+                "support": 90
+              }
+            },
+            "notes_with_fn": 112,
+            "examples": [
+              {
+                "note_id": "vi-phase-q-051",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Vệt Lá Cọ, P. Mầm Trăng, Q",
+                "start": 64,
+                "end": 90,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-052",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Mầm Ngô Non, P. Mầm Trăng, Q",
+                "start": 64,
+                "end": 92,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-053",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Mầm Ngô Non, P. Mầm Trăng, Q",
+                "start": 62,
+                "end": 90,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-054",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Gió Bờ Lau, P. Mầm Trăng, Q",
+                "start": 62,
+                "end": 89,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-055",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Nhánh Giọt Sương, P. Mầm Trăng, Q",
+                "start": 62,
+                "end": 95,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "ID",
+                "text": "DN4010000000001",
+                "start": 75,
+                "end": 90,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1952",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-002",
+                "kind": "FN",
+                "label": "ID",
+                "text": "DN4010000000002",
+                "start": 75,
+                "end": 90,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-002",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1978",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-003",
+                "kind": "FN",
+                "label": "ID",
+                "text": "DN4010000000003",
+                "start": 75,
+                "end": 90,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {
+                "no_overlap": 40,
+                "wrong_boundary": 30
+              },
+              "FN": {
+                "no_overlap": 242,
+                "wrong_boundary": 30
+              }
+            }
+          }
+        ],
+        "after": [
+          {
+            "method": "rules",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-rules",
+              "status": "available",
+              "mode": "rules",
+              "language": "vi",
+              "version": "0.2.0"
+            },
+            "notes": 150,
+            "gold_entities": 560,
+            "micro": {
+              "tp": 328,
+              "fp": 40,
+              "fn": 232,
+              "precision": 0.8913043478260869,
+              "recall": 0.5857142857142857,
+              "f1": 0.7068965517241379,
+              "support": 560
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 58,
+                "fp": 0,
+                "fn": 112,
+                "precision": 1.0,
+                "recall": 0.3411764705882353,
+                "f1": 0.5087719298245614,
+                "support": 170
+              },
+              "DOB": {
+                "tp": 60,
+                "fp": 10,
+                "fn": 20,
+                "precision": 0.8571428571428571,
+                "recall": 0.75,
+                "f1": 0.8,
+                "support": 80
+              },
+              "PHONE": {
+                "tp": 110,
+                "fp": 10,
+                "fn": 10,
+                "precision": 0.9166666666666666,
+                "recall": 0.9166666666666666,
+                "f1": 0.9166666666666666,
+                "support": 120
+              },
+              "ID": {
+                "tp": 90,
+                "fp": 0,
+                "fn": 10,
+                "precision": 1.0,
+                "recall": 0.9,
+                "f1": 0.9473684210526315,
+                "support": 100
+              },
+              "ADDR": {
+                "tp": 10,
+                "fp": 20,
+                "fn": 80,
+                "precision": 0.3333333333333333,
+                "recall": 0.1111111111111111,
+                "f1": 0.16666666666666666,
+                "support": 90
+              }
+            },
+            "notes_with_fn": 110,
+            "examples": [
+              {
+                "note_id": "vi-phase-q-021",
+                "kind": "FP",
+                "label": "DOB",
+                "text": "22 tháng 3 năm 2004",
+                "start": 72,
+                "end": 91,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-022",
+                "kind": "FP",
+                "label": "DOB",
+                "text": "18 tháng 11 năm 1974",
+                "start": 76,
+                "end": 96,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-023",
+                "kind": "FP",
+                "label": "DOB",
+                "text": "14 tháng 12 năm 2004",
+                "start": 75,
+                "end": 95,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-024",
+                "kind": "FP",
+                "label": "DOB",
+                "text": "4 tháng 12 năm 1973",
+                "start": 72,
+                "end": 91,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-025",
+                "kind": "FP",
+                "label": "DOB",
+                "text": "22 tháng 6 năm 1986",
+                "start": 79,
+                "end": 98,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "Đặng Uyển Nhi",
+                "start": 47,
+                "end": 60,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1952",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "ADDR",
+                "text": "2 đường Thềm Ngọc Mây, phường Mầm Trăng, TP. Cánh Diều",
+                "start": 168,
+                "end": 222,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-002",
+                "kind": "FN",
+                "label": "NAME",
+                "text": "Dương Nhật Vỹ",
+                "start": 47,
+                "end": 60,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-002",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1978",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {
+                "no_overlap": 10,
+                "wrong_boundary": 30
+              },
+              "FN": {
+                "no_overlap": 202,
+                "wrong_boundary": 30
+              }
+            }
+          },
+          {
+            "method": "ner",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-ner",
+              "status": "available",
+              "mode": "ner",
+              "language": "vi",
+              "version": "0.1.0",
+              "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
+            },
+            "notes": 150,
+            "gold_entities": 560,
+            "micro": {
+              "tp": 178,
+              "fp": 30,
+              "fn": 382,
+              "precision": 0.8557692307692307,
+              "recall": 0.31785714285714284,
+              "f1": 0.4635416666666667,
+              "support": 560
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 108,
+                "fp": 10,
+                "fn": 62,
+                "precision": 0.9152542372881356,
+                "recall": 0.6352941176470588,
+                "f1": 0.75,
+                "support": 170
+              },
+              "DOB": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 80,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 80
+              },
+              "PHONE": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 120,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 120
+              },
+              "ID": {
+                "tp": 0,
+                "fp": 0,
+                "fn": 100,
+                "precision": 0.0,
+                "recall": 0.0,
+                "f1": 0.0,
+                "support": 100
+              },
+              "ADDR": {
+                "tp": 70,
+                "fp": 20,
+                "fn": 20,
+                "precision": 0.7777777777777778,
+                "recall": 0.7777777777777778,
+                "f1": 0.7777777777777778,
+                "support": 90
+              }
+            },
+            "notes_with_fn": 130,
+            "examples": [
+              {
+                "note_id": "vi-phase-q-051",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Vệt Lá Cọ, P. Mầm Trăng, Q",
+                "start": 64,
+                "end": 90,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-052",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Mầm Ngô Non, P. Mầm Trăng, Q",
+                "start": 64,
+                "end": 92,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-053",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Mầm Ngô Non, P. Mầm Trăng, Q",
+                "start": 62,
+                "end": 90,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-054",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Gió Bờ Lau, P. Mầm Trăng, Q",
+                "start": 62,
+                "end": 89,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-055",
+                "kind": "FP",
+                "label": "ADDR",
+                "text": "Nhánh Giọt Sương, P. Mầm Trăng, Q",
+                "start": 62,
+                "end": 95,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "ID",
+                "text": "DN4010000000001",
+                "start": 75,
+                "end": 90,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1952",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "PHONE",
+                "text": "0880000001",
+                "start": 142,
+                "end": 152,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-002",
+                "kind": "FN",
+                "label": "ID",
+                "text": "DN4010000000002",
+                "start": 75,
+                "end": 90,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-002",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1978",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {
+                "no_overlap": 10,
+                "wrong_boundary": 20
+              },
+              "FN": {
+                "no_overlap": 362,
+                "wrong_boundary": 20
+              }
+            }
+          },
+          {
+            "method": "hybrid",
+            "unit": "exact_span_label",
+            "engine": {
+              "name": "medshield-hybrid",
+              "status": "available",
+              "mode": "hybrid",
+              "language": "vi",
+              "version": "0.2.0",
+              "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
+            },
+            "notes": 150,
+            "gold_entities": 560,
+            "micro": {
+              "tp": 426,
+              "fp": 60,
+              "fn": 134,
+              "precision": 0.8765432098765432,
+              "recall": 0.7607142857142857,
+              "f1": 0.8145315487571702,
+              "support": 560
+            },
+            "by_label": {
+              "NAME": {
+                "tp": 136,
+                "fp": 10,
+                "fn": 34,
+                "precision": 0.9315068493150684,
+                "recall": 0.8,
+                "f1": 0.8607594936708861,
+                "support": 170
+              },
+              "DOB": {
+                "tp": 60,
+                "fp": 10,
+                "fn": 20,
+                "precision": 0.8571428571428571,
+                "recall": 0.75,
+                "f1": 0.8,
+                "support": 80
+              },
+              "PHONE": {
+                "tp": 110,
+                "fp": 10,
+                "fn": 10,
+                "precision": 0.9166666666666666,
+                "recall": 0.9166666666666666,
+                "f1": 0.9166666666666666,
+                "support": 120
+              },
+              "ID": {
+                "tp": 90,
+                "fp": 0,
+                "fn": 10,
+                "precision": 1.0,
+                "recall": 0.9,
+                "f1": 0.9473684210526315,
+                "support": 100
+              },
+              "ADDR": {
+                "tp": 30,
+                "fp": 30,
+                "fn": 60,
+                "precision": 0.5,
+                "recall": 0.3333333333333333,
+                "f1": 0.4,
+                "support": 90
+              }
+            },
+            "notes_with_fn": 101,
+            "examples": [
+              {
+                "note_id": "vi-phase-q-021",
+                "kind": "FP",
+                "label": "DOB",
+                "text": "22 tháng 3 năm 2004",
+                "start": 72,
+                "end": 91,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-022",
+                "kind": "FP",
+                "label": "DOB",
+                "text": "18 tháng 11 năm 1974",
+                "start": 76,
+                "end": 96,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-023",
+                "kind": "FP",
+                "label": "DOB",
+                "text": "14 tháng 12 năm 2004",
+                "start": 75,
+                "end": 95,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-024",
+                "kind": "FP",
+                "label": "DOB",
+                "text": "4 tháng 12 năm 1973",
+                "start": 72,
+                "end": 91,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-025",
+                "kind": "FP",
+                "label": "DOB",
+                "text": "22 tháng 6 năm 1986",
+                "start": 79,
+                "end": 98,
+                "cause": "wrong_boundary"
+              },
+              {
+                "note_id": "vi-phase-q-001",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1952",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-002",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1978",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-003",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1968",
+                "start": 110,
+                "end": 114,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-004",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1967",
+                "start": 114,
+                "end": 118,
+                "cause": "no_overlap"
+              },
+              {
+                "note_id": "vi-phase-q-005",
+                "kind": "FN",
+                "label": "DOB",
+                "text": "1967",
+                "start": 114,
+                "end": 118,
+                "cause": "no_overlap"
+              }
+            ],
+            "diagnostic_counts": {
+              "FP": {
+                "no_overlap": 20,
+                "wrong_boundary": 40
+              },
+              "FN": {
+                "no_overlap": 94,
+                "wrong_boundary": 40
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

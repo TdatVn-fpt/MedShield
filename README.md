@@ -1,6 +1,24 @@
-# MedShield
+# MedShield · Nhận diện và che thông tin định danh trong văn bản y tế
 
-MedShield nhận diện và che thông tin định danh trong ghi chú y tế. Bạn có thể dán văn bản, tải TXT UTF-8 hoặc nhập PDF có lớp chữ, rồi rà soát trước khi xuất TXT hoặc JSON. Dự án của Nguyễn Tiến Đạt, Samsung Innovation Campus, AI-NIC4.
+**Nguyễn Tiến Đạt · Samsung Innovation Campus · AI-NIC4 · Đề tài số 2**
+
+MedShield đề xuất vùng cần che trong ghi chú y tế. Người dùng nhập TXT, dán văn bản hoặc trích chữ từ PDF, rồi thêm, xóa hoặc sửa nhãn trước khi xác nhận xuất TXT/JSON. Năm nhãn là **NAME** (tên), **DOB** (ngày sinh), **PHONE** (điện thoại), **ID** (mã định danh) và **ADDR** (địa chỉ).
+
+[Chạy trên Windows](#chạy-nhanh-trên-windows) · [Bộ tài liệu nộp bài](docs/ban-giao-nop-bai.md) · [Kịch bản demo](docs/huong-dan-nhap-pdf.md) · [Báo cáo thực nghiệm](docs/experiment.md)
+
+![Bàn rà soát MedShield hiển thị bản gốc, nhãn và bản đã che trên dữ liệu giả lập](docs/evidence/G1-reviewed-desktop.png)
+
+### Kết quả chính
+
+Ba cấu hình được chấm trên cùng **20 ghi chú test tiếng Việt, 33 vùng vàng**. Một dự đoán đúng khi khớp cả hai biên và nhãn trước khi người dùng chỉnh sửa.
+
+| Cấu hình | TP / FP / FN | Micro-F1 | Ghi chú có ít nhất một FN |
+|---|---:|---:|---:|
+| Rules | 20 / 1 / 13 | 74,07% | 8/20 |
+| NER · CRF | 12 / 0 / 21 | 53,33% | 12/20 |
+| Hybrid | 25 / 1 / 8 | 84,75% | 5/20 |
+
+CRF được huấn luyện trên 60 ghi chú giả lập và chọn cấu hình bằng 20 ghi chú validation. Bảng trên là bản Q2 trên tập dùng để đối chiếu lịch sử. Hybrid có CI 95% strict 70,18%–94,92% và vẫn còn vùng PHI ở 5/20 ghi chú. Tập 150 ghi chú do agent sinh dùng để kiểm tra hồi quy. Phép đánh giá chất lượng chờ tập khóa Phase E. [Báo cáo Q2](docs/phase-q2.md) · [Đăng ký trước Phase E](docs/phase-e.md)
 
 ## Mở folder nào để đọc?
 
@@ -53,4 +71,30 @@ npm run dev
 
 Mở [http://127.0.0.1:5173/](http://127.0.0.1:5173/). Dùng [PDF bệnh án giả lập](docs/evidence/demo-benh-an-ngoai-tru.pdf) để thử nhập trang 1–2. Xem [kịch bản demo ba phút](docs/huong-dan-nhap-pdf.md) để thực hành sửa một vùng bỏ sót và đối chiếu file đã tải.
 
-Phạm vi nhập PDF có lớp chữ và xuất TXT/JSON đã qua nghiệm thu. OCR, xuất lại PDF giữ bố cục, Three.js và các hạng mục bàn giao toàn dự án có phạm vi riêng. Xem [biên bản PDF](docs/reviews/G4-pdf.md) và [bảng tiến độ](docs/progress.md).
+Nếu npm báo `ENOENT`, kiểm tra terminal đang ở `apps/web`. Nếu cổng 8000 hoặc 5173 đã được dùng, kiểm tra web và [API health](http://127.0.0.1:8000/health) trước khi chạy thêm tiến trình. Nếu web hiện engine chưa khả dụng, kiểm tra `/health` và các tệp trong `artifacts/model/`.
+
+## Kiểm thử và tái tạo
+
+Từ gốc repo:
+
+```powershell
+uv run --locked pytest -q
+uv run --locked python scripts/check_source.py
+uv run --locked python -m ml.evaluate --output-dir artifacts/local/nop-bai
+```
+
+Từ `apps/web/`:
+
+```powershell
+npx playwright install chromium
+npm run test:e2e
+npm run build
+```
+
+Lượt kiểm trên Windows ghi nhận **55 test Python và 22 test Chromium qua**, gồm 9 test PDF. [Biên bản PDF](docs/reviews/G4-pdf.md) lưu lần kiểm, thời gian đo và các file xuất thật để đối chiếu.
+
+## Phạm vi sử dụng
+
+Demo dùng dữ liệu giả lập. PDF.js trích chữ ngay trên trình duyệt, sau đó API nhận phần chữ khi bấm **Phân tích**. Bản hiện tại xuất TXT/JSON, hỗ trợ PDF có lớp chữ. OCR PDF scan và xuất lại PDF giữ bố cục nằm ngoài phạm vi demo. Người dùng cần rà soát cả vùng còn sót và vùng che nhầm trước khi chia sẻ.
+
+G0–G3 và phạm vi nhập PDF đã qua nghiệm thu. Three.js, nghiệm thu toàn chặng G4 và bàn giao G5 còn mở. Khi chạy online, frontend và FastAPI cần cấu hình hosting tương ứng. Theo dõi tại [bảng tiến độ](docs/progress.md). Xem [đóng góp và nguồn tái sử dụng](docs/contributions.md) và [giấy phép](THIRD_PARTY.md).

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' file:; style-src 'self' file:; connect-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <title>Gán nhãn mù Phase E · MedShield</title>
+    <link rel="stylesheet" href="label.css" />
+    <script defer src="packet.js"></script>
+    <script defer src="label.js"></script>
+  </head>
+  <body>
+    <main>
+      <h1>Gán nhãn mù Phase E</h1>
+      <p>Mở gói được QA cấp. Dữ liệu chỉ được xử lý trong tab này.</p>
+      <div class="controls">
+        <label
+          >Mở gói JSONL <input id="packet" type="file" accept=".jsonl"
+        /></label>
+        <label
+          >Khôi phục tiến độ
+          <input id="draft" type="file" accept=".json" disabled
+        /></label>
+      </div>
+      <p id="status" role="status"></p>
+      <section id="work" aria-label="Gán nhãn ghi chú" hidden>
+        <div class="controls">
+          <button id="previous" type="button">Ghi chú trước</button>
+          <label
+            >Chọn ghi chú
+            <select id="note-index"></select
+          ></label>
+          <button id="next" type="button">Ghi chú sau</button>
+        </div>
+        <p id="select-help">
+          Bôi chọn giá trị trong ghi chú. Với bàn phím, dùng các phím mũi tên
+          cùng Shift trong ô văn bản.
+        </p>
+        <textarea
+          id="text"
+          aria-label="Văn bản gốc"
+          aria-describedby="select-help"
+          readonly
+          rows="10"
+        ></textarea>
+        <div class="controls">
+          <label
+            >Loại nhãn
+            <select id="label">
+              <option value="NAME">NAME · Tên</option>
+              <option value="DOB">DOB · Ngày sinh</option>
+              <option value="PHONE">PHONE · Điện thoại</option>
+              <option value="ID">ID · Định danh</option>
+              <option value="ADDR">ADDR · Địa chỉ</option>
+            </select>
+          </label>
+          <button id="add" type="button">Thêm vùng đã chọn</button>
+        </div>
+        <h2>Vùng đã gán</h2>
+        <ul id="spans"></ul>
+        <label class="review"
+          ><input id="confirmed" type="checkbox" /> Đã rà soát ghi chú này, kể
+          cả khi không có vùng</label
+        >
+        <div class="controls">
+          <button id="save" type="button">Lưu tiến độ</button>
+          <button id="export" type="button" disabled>Xuất nhãn trả QA</button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

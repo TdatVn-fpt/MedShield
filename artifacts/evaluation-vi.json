@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-11-22T11:02:07.479455+00:00",
+  "generated_at_utc": "2026-11-25T16:42:06.759378+00:00",
   "datasets": {
     "vi": {
       "source": "QA soạn và gán nhãn thủ công từ các họ mẫu dành riêng, dùng dữ liệu giả lập. Không trích bệnh án.",
@@ -215,8 +215,16 @@
           "python -m ml.train"
         ]
       },
-      "rules_source_sha256": "e530ccbc731cd4bdc0e5972b4385cf5b8835d111c99e3b96773821345713ce77",
-      "analysis_source_sha256": "600c85474de82968484c05643f2c066b65baccc4ab2e0892c3718e018818789d",
+      "rules_source_sha256": "d661d85c64770e28f5fce637a3deae5b8da046e684adbf73b1fd3598e95ed6a5",
+      "analysis_source_sha256": "e1d7a5b132e44f641b5187c22b07283959aa88a37f5ac55edd402a8f60597f05",
+      "vietnamese_rules_sources_sha256": {
+        "names_places": "47a22579535c7c1e1cb47fcbbf427c343c6159572a08efca2c0c01ef2a46492c",
+        "structured": "36df8b0248c8bcac7e135130f1658b34b24c7089c01544f96fb29bcc3cd2d4b5",
+        "boundaries": "56e55fe187e1cde7c4e15b5fea02ea432115c823989756fcf5b954437549a8d2"
+      },
+      "hybrid_source_sha256": "b0014302c89ce64e7642fe7f526b9e9137f8fb39a255275e4cb6d5988d6570ee",
+      "hybrid_thresholds": null,
+      "scorer_sha256": "6f3f4e8b4c242c6f418003cb192a1dba967ad3161b0957a89adc9c3e5ab512c0",
       "reproduce": "python -m ml.evaluate",
       "f1_target": 0.85
     }
@@ -232,115 +240,99 @@
         "status": "available",
         "mode": "rules",
         "language": "vi",
-        "version": "0.1.0"
+        "version": "0.3.0"
       },
       "notes": 20,
       "gold_entities": 33,
       "micro": {
-        "tp": 1,
-        "fp": 8,
-        "fn": 32,
-        "precision": 0.1111111111111111,
-        "recall": 0.030303030303030304,
-        "f1": 0.047619047619047616,
+        "tp": 20,
+        "fp": 1,
+        "fn": 13,
+        "precision": 0.9523809523809523,
+        "recall": 0.6060606060606061,
+        "f1": 0.7407407407407407,
         "support": 33
       },
       "by_label": {
         "NAME": {
-          "tp": 0,
-          "fp": 1,
-          "fn": 17,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "tp": 8,
+          "fp": 0,
+          "fn": 9,
+          "precision": 1.0,
+          "recall": 0.47058823529411764,
+          "f1": 0.64,
           "support": 17
         },
         "DOB": {
-          "tp": 0,
+          "tp": 4,
           "fp": 0,
-          "fn": 4,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 4
         },
         "PHONE": {
-          "tp": 0,
-          "fp": 4,
-          "fn": 4,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "tp": 4,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.8888888888888888,
           "support": 4
         },
         "ID": {
-          "tp": 1,
+          "tp": 2,
           "fp": 0,
-          "fn": 4,
+          "fn": 3,
           "precision": 1.0,
-          "recall": 0.2,
-          "f1": 0.3333333333333333,
+          "recall": 0.4,
+          "f1": 0.5714285714285714,
           "support": 5
         },
         "ADDR": {
-          "tp": 0,
-          "fp": 3,
-          "fn": 3,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "tp": 2,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.6666666666666666,
+          "f1": 0.8,
           "support": 3
         }
       },
-      "notes_with_fn": 15,
+      "notes_with_fn": 8,
       "examples": [
         {
+          "note_id": "vi-test-020",
+          "kind": "FP",
+          "label": "PHONE",
+          "text": "0900000603",
+          "start": 54,
+          "end": 64
+        },
+        {
           "note_id": "vi-test-005",
-          "kind": "FP",
-          "label": "PHONE",
-          "text": "0900000041",
-          "start": 40,
-          "end": 50
+          "kind": "FN",
+          "label": "ID",
+          "text": "MẪU-QA-141",
+          "start": 98,
+          "end": 108
         },
         {
-          "note_id": "vi-test-007",
-          "kind": "FP",
-          "label": "PHONE",
-          "text": "0900000043",
-          "start": 60,
-          "end": 70
-        },
-        {
-          "note_id": "vi-test-012",
-          "kind": "FP",
-          "label": "ADDR",
-          "text": "cư trú: 7 ngõ Vệt Mây, phường Mầm Sương, TP. Lam Giang",
-          "start": 29,
-          "end": 83
-        },
-        {
-          "note_id": "vi-test-001",
+          "note_id": "vi-test-006",
           "kind": "FN",
           "label": "NAME",
-          "text": "Thạch Lam Sương",
-          "start": 31,
-          "end": 46
+          "text": "Trần Hải Ngân",
+          "start": 46,
+          "end": 59
         },
         {
-          "note_id": "vi-test-001",
-          "kind": "FN",
-          "label": "PHONE",
-          "text": "+84 000 000 021",
-          "start": 73,
-          "end": 88
-        },
-        {
-          "note_id": "vi-test-002",
+          "note_id": "vi-test-008",
           "kind": "FN",
           "label": "NAME",
-          "text": "bùi mộc nhiên",
-          "start": 53,
-          "end": 66
+          "text": "Lê Trúc Uyên",
+          "start": 27,
+          "end": 39
         }
       ]
     },
@@ -453,55 +445,55 @@
         "status": "available",
         "mode": "hybrid",
         "language": "vi",
-        "version": "0.1.0",
+        "version": "0.3.0",
         "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f"
       },
       "notes": 20,
       "gold_entities": 33,
       "micro": {
-        "tp": 13,
-        "fp": 4,
-        "fn": 20,
-        "precision": 0.7647058823529411,
-        "recall": 0.3939393939393939,
-        "f1": 0.52,
+        "tp": 25,
+        "fp": 1,
+        "fn": 8,
+        "precision": 0.9615384615384616,
+        "recall": 0.7575757575757576,
+        "f1": 0.847457627118644,
         "support": 33
       },
       "by_label": {
         "NAME": {
-          "tp": 9,
+          "tp": 12,
           "fp": 0,
-          "fn": 8,
+          "fn": 5,
           "precision": 1.0,
-          "recall": 0.5294117647058824,
-          "f1": 0.6923076923076923,
+          "recall": 0.7058823529411765,
+          "f1": 0.8275862068965517,
           "support": 17
         },
         "DOB": {
-          "tp": 0,
+          "tp": 4,
           "fp": 0,
-          "fn": 4,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
           "support": 4
         },
         "PHONE": {
-          "tp": 0,
-          "fp": 4,
-          "fn": 4,
-          "precision": 0.0,
-          "recall": 0.0,
-          "f1": 0.0,
+          "tp": 4,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.8,
+          "recall": 1.0,
+          "f1": 0.8888888888888888,
           "support": 4
         },
         "ID": {
-          "tp": 1,
+          "tp": 2,
           "fp": 0,
-          "fn": 4,
+          "fn": 3,
           "precision": 1.0,
-          "recall": 0.2,
-          "f1": 0.3333333333333333,
+          "recall": 0.4,
+          "f1": 0.5714285714285714,
           "support": 5
         },
         "ADDR": {
@@ -514,55 +506,39 @@
           "support": 3
         }
       },
-      "notes_with_fn": 11,
+      "notes_with_fn": 5,
       "examples": [
         {
+          "note_id": "vi-test-020",
+          "kind": "FP",
+          "label": "PHONE",
+          "text": "0900000603",
+          "start": 54,
+          "end": 64
+        },
+        {
           "note_id": "vi-test-005",
-          "kind": "FP",
-          "label": "PHONE",
-          "text": "0900000041",
-          "start": 40,
-          "end": 50
-        },
-        {
-          "note_id": "vi-test-007",
-          "kind": "FP",
-          "label": "PHONE",
-          "text": "0900000043",
-          "start": 60,
-          "end": 70
-        },
-        {
-          "note_id": "vi-test-019",
-          "kind": "FP",
-          "label": "PHONE",
-          "text": "0900000602",
-          "start": 62,
-          "end": 72
-        },
-        {
-          "note_id": "vi-test-001",
           "kind": "FN",
-          "label": "PHONE",
-          "text": "+84 000 000 021",
-          "start": 73,
-          "end": 88
+          "label": "ID",
+          "text": "MẪU-QA-141",
+          "start": 98,
+          "end": 108
         },
         {
-          "note_id": "vi-test-002",
+          "note_id": "vi-test-008",
+          "kind": "FN",
+          "label": "ID",
+          "text": "HC-QA-201",
+          "start": 82,
+          "end": 91
+        },
+        {
+          "note_id": "vi-test-011",
           "kind": "FN",
           "label": "NAME",
-          "text": "bùi mộc nhiên",
-          "start": 53,
-          "end": 66
-        },
-        {
-          "note_id": "vi-test-002",
-          "kind": "FN",
-          "label": "PHONE",
-          "text": "000 000 0022",
-          "start": 75,
-          "end": 87
+          "text": "Ngô Vy",
+          "start": 44,
+          "end": 50
         }
       ]
     }

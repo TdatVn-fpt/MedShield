@@ -9,7 +9,7 @@ Chủ dự án: Nguyễn Tiến Đạt, Samsung Innovation Campus AI-NIC4. Codex
 | NER | sklearn-crfsuite/python-crfsuite | Dữ liệu giả lập có nhãn, đặc trưng, huấn luyện, adapter và thí nghiệm riêng; kết quả thực ở artifact sau G3 |
 | Ba công cụ Anh ngữ | Presidio, Philter UCSF, GEMINI pyDeid | Chuẩn hóa đối chứng cùng input và công khai trạng thái; không nhận thuật toán upstream là do chủ dự án tự viết |
 | Hướng dẫn và đánh giá | Tài liệu SIC được trích qua bảng đối chiếu cũ; tài liệu upstream | Áp dụng exact span+label, split theo họ, test do QA giữ, phân tích lỗi và bằng chứng chạy lại |
-| Minh họa | Three.js | Phiếu khám giả lập tách lớp, tải lười/fallback/cleanup; cập nhật bằng chứng sau G4 |
-| Quy trình | GitHub Spec Kit, GitHub Actions, uv/npm, Playwright | Đặc tả, gate có reviewer thực, script Windows/CI/ZIP và tái tạo |
+| Nhập PDF | PDF.js, ReportLab | Trích chữ theo trang ở trình duyệt, quản lý tác vụ cũ, PDF ngoại trú giả lập và kiểm tra file xuất |
+| Quy trình | GitHub Spec Kit, uv/npm, Playwright | Đặc tả, kiểm tra theo chặng, lệnh Windows và tái tạo. Three.js, GitHub Actions và ZIP nộp toàn dự án còn trong kế hoạch. |
 
 Phiên bản, revision, giấy phép: [THIRD_PARTY.md](../THIRD_PARTY.md). Không dùng lại số 94,7% của demo cũ làm số bản mới. Khi bảo vệ, trình bày những phần đã đọc và hiểu bằng lời của mình; mức đóng góp triển khai có Codex hỗ trợ cần được nói rõ.

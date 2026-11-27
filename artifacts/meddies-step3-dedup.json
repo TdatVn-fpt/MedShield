@@ -1,0 +1,357 @@
+{
+  "schema_version": 1,
+  "revision": "5dbe7cde649446028f628820c204bf53bb296894",
+  "license": "CC-BY-NC-4.0",
+  "shard_sha256": "331640296be10a56a468e1cf9d5014dc9d1de13ab304b9294df0643b2ddbc04a",
+  "mapped_train_sha256": "9d2910055028625230f508d176f341abe0e9e7145bf24bdebd4f4bf13a2b7616",
+  "train_source_dataset": "Meddies/mimo-meddies9-targeted-synthetic",
+  "evaluation_source_dataset": "Meddies/local-new-data-clinical-synthetic",
+  "train_source_count": 13,
+  "evaluation_source_count": 1,
+  "source_overlap_count": 0,
+  "train": {
+    "count": 22310,
+    "length_code_points": {
+      "min": 260,
+      "p50": 1156,
+      "p95": 2283,
+      "max": 15666
+    },
+    "document_types": {
+      "FHIR-like Patient + Encounter resource": 1031,
+      "HL7-style admission/update message": 1166,
+      "OCR-scanned clinical note": 396,
+      "ambient voice scribe transcript": 717,
+      "appointment reminder": 1248,
+      "discharge summary": 2242,
+      "insurance claim note": 2109,
+      "lab result notification": 2141,
+      "medical bill / invoice": 1545,
+      "outpatient note": 1603,
+      "patient portal access log": 1946,
+      "pharmacy refill request": 2510,
+      "referral letter": 1824,
+      "telehealth triage note": 1832
+    },
+    "lineage": {
+      "original_id": {
+        "present": 0,
+        "distinct": 0,
+        "repeated_values": 0,
+        "verified_patient_or_family_key": false
+      },
+      "scenario": {
+        "present": 22310,
+        "distinct": 6,
+        "repeated_values": 6,
+        "verified_patient_or_family_key": false
+      },
+      "domain_profile": {
+        "present": 22310,
+        "distinct": 1,
+        "repeated_values": 1,
+        "verified_patient_or_family_key": false
+      },
+      "source": {
+        "present": 22310,
+        "distinct": 13,
+        "repeated_values": 13,
+        "verified_patient_or_family_key": false
+      },
+      "source_dataset": {
+        "present": 22310,
+        "distinct": 1,
+        "repeated_values": 1,
+        "verified_patient_or_family_key": false
+      }
+    }
+  },
+  "evaluation_before": {
+    "count": 299,
+    "length_code_points": {
+      "min": 276,
+      "p50": 362,
+      "p95": 420,
+      "max": 438
+    },
+    "document_types": {
+      "CONSENT_FORM": 11,
+      "DISCHARGE_SUMMARY": 23,
+      "IMAGING_REPORT": 21,
+      "IMMUNIZATION_RECORD": 15,
+      "LAB_RESULT": 24,
+      "MEDICAL_BILL": 21,
+      "MEDICAL_RECORD": 11,
+      "MEDICATION_CHART": 17,
+      "MORTALITY_REPORT": 19,
+      "NURSING_NOTE": 13,
+      "OUTPATIENT_EXAMINATION": 23,
+      "PHYSICAL_THERAPY_PLAN": 14,
+      "PRESCRIPTION": 18,
+      "REFERRAL_LETTER": 21,
+      "SURGERY_SCHEDULE": 23,
+      "TRANSFER_FORM": 25
+    },
+    "lineage": {
+      "original_id": {
+        "present": 299,
+        "distinct": 299,
+        "repeated_values": 0,
+        "verified_patient_or_family_key": false
+      },
+      "scenario": {
+        "present": 299,
+        "distinct": 1,
+        "repeated_values": 1,
+        "verified_patient_or_family_key": false
+      },
+      "domain_profile": {
+        "present": 299,
+        "distinct": 1,
+        "repeated_values": 1,
+        "verified_patient_or_family_key": false
+      },
+      "source": {
+        "present": 299,
+        "distinct": 1,
+        "repeated_values": 1,
+        "verified_patient_or_family_key": false
+      },
+      "source_dataset": {
+        "present": 299,
+        "distinct": 1,
+        "repeated_values": 1,
+        "verified_patient_or_family_key": false
+      }
+    }
+  },
+  "evaluation_after": {
+    "count": 299,
+    "length_code_points": {
+      "min": 276,
+      "p50": 362,
+      "p95": 420,
+      "max": 438
+    },
+    "document_types": {
+      "CONSENT_FORM": 11,
+      "DISCHARGE_SUMMARY": 23,
+      "IMAGING_REPORT": 21,
+      "IMMUNIZATION_RECORD": 15,
+      "LAB_RESULT": 24,
+      "MEDICAL_BILL": 21,
+      "MEDICAL_RECORD": 11,
+      "MEDICATION_CHART": 17,
+      "MORTALITY_REPORT": 19,
+      "NURSING_NOTE": 13,
+      "OUTPATIENT_EXAMINATION": 23,
+      "PHYSICAL_THERAPY_PLAN": 14,
+      "PRESCRIPTION": 18,
+      "REFERRAL_LETTER": 21,
+      "SURGERY_SCHEDULE": 23,
+      "TRANSFER_FORM": 25
+    },
+    "lineage": {
+      "original_id": {
+        "present": 299,
+        "distinct": 299,
+        "repeated_values": 0,
+        "verified_patient_or_family_key": false
+      },
+      "scenario": {
+        "present": 299,
+        "distinct": 1,
+        "repeated_values": 1,
+        "verified_patient_or_family_key": false
+      },
+      "domain_profile": {
+        "present": 299,
+        "distinct": 1,
+        "repeated_values": 1,
+        "verified_patient_or_family_key": false
+      },
+      "source": {
+        "present": 299,
+        "distinct": 1,
+        "repeated_values": 1,
+        "verified_patient_or_family_key": false
+      },
+      "source_dataset": {
+        "present": 299,
+        "distinct": 1,
+        "repeated_values": 1,
+        "verified_patient_or_family_key": false
+      }
+    }
+  },
+  "similarity": {
+    "method": "exact_word_5gram_set_jaccard_nfc_casefold",
+    "threshold_exclusive": 0.5,
+    "pairs_examined": 6670690,
+    "candidate_max_distribution": {
+      "zero": 53,
+      "intervals_open_left_closed_right": {
+        "(0.0, 0.1]": 246,
+        "(0.1, 0.2]": 0,
+        "(0.2, 0.3]": 0,
+        "(0.3, 0.4]": 0,
+        "(0.4, 0.5]": 0,
+        "(0.5, 0.6]": 0,
+        "(0.6, 0.7]": 0,
+        "(0.7, 0.8]": 0,
+        "(0.8, 0.9]": 0,
+        "(0.9, 1.0]": 0
+      },
+      "min": 0.0,
+      "p50": 0.004694835680751174,
+      "p95": 0.014925373134328358,
+      "max": 0.03076923076923077
+    }
+  },
+  "exclusions": {
+    "near": 0,
+    "surface": 0,
+    "both": 0,
+    "name_phone": 0,
+    "name_dob": 0,
+    "total": 0
+  },
+  "surface_rule": "train_mapped_name_phone_or_dob_pair_in_unlabelled_candidate_text",
+  "limitation": "tách tập bằng cô lập nguồn sinh + khử trùng trùng lặp gần giống; phân nhóm bệnh nhân/họ mẫu không kiểm chứng được từ metadata công khai của nhà phát hành",
+  "patient_and_family_disjointness_verified": false,
+  "evaluation_publisher_labels_used": false,
+  "evaluation_label_tier_target": "silver-locked",
+  "iaa_type": "human_llm",
+  "locked": false,
+  "status": "awaiting_blind_annotation",
+  "split_seed": 20261126,
+  "split_counts": {
+    "test": 150,
+    "validation": 149
+  },
+  "split_audit": {
+    "validation": {
+      "count": 149,
+      "length_code_points": {
+        "min": 293,
+        "p50": 363,
+        "p95": 416,
+        "max": 438
+      },
+      "document_types": {
+        "CONSENT_FORM": 6,
+        "DISCHARGE_SUMMARY": 11,
+        "IMAGING_REPORT": 10,
+        "IMMUNIZATION_RECORD": 8,
+        "LAB_RESULT": 12,
+        "MEDICAL_BILL": 10,
+        "MEDICAL_RECORD": 6,
+        "MEDICATION_CHART": 9,
+        "MORTALITY_REPORT": 10,
+        "NURSING_NOTE": 7,
+        "OUTPATIENT_EXAMINATION": 11,
+        "PHYSICAL_THERAPY_PLAN": 7,
+        "PRESCRIPTION": 9,
+        "REFERRAL_LETTER": 10,
+        "SURGERY_SCHEDULE": 11,
+        "TRANSFER_FORM": 12
+      },
+      "lineage": {
+        "original_id": {
+          "present": 149,
+          "distinct": 149,
+          "repeated_values": 0,
+          "verified_patient_or_family_key": false
+        },
+        "scenario": {
+          "present": 149,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        },
+        "domain_profile": {
+          "present": 149,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        },
+        "source": {
+          "present": 149,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        },
+        "source_dataset": {
+          "present": 149,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        }
+      }
+    },
+    "test": {
+      "count": 150,
+      "length_code_points": {
+        "min": 276,
+        "p50": 359,
+        "p95": 420,
+        "max": 435
+      },
+      "document_types": {
+        "CONSENT_FORM": 5,
+        "DISCHARGE_SUMMARY": 12,
+        "IMAGING_REPORT": 11,
+        "IMMUNIZATION_RECORD": 7,
+        "LAB_RESULT": 12,
+        "MEDICAL_BILL": 11,
+        "MEDICAL_RECORD": 5,
+        "MEDICATION_CHART": 8,
+        "MORTALITY_REPORT": 9,
+        "NURSING_NOTE": 6,
+        "OUTPATIENT_EXAMINATION": 12,
+        "PHYSICAL_THERAPY_PLAN": 7,
+        "PRESCRIPTION": 9,
+        "REFERRAL_LETTER": 11,
+        "SURGERY_SCHEDULE": 12,
+        "TRANSFER_FORM": 13
+      },
+      "lineage": {
+        "original_id": {
+          "present": 150,
+          "distinct": 150,
+          "repeated_values": 0,
+          "verified_patient_or_family_key": false
+        },
+        "scenario": {
+          "present": 150,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        },
+        "domain_profile": {
+          "present": 150,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        },
+        "source": {
+          "present": 150,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        },
+        "source_dataset": {
+          "present": 150,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        }
+      }
+    },
+    "test_max_jaccard_against_validation": 0.10526315789473684
+  },
+  "packet_sha256": {
+    "test-blind.jsonl": "4df20fa76cbedebc7caf7df088d46f18393bd9dbdde37fe99af7fa38d30657d0",
+    "validation-blind.jsonl": "413c791c1cca479dcf4528589233b7c72cf9f5869ec46fdf7d776fd122524c02"
+  }
+}

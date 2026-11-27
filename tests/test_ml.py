@@ -31,7 +31,7 @@ DATA = Path(__file__).resolve().parents[1] / "data"
 LABELS = {"NAME", "DOB", "PHONE", "ID", "ADDR"}
 SMOKE_NAME = "To\u0302 Vân Sa"
 SMOKE_ADDRESS = "13 hẻm Nắng Vàng"
-SMOKE_PHONE = "000 000 0461"
+SMOKE_PHONE = "090 123 0461"
 SMOKE_TEXT = (
     f"🧭 Họ tên: {SMOKE_NAME}.\r\nĐịa chỉ: {SMOKE_ADDRESS}.\r\n"
     f"Số điện thoại: {SMOKE_PHONE}. Tái khám 02/11."

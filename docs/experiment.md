@@ -2,7 +2,17 @@
 
 **READY_FOR_REVIEW.** BA đối chiếu nhãn vàng, dự đoán và artifact tiếng Việt, tiếng Anh. QA và Tech Lead rà soát báo cáo.
 
-Sáu dòng kết quả trong [artifact tổng hợp](../artifacts/evaluation.json) khớp với hai artifact nguồn.
+Phần G3 dưới đây ghi kết quả baseline đã kiểm tra ở commit `773cead6eea623a345e1e1fa6b5732a8b2b6ae77`. [Artifact so sánh Phase Q](../artifacts/phase-q-comparison.json) lưu baseline và bản Phase Q. [Artifact tổng hợp đang phục vụ API](../artifacts/evaluation.json) có ba kết quả tiếng Việt Q2 trên test gốc và ba kết quả tiếng Anh G3 giữ nguyên.
+
+## Kết quả Phase Q
+
+Trên test khóa gốc 20 ghi chú / 33 vùng vàng, micro-F1 Rules từ 4,76% lên 40,00%, CRF giữ 53,33% và Hybrid từ 52,00% lên 53,06%. Trên test mới 150 ghi chú / 560 vùng vàng, Rules từ 32,00% lên 70,69%, CRF giữ 46,35% và Hybrid từ 62,75% lên 81,45%. Cả hai dùng cùng scorer đã đóng băng. DOB và PHONE của Rules vẫn 0% trên test gốc, nên dừng trước Phase M. [Bảng từng nhãn, lệnh tái tạo và lỗi](phase-q.md)
+
+Tập 150 ghi chú do agent sinh và gán nhãn chỉ dùng để phát hiện hồi quy. Điểm của tập này không dùng để ước tính khoảng cách đến cổng chất lượng. Các tuyên bố chất lượng sau Phase E phải dùng tập khóa độc lập và kèm strict F1, partial F1, khoảng tin cậy bootstrap theo ghi chú và tỉ lệ ghi chú còn sót vùng. [Quy trình Phase E](phase-e.md)
+
+## Kết quả hồi quy Phase Q2
+
+Hybrid trên test lịch sử đạt strict/partial F1 84,75%, CI 95% strict 70,18%–94,92%. Tỉ lệ ghi chú còn ký tự PHI ngoài vùng che là 25,00% (5/20), CI 10,00%–45,00%. Q2 khôi phục DOB, PHONE và ADDR trong phép đối chiếu hồi quy. Báo cáo tách số đúng dải/ngoài dải và liệt kê những lát còn yếu. Cổng chất lượng vẫn chờ tập độc lập Phase E. [Báo cáo hồi quy Q2](phase-q2.md)
 
 ## Dữ liệu và cách chấm
 
@@ -21,7 +31,7 @@ SHA-256 của bốn JSONL khớp bản khóa. Các tập tiếng Việt không t
 
 ## Kết quả tiếng Việt
 
-Kết quả `exact_span_label` trên 20 ghi chú test. BA đối chiếu lại 33 tuple vàng đã gán độc lập, khớp toàn bộ với nhãn QA. Sau đó gọi `/api/analyze` qua FastAPI TestClient cho 60 lượt ghi chú × chế độ. Phép tính độc lập khớp artifact về micro, số ghi chú còn FN, chỉ số từng nhãn và 15 ví dụ lỗi. Hash test, trọng số, nguồn rules và dịch vụ phân tích khớp metadata. Chạy lại runner cho cùng kết quả. [Artifact tiếng Việt](../artifacts/evaluation-vi.json)
+Kết quả G3 `exact_span_label` trên 20 ghi chú test. BA đối chiếu lại 33 tuple vàng đã gán độc lập, khớp toàn bộ với nhãn QA. Sau đó gọi `/api/analyze` qua FastAPI TestClient cho 60 lượt ghi chú × chế độ. Phép tính độc lập khớp báo cáo baseline về micro, số ghi chú còn FN, chỉ số từng nhãn và 15 ví dụ lỗi. Hash test, trọng số, nguồn rules và dịch vụ phân tích khớp metadata baseline. [Kết quả lưu trong mục `sets.original.versions.before`](../artifacts/phase-q-comparison.json)
 
 | Chế độ | TP | FP | FN | Precision | Recall | Micro-F1 | Ghi chú có FN |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -75,4 +85,71 @@ Chạy lại với ba môi trường đã khóa theo [hướng dẫn upstream](u
 
 ```powershell
 powershell.exe -NoProfile -File .\scripts\evaluate-upstream.ps1 -OutputPath artifacts/local/g3-ba/evaluation-en.json
+```
+
+## Meddies-first trước huấn luyện
+
+So từng ứng viên đánh giá với toàn bộ 22.310 ghi chú train tạm bằng Jaccard word 5-gram. Không loại ứng viên nào qua ngưỡng > 0,5 hoặc qua phép so tổ hợp tên và số điện thoại/ngày sinh. 299 ghi chú còn lại chia thành validation 149 và test 150 theo loại tài liệu. p50 độ dài ứng viên là 362 code point, trong khi train là 1.156. Giới hạn là “tách tập bằng cô lập nguồn sinh + khử trùng trùng lặp gần giống; phân nhóm bệnh nhân/họ mẫu không kiểm chứng được từ metadata công khai của nhà phát hành”. Gói đang gán, chưa có kết quả IAA, tập silver-locked hoặc điểm Phase M. [Bảng phân bố và manifest](../artifacts/meddies-step3-dedup.json) · [Giao thức](meddies-silver.md)
+
+### Nguồn checkpoint và kiểm tra tách từ trước Phase M
+
+Đối chiếu revision và SHA-256 do kho upstream công bố. Các revision ứng viên dưới đây đều có trước Meddies PII v2. Tài liệu công khai mô tả corpus tiền huấn luyện nhưng không cung cấp danh mục từng văn bản. Lịch sử revision là bằng chứng về tuổi của checkpoint. Chưa nạp trọng số, fine-tune hoặc chọn mô hình.
+
+| Ứng viên | Revision | Tệp trọng số và SHA-256 do upstream công bố |
+|---|---|---|
+| PhoBERT-large | `1c7880f20db59c0054c6de5afd71b012369f6ee4` (2024) | `pytorch_model.bin`, `4be3329449abd3a6865d7936625f1474187b15b59a67c2fecb5a639226a94d6f`. [Checkpoint MIT](https://huggingface.co/vinai/phobert-large/tree/1c7880f20db59c0054c6de5afd71b012369f6ee4) · [Bài báo tiền huấn luyện Wikipedia và tin tức](https://aclanthology.org/2020.findings-emnlp.92/) |
+| ViHealthBERT-word | `f89e80b461e86f9cfc1c84019bd819830c24b6c5` (2022) | `pytorch_model.bin`, `3259d96cb56cb1c85b0a5a894e782a6a4ee66d783333d83368fba36d23be2d06`. Nhóm tác giả trỏ tới đúng bản word-level. Kho mã có MIT. Kho trọng số chưa khai báo riêng giấy phép nên phạm vi dùng và phát hành trọng số vẫn cần xác nhận. [Kho của tác giả](https://github.com/demdecuong/vihealthbert) · [Checkpoint tác giả công bố](https://huggingface.co/demdecuong/vihealthbert-base-word/tree/f89e80b461e86f9cfc1c84019bd819830c24b6c5) · [Bài báo](https://aclanthology.org/2022.lrec-1.35/) |
+| XLM-R-large | `c23d21b0620b635a76227c604d44e43a9f0ee389` (2024) | `model.safetensors`, `2dfa19f172412917cab174da04b46e2134811b723666965fd0aabd97caa6e23b`. [Checkpoint MIT](https://huggingface.co/FacebookAI/xlm-roberta-large/tree/c23d21b0620b635a76227c604d44e43a9f0ee389) · [Bài báo tiền huấn luyện CommonCrawl đa ngữ](https://aclanthology.org/2020.acl-main.747/) |
+
+Loại checkpoint Meddies PII v2 khỏi nhóm ứng viên cho phép đo độc lập vì nhà phát hành khai báo đã huấn luyện trên nguồn Meddies PII v2. [Model card của nhà phát hành](https://huggingface.co/Meddies/meddies-pii-v2#how-we-trained-the-model)
+
+Smoke trên Java 17.0.9 và VnCoreNLP 1.2 đã chạy được `wseg` bằng fixture tự tạo. Đã đối chiếu 18 token về vị trí code point trên nguyên văn. Đầu ra ghép `Mai_An`, giữ dạng tổ hợp Unicode trong tên khác và có thể giữ dấu chấm trong token như `A.`. Triển khai word-level cần duy trì ánh xạ này qua tách từ và subword, kể cả khoảng trắng, CRLF, emoji, dấu tổ hợp và dấu câu. Fixture và đầu ra chỉ lưu cục bộ ở `artifacts/local/meddies/phase-m-preflight/`.
+
+```powershell
+Set-Location artifacts/local/meddies/phase-m-preflight
+java '-Xmx1g' '-Dfile.encoding=UTF-8' -jar VnCoreNLP-1.2.jar -fin synthetic-smoke.txt -fout synthetic-out.txt -annotators wseg
+```
+
+### Kiểm trùng train giả lập MedShield với hai gói Meddies
+
+Kiểm tra chuẩn bị trước Phase M, chỉ dùng văn bản chưa gán nhãn. Nạp 60 ghi chú train MedShield từ `data/train.jsonl` bằng `ml.dataset.load_dataset`, SHA-256 `5de2c3087d01b0ef69d048a20682703cb8672c6b6869d05f3c10b9332ff1fad3`. So nguyên văn và tính Jaccard chính xác theo cùng phương pháp word 5-gram của Bước 3 trên từng cặp train với hai gói gán mù đã ghim.
+
+| Gói so | Số cặp | Trùng nguyên văn | Ghi chú train vượt 0,5 | Jaccard lớn nhất |
+|---|---:|---:|---:|---:|
+| Validation | 8.940 | 0 | 0 | 0 |
+| Test | 9.000 | 0 | 0 | 0 |
+
+Dùng lệnh dưới đây từ thư mục repo để tái tạo thống kê. SHA-256 của từng gói phải khớp [manifest Bước 3](../artifacts/meddies-step3-dedup.json). Dò thêm tổ hợp NAME + PHONE hoặc NAME + DOB từ nhãn của 60 ghi chú train cũng cho 0 ghi chú khớp ở cả hai gói. Kết quả chỉ áp dụng cho đúng byte của các tệp đã so, và cần đối chiếu lại sau khi khóa tập và sau khi chuẩn bị dữ liệu tăng cường.
+
+```powershell
+@'
+from hashlib import sha256
+from pathlib import Path
+from ml.dataset import load_dataset
+from ml.meddies_overlap import SurfaceIndex, max_similarity, shingles, surface_keys, words
+from ml.meddies_silver import packet_rows
+
+train = load_dataset(Path("data")).train
+grams = [shingles(words(note.text), 5) for note in train]
+surface = SurfaceIndex()
+for note in train:
+    names, values = set(), set()
+    for span in note.entities:
+        value = note.text[span.start:span.end]
+        if span.label == "NAME":
+            name = tuple(words(value))
+            if name:
+                names.add(name)
+        elif span.label in {"PHONE", "DOB"}:
+            values.update((span.label, key) for key in surface_keys(value, span.label))
+    surface.add(names, values)
+root = Path("artifacts/local/meddies/step3-source-isolated")
+for split in ("validation", "test"):
+    packet = (root / f"{split}-blind.jsonl").read_bytes()
+    withheld = set(packet_rows(packet).values())
+    hits = max_similarity(grams, withheld)
+    print(split, sha256(packet).hexdigest(), len(train) * len(withheld),
+          sum(note.text in withheld for note in train), sum(score > 0.5 for score in hits),
+          max(hits), sum(bool(surface.matches(text)) for text in withheld))
+'@ | uv run --locked python -X utf8 -
 ```

@@ -1,0 +1,89 @@
+/* scripts/phase-e-label/label.css — Style the offline annotation workspace. */
+:root {
+  color-scheme: light;
+  color: #152a32;
+  background: #f3f8f7;
+  font-family: system-ui, sans-serif;
+}
+
+main {
+  max-width: 55rem;
+  margin: auto;
+  padding: clamp(1rem, 4vw, 2.5rem);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+label:not(.review) {
+  display: grid;
+  gap: 0.25rem;
+  overflow-wrap: anywhere;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+input[type="file"] {
+  max-width: 100%;
+}
+
+button,
+select {
+  min-height: 2.75rem;
+  border: 1px solid #42636c;
+  border-radius: 0.35rem;
+  padding: 0.4rem 0.65rem;
+  background: white;
+  color: inherit;
+}
+
+button:disabled {
+  color: #5d6e75;
+  background: #e1e9e8;
+}
+
+textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 12rem;
+  border: 1px solid #42636c;
+  border-radius: 0.35rem;
+  padding: 0.75rem;
+  line-height: 1.55;
+  resize: vertical;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 0.2rem solid #0a6e5c;
+  outline-offset: 0.15rem;
+}
+
+#status {
+  min-height: 1.5em;
+}
+
+#spans {
+  padding-left: 1.4rem;
+}
+
+#spans li {
+  margin-bottom: 0.5rem;
+  overflow-wrap: anywhere;
+}
+
+#spans button {
+  margin-left: 0.5rem;
+}

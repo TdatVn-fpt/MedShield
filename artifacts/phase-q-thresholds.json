@@ -1,0 +1,82 @@
+{
+  "thresholds": {
+    "NAME": 0.0,
+    "DOB": 0.0,
+    "PHONE": 0.0,
+    "ID": 0.0,
+    "ADDR": 0.75
+  },
+  "validation_notes": 20,
+  "validation_sha256": "04cef7910dded51cea0cbe989ae2aeee7ce92b2936c32a335e7100909548cae0",
+  "model_revision": "sha256:8f0ee850c659b7c13d23280cad1a7c88c1fd051dc462ca5188810d392a7bce3f",
+  "grid": [
+    0.0,
+    0.75,
+    0.9
+  ],
+  "selection": "macro_F2_then_micro_F2_then_lowest_thresholds",
+  "macro_f2": 0.948936170212766,
+  "micro_f2": 0.8904109589041096,
+  "scores": {
+    "notes": 20,
+    "gold_entities": 45,
+    "micro": {
+      "tp": 39,
+      "fp": 0,
+      "fn": 6,
+      "precision": 1.0,
+      "recall": 0.8666666666666667,
+      "f1": 0.9285714285714286,
+      "support": 45
+    },
+    "by_label": {
+      "NAME": {
+        "tp": 14,
+        "fp": 0,
+        "fn": 6,
+        "precision": 1.0,
+        "recall": 0.7,
+        "f1": 0.8235294117647058,
+        "support": 20
+      },
+      "DOB": {
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 5
+      },
+      "PHONE": {
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 5
+      },
+      "ID": {
+        "tp": 5,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 5
+      },
+      "ADDR": {
+        "tp": 10,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 10
+      }
+    },
+    "notes_with_fn": 5,
+    "examples": []
+  }
+}

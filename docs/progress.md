@@ -4,6 +4,16 @@ Chủ dự án: Nguyễn Tiến Đạt — Samsung Innovation Campus, AI-NIC4. C
 
 Đây là sổ điều phối; trạng thái mô tả bằng chứng đã có, không phải lời hứa. PM chỉ ghi READY_FOR_REVIEW cho sản phẩm mình soạn. Reviewer độc lập mới kết luận PASS sau khi đọc sản phẩm và tự chạy phép kiểm liên quan.
 
+Ngày 25/11/2026, nhánh `feat/medshield-demo` hoàn thành lượt triển khai và đo Q1–Q4. Nghiệm thu Phase Q dừng vì rules còn DOB và PHONE bằng 0% trên test khóa gốc; Phase M và L chưa bắt đầu. Kết luận PASS của G1–G3 chỉ áp dụng cho phiên bản trước Phase Q; thay đổi lần này cần kiểm tra lại ở các phạm vi đó. G4 vẫn IN_PROGRESS, G5 vẫn TODO. [Kết quả Phase Q](phase-q.md) · [Biên bản review](reviews/phase-q.md)
+
+| Phase mới | Phạm vi và phụ thuộc | Trạng thái |
+|---|---|---|
+| Q2 | PHONE hai tầng, DOB và ID theo ngữ cảnh, sửa hợp nhất và biên, đo hồi quy | PASS cổng hồi quy theo [review độc lập](reviews/phase-q2.md). Trên test lịch sử, hybrid có strict F1 84,75% (CI 95% 70,18%–94,92%) và còn PHI ở 5/20 ghi chú (25% so với cổng 5%). |
+| E | Nguồn đánh giá độc lập, gán đôi, phân xử, khóa tập và đăng ký cổng | IN_PROGRESS. Đã chọn Meddies theo giao thức Meddies-first. Trang gán offline đã qua kiểm thử Chromium trên fixture giả lập. Chờ hoàn tất gán đôi, IAA, phân xử và khóa silver. [Quy trình Phase E](phase-e.md) |
+| Meddies-first | Kiểm nguồn, ánh xạ train, khử trùng và gán mù | Bước 3 PASS trong phạm vi cô lập nguồn, khử trùng và gói mù. Bước 4 IN_PROGRESS. Đã tiếp nhận phiếu rà 100 mẫu, ánh xạ lại 22.310 ghi chú train và kiểm đủ hai tệp A. Lượt B đã khởi chạy lại từ checkpoint. Công cụ chuẩn bị phân xử đã qua QA độc lập. Còn IAA, phân xử và khóa. [Báo cáo train](meddies-intake.md) · [Giao thức](meddies-silver.md) · [Review công cụ](reviews/meddies-pre-adjudication-tools.md) |
+| M | Mô hình, hiệu chuẩn và nghiệm thu chất lượng trên tập khóa E | Đã chuẩn bị nguồn checkpoint và đường ống kiểm tra phía train. QA xác nhận phạm vi chuẩn bị. Fine-tune thử chờ gửi gói phân xử. Bake-off, chọn mô hình và chấm test chờ khóa silver. [Quyết định checkpoint](decisions/phase-m-checkpoints.md) · [Review công cụ](reviews/meddies-m-preflight-tools.md) |
+| L | Nhập/xuất mở rộng, bảo mật, vận hành, trải nghiệm và tuân thủ | TODO |
+
 ## Bảng chặng
 
 | Chặng | Phạm vi bắt buộc | Người làm | Người kiểm tra | Đầu ra/bằng chứng đích | Trạng thái | Phụ thuộc |
@@ -43,6 +53,12 @@ Mỗi `docs/reviews/Gx.md` do reviewer lập phải ghi tác giả, reviewer th�
 | 21/11/2026 | Tiếp nhận thay đổi G1 từ Claude tại `8984577`, xác minh lại origin và quyền GitHub, phân công sáu vai trò kiểm tra. | Biên bản BA và file xuất giả lập có sẵn. Dev tái hiện lỗi đọc TXT đến muộn và lỗi hợp đồng API. G1 mở vòng sửa và tái kiểm. |
 | 22/11/2026 | Hoàn thiện PDF-01–PDF-04 và nghiệm thu độc lập phạm vi PDF. | 9/9 test PDF qua. Biên bản `docs/reviews/G4-pdf.md` và hướng dẫn `docs/huong-dan-nhap-pdf.md`. |
 | 23/11/2026 | Kiểm lại bản triển khai trên Windows và giữ nguyên byte PDF khi checkout bằng Git. | PDF-01–PDF-04 PASS. Có 22/22 test Chromium và 55/55 test backend qua khi kiểm lại. G4 tổng thể vẫn IN_PROGRESS. |
+| 27/11/2026 | Tiếp nhận phiếu rà soát ánh xạ train do chủ dự án duyệt. | Hai bản CSV cùng SHA-256. Đối chiếu 100/100 dòng với mẫu nguồn, 80 `ok` và 20 `needs_correction`. [Bằng chứng](meddies-intake.md) |
+| 27/11/2026 | Ánh xạ lại train theo phiếu rà do chủ dự án duyệt. | 22.310 ghi chú, 178.233 → 167.861 vùng. QA tái tạo từ shard đã ghim và xác nhận PASS bản v3. [Biên bản](reviews/meddies-train-remap.md) |
+| 27/11/2026 | Kiểm hai tệp A do chủ dự án gán mù. | Validation 149/863, test 150/864 ghi chú/vùng. Khớp từng nhãn, gói mù và biên Unicode. [Hash và số liệu](meddies-silver.md#kiểm-tệp-a-đã-nhận) |
+| 27/11/2026 | Tiếp tục lượt Qwen trên checkpoint cũ lúc 14:45. | llama.cpp cục bộ đã báo `ok` tại cổng 18240. Trước khi tiếp tục có 67/149 validation và 18/150 test hợp lệ. Nhật ký cục bộ `annotator-run-20261127-144514-753.out.log`. |
+| 27/11/2026 | Chuẩn bị môi trường và đường ống Phase M.1 phía train. | PyTorch CPU, Transformers, VnCoreNLP và tokenizer ViHealthBERT đã qua phép thử tách từ, biên và cửa sổ. QA xác nhận cô lập train và giữ mẫu số strict. Chưa cập nhật trọng số mô hình. [Bằng chứng và lệnh](decisions/phase-m-checkpoints.md#bằng-chứng-chuẩn-bị-phase-m1) · [Biên bản](reviews/meddies-m-preflight-tools.md) |
+| 27/11/2026 | Kiểm tra trùng cổng và bảo vệ các lần khởi chạy Qwen tiếp theo. | Trong lúc trùng cổng, kết nối đang xử lý vẫn thuộc lượt chạy gốc và chưa có checkpoint mới. Tiến trình trùng tự thoát. QA xác nhận runner chặn khởi chạy khi cổng hoặc mutex đang được giữ. [Biên bản](reviews/meddies-runner-port.md) |
 
 ## Các điểm phải công khai khi bàn giao
 
