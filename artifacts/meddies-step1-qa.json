@@ -1,0 +1,134 @@
+{
+  "revision": "5dbe7cde649446028f628820c204bf53bb296894",
+  "license": "CC-BY-NC-4.0",
+  "shard_sha256": "331640296be10a56a468e1cf9d5014dc9d1de13ab304b9294df0643b2ddbc04a",
+  "total_rows": 38963,
+  "raw_cohort_counts": {
+    "provisional_train": 22310,
+    "medical_metadata_insufficient": 8737,
+    "not_medical_vi": 7617,
+    "evaluation_candidate": 299
+  },
+  "exact_text_exclusions": {},
+  "cohorts": {
+    "provisional_train": {
+      "count": 22310,
+      "length_code_points": {
+        "min": 260,
+        "p50": 1156,
+        "p95": 2283,
+        "max": 15666
+      },
+      "document_types": {
+        "FHIR-like Patient + Encounter resource": 1031,
+        "HL7-style admission/update message": 1166,
+        "OCR-scanned clinical note": 396,
+        "ambient voice scribe transcript": 717,
+        "appointment reminder": 1248,
+        "discharge summary": 2242,
+        "insurance claim note": 2109,
+        "lab result notification": 2141,
+        "medical bill / invoice": 1545,
+        "outpatient note": 1603,
+        "patient portal access log": 1946,
+        "pharmacy refill request": 2510,
+        "referral letter": 1824,
+        "telehealth triage note": 1832
+      },
+      "lineage": {
+        "original_id": {
+          "present": 0,
+          "distinct": 0,
+          "repeated_values": 0,
+          "verified_patient_or_family_key": false
+        },
+        "scenario": {
+          "present": 22310,
+          "distinct": 6,
+          "repeated_values": 6,
+          "verified_patient_or_family_key": false
+        },
+        "domain_profile": {
+          "present": 22310,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        },
+        "source": {
+          "present": 22310,
+          "distinct": 13,
+          "repeated_values": 13,
+          "verified_patient_or_family_key": false
+        },
+        "source_dataset": {
+          "present": 22310,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        }
+      }
+    },
+    "evaluation_candidate": {
+      "count": 299,
+      "length_code_points": {
+        "min": 276,
+        "p50": 362,
+        "p95": 420,
+        "max": 438
+      },
+      "document_types": {
+        "CONSENT_FORM": 11,
+        "DISCHARGE_SUMMARY": 23,
+        "IMAGING_REPORT": 21,
+        "IMMUNIZATION_RECORD": 15,
+        "LAB_RESULT": 24,
+        "MEDICAL_BILL": 21,
+        "MEDICAL_RECORD": 11,
+        "MEDICATION_CHART": 17,
+        "MORTALITY_REPORT": 19,
+        "NURSING_NOTE": 13,
+        "OUTPATIENT_EXAMINATION": 23,
+        "PHYSICAL_THERAPY_PLAN": 14,
+        "PRESCRIPTION": 18,
+        "REFERRAL_LETTER": 21,
+        "SURGERY_SCHEDULE": 23,
+        "TRANSFER_FORM": 25
+      },
+      "lineage": {
+        "original_id": {
+          "present": 299,
+          "distinct": 299,
+          "repeated_values": 0,
+          "verified_patient_or_family_key": false
+        },
+        "scenario": {
+          "present": 299,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        },
+        "domain_profile": {
+          "present": 299,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        },
+        "source": {
+          "present": 299,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        },
+        "source_dataset": {
+          "present": 299,
+          "distinct": 1,
+          "repeated_values": 1,
+          "verified_patient_or_family_key": false
+        }
+      }
+    }
+  },
+  "numeric_gate_met": true,
+  "patient_and_family_disjointness_verified": false,
+  "status": "candidate_counts_only"
+}
