@@ -100,4 +100,4 @@ Bản đọc tập theo **sáu slide Canva hiện có**, khoảng **8 phút kể
 
 Nếu quên lời, chỉ vào sơ đồ và tự hỏi: “Đầu vào của bước này là gì? Thành phần nào xử lý? Đầu ra là gì?” Khi tập, gạch dưới một cụm quan trọng mỗi slide. Sau một lượt đọc, tập lại chỉ nhìn tờ nhắc.
 
-[Slide Canva](https://www.canva.com/d/bqBLyVXeMF5kFoN) · [Kiến trúc](architecture.md) · [Báo cáo thực nghiệm](experiment.md) · [PDF demo](evidence/demo-benh-an-ngoai-tru.pdf) · [TXT đã rà soát](evidence/demo-benh-an-ngoai-tru.reviewed.txt)
+[Kiến trúc](architecture.md) · [Báo cáo thực nghiệm](experiment.md) · [PDF demo](evidence/demo-benh-an-ngoai-tru.pdf) · [TXT đã rà soát](evidence/demo-benh-an-ngoai-tru.reviewed.txt)

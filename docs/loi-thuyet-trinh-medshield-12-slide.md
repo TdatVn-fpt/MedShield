@@ -108,7 +108,7 @@ Dành khoảng 6–7 phút cho slide 1–11 và 3 phút cho demo ở slide 12. P
 
 ## Chuẩn bị trước khi mở slide
 
-1. Khởi động API và web theo [README Windows](../README.md#chạy-nhanh-trên-windows). Giữ hai terminal mở.
+1. Khởi động API và web theo [hướng dẫn khởi động](huong-dan-nhap-pdf.md#khởi-động). Giữ hai terminal mở.
 2. Mở [website](http://127.0.0.1:5173/) và [API health](http://127.0.0.1:8000/health). Kiểm tra `vi/hybrid` có trạng thái `available` rồi quay về tab web.
 3. Chuẩn bị [PDF ngoại trú hai trang](evidence/demo-benh-an-ngoai-tru.pdf), [TXT dự phòng](evidence/demo-benh-an-ngoai-tru.txt) và mở sẵn thư mục Downloads. Dùng tệp PDF trong repo để khớp ca đã kiểm thử.
 
